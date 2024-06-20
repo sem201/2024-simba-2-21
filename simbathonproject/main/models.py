@@ -17,4 +17,4 @@ class Custom(models.Model):
     image=models.ImageField(upload_to="custom/", null=True)
     like_count=models.PositiveIntegerField(default=0)
     college=models.CharField(max_length=20, null=True)
-    major=models.CharField(max_length=20, null=True)
+    major=models.CharField(max_length=10, null=True)
