@@ -3,12 +3,9 @@ from .views import *
 
 app_name='main'
 urlpatterns = [
-    path('', startpage, name='startpage'),
-    path('main/', mainpage, name='mainpage'),
+    path('', mainpage, name='mainpage'),
     path('custom/',custompage,name='custompage'),
-    path('design/', selectpage, name='selectpage',),
-    path('like/<int:varsity_id>/', like_varsity, name='like_varsity'),
-    path('designvarsity/', designpage, name='designpage'),
-    path('information/', informationpage, name='informationpage'),
+    path('design/', design_start_page,name='start_page'),
+    path('design/select/', design_select_page, name='select_page'),
 ]
 

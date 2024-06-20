@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Varsity)
 admin.site.register(Keyword)
 admin.site.register(Custom)
+
