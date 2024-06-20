@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main/custom_page.css' %}">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div id="container">
+        <div id="top_bar">
+            <div class="button_container">
+                <div id="normal_custom">
+                    <a href='/'><button id="normal_btn">일반</button></a>
+                    <button id="custom_btn">커스텀</button>
+                </div>
+                <button id="filter_btn">
+                    <img src="{% static 'assets/icons/icon_filter.png' %}" id="icon_filter">
+                </button>
+            </div>
+        </div>
+        <div id="main_container">
+            <div id="main_box">
+                <div class="slider__wrap">
+                    <div class="slider__btn">
+                        <a href="#" class="prev" title="이전">&lt;</a>
+                    </div>
+                    <div class="slider__img">
+                        <div class="slider__inner" style="width: 800 * 3">
+                            <div class="slider"><img src="{% static 'assets/test.png' %}" class="test_img"/></div>
+                            <div class="slider"><img src="{% static 'assets/test.png' %}" class="test_img"/></div>
+                            <div class="slider"><img src="{% static 'assets/test.png' %}" class="test_img"/></div>
+                        </div>
+                    </div>
+                    <div class="slider__btn">
+                        <a href="#" class="next" title="다음">&gt;</a>
+                    </div>
+                </div>
+                <div>
+                    <p><b>학과/단체명</b></p>
+                </div>
+                <div>
+                    <button id='heart_btn'>
+                        <img src="{% static 'assets/icons/heart.png' %}" id="icon_heart"/>
+                        <p>xx</p>
+                    </button>
+                </div>
+                <div id='design_btn_container'>
+                    <a href='/design/'><button id='design_btn'>Design</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/main/custompage.js' %}"></script>
+</body>
+</html>

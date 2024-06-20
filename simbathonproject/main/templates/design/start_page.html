@@ -1,0 +1,19 @@
+<html lang="ko">
+<head>
+    {% load static %}
+    <link rel='stylesheet' type='text/css' href="{% static "css/design/start_page.css"%}">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div id='body_container'>
+        <div id='top_bar'>
+            <p id='design_text'>당신의 과잠을 <br>직접 디자인해보세요</p>
+            <p id='design_text2'>Design your own jacket</p>
+        </div>
+        <div id='main_container'>
+            <img src="{% static 'assets/test.png' %}"/>
+            <a href='select/'><button id='start_btn'>시작하기</button></a>
+        </div>
+    </div>
+</body>

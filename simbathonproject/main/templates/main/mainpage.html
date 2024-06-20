@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main/main_page.css' %}">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div id="container">
+        <div id="top_bar">
+            <div class="button_container">
+                <div id="normal_custom">
+                    <button id="normal_btn">일반</button>
+                    <a href='custom'><button id="custom_btn">커스텀</button></a>
+                </div>
+                <button id="filter_btn">
+                    <img src="{% static 'assets/icons/icon_filter.png' %}" id="icon_filter">
+                </button>
+            </div>
+        </div>
+        <div id="main_container">
+            <div id="main_box">
+                <div class="slider__wrap">
+                    <div class="slider__btn">
+                        <a href="#" class="prev" title="이전">&lt;</a>
+                    </div>
+                    <div class="slider__img">
+                        <div class="slider__inner">
+                            {% for varsity in varsitys %}
+                            <div class="slider">
+                                <img src="{{ varsity.image_front.url }}" class="test_img"/>
+                                <p align="center"><b>{{varsity.major}}/{{varsity.college}}</b></p>
+                                <button id='heart_btn'>
+                                    <img src="{% static 'assets/icons/heart.png' %}" id="icon_heart"/>
+                                    <p>{{varsity.like_count}}</p>
+                                </button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="slider__btn">
+                        <a href="#" class="next" title="다음">&gt;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/main/mainpage.js' %}"></script>
+</body>
+</html>
