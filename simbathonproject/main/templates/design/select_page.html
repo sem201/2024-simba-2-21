@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    {% load static %}
+    <link rel='stylesheet' type='text/css' href="{% static "css/design/select_page.css"%}">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div id="body_container">
+        <div id='top_bar'>
+            <p id='design_text'>과잠 디자인 선택</p>
+        </div>
+        <div id='tempete_container'>
+            <div class='tempalte_item'>
+                <img src="{% static 'assets/test.png' %}"/>
+            </div>
+            <div class='tempalte_item'>
+                <img src="{% static 'assets/test.png' %}"/>
+            </div>
+            <div class='tempalte_item'>
+                <img src="{% static 'assets/test.png' %}"/>
+            </div>
+            <div class='tempalte_item'>
+                <img src="{% static 'assets/test.png' %}"/>
+            </div>
+            <div class='tempalte_item'>
+                <img src="{% static 'assets/test.png' %}"/>
+            </div>
+            <div class='tempalte_item'>
+                <img src="{% static 'assets/test.png' %}"/>
+            </div>
+        </div>
+    </div>
+    <a href='/designvarsity'><button id="normal_btn">designnpage</button></a>
+</body>
