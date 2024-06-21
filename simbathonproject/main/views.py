@@ -52,4 +52,4 @@ def create(request):
     new_custom.major=request.POST['major']
 
     new_custom.save()
-    return redirect('main:custom')
+    return redirect('custom/')
