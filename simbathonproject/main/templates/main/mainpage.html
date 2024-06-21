@@ -29,7 +29,7 @@
                         <div class="slider__inner">
                             {% for varsity in varsitys %}
                             <div class="slider">
-                                <img src="{{ varsity.image_front.url }}" class="test_img"/>
+                                <img src="{{ varsity.image_front.url }}" class="test_img" data-front="{{ varsity.image_front.url }}" data-back="{{ varsity.image_back.url }}" onclick="toggleImage(this)"/>
                                 <p align="center"><b>{{ varsity.major }}/{{ varsity.college }}</b></p>
                                 <button id='heart_btn' data-varsity-id="{{ varsity.id }}">
                                     <img src="{% static 'assets/icons/heart.png' %}" id="icon_heart" />
@@ -50,5 +50,16 @@
         </div>
     </div>
     <script src="{% static 'js/main/mainpage.js' %}"></script>
+    <script>
+        function toggleImage(img) {
+            var frontSrc = img.getAttribute('data-front');
+            var backSrc = img.getAttribute('data-back');
+            if (img.src.endsWith(frontSrc.split('/').pop())) {
+                img.src = backSrc;
+            } else {
+                img.src = frontSrc;
+            }
+        }
+    </script>
 </body>
 </html>
