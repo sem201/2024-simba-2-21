@@ -32,10 +32,7 @@
                                 <img src="{{ varsity.image_front.url }}" class="test_img" data-front="{{ varsity.image_front.url }}" data-back="{{ varsity.image_back.url }}" onclick="toggleImage(this)"/>
                                 <p align="center"><b>{{ varsity.major }}/{{ varsity.college }}</b></p>
                                 <button id='heart_btn' data-varsity-id="{{ varsity.id }}">
-                                    <img src="{% static 'assets/icons/heart.png' %}" id="icon_heart" />
-                                    {% if varsity.id in liked_varsitys %}
-                                    <img src="{% static 'assets/icons/heart_filled.png' %}" id="icon_heart" />
-                                    {% endif %}
+                                    <img src="{% if varsity.id in liked_varsitys %}{% static 'assets/icons/heart_filled.png' %}{% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
                                     <p>{{ varsity.like_count }}</p>
                                 </button>
                             </div>
