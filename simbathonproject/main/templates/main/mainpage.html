@@ -9,13 +9,13 @@
 <body>
     <div id="container">
         <div id="top_bar">
-            <div class="button_container">
+            <div class="button_container">   <!--일반/커스텀-->
                 <div id="normal_custom">
                     <button id="normal_btn">일반</button>
                     <a href='/custom'><button id="custom_btn">커스텀</button></a>
                 </div>
                 <button id="filter_btn">
-                    <img src="{% static 'assets/icons/icon_filter.png' %}" id="icon_filter">
+                    <a href='/filter'><img src="{% static 'assets/icons/icon_filter.png' %}" id="icon_filter"></a>
                 </button>
             </div>
         </div>
@@ -29,7 +29,7 @@
                         <div class="slider__inner">
                             {% for varsity in varsitys %}
                             <div class="slider">
-                                <img src="{{ varsity.image_front.url }}" class="test_img"/>
+                                <img src="{{ varsity.image_front.url }}" class="test_img" data-front="{{ varsity.image_front.url }}" data-back="{{ varsity.image_back.url }}" onclick="toggleImage(this)"/>
                                 <p align="center"><b>{{ varsity.major }}/{{ varsity.college }}</b></p>
                                 <button id='heart_btn' data-varsity-id="{{ varsity.id }}">
                                     <img src="{% if varsity.id in liked_varsitys %}{% static 'assets/icons/heart_filled.png' %}{% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
@@ -47,5 +47,16 @@
         </div>
     </div>
     <script src="{% static 'js/main/mainpage.js' %}"></script>
+    <script>
+        function toggleImage(img) {
+            var frontSrc = img.getAttribute('data-front');
+            var backSrc = img.getAttribute('data-back');
+            if (img.src.endsWith(frontSrc.split('/').pop())) {
+                img.src = backSrc;
+            } else {
+                img.src = frontSrc;
+            }
+        }
+    </script>
 </body>
 </html>
