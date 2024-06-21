@@ -12,11 +12,13 @@ def mainpage(request):
 
 def custompage(request):
     customs = Custom.objects.all()
-    liked_customs = request.session.get('liked_customs', [])
-    return render(request, 'main/custompage.html', {'customs': customs, 'liked_customs': liked_customs})
+    return render(request, 'main/custompage.html', {'customs': customs})
 
 def selectpage(request):
     return render(request, 'design/select_page.html')
+
+def designstartpage(request):
+    return render(request, 'design/start_page.html')
 
 def designpage(request):
     return render(request, 'design/designpage.html')
@@ -41,7 +43,7 @@ def like_varsity(request, varsity_id):
         return JsonResponse({'like_count': varsity.like_count, 'is_liked': is_liked})
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
-def information(request):
+def create(request):
     new_custom=Custom()
 
     new_custom.title=request.POST['title']
@@ -50,4 +52,4 @@ def information(request):
     new_custom.major=request.POST['major']
 
     new_custom.save()
-    return render('design:informationpage')
+    return redirect('custom/')
