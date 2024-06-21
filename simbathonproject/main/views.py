@@ -7,8 +7,13 @@ def startpage(request):
 
 def mainpage(request):
     varsitys = Varsity.objects.all()
+
+    custom_order = ['AI융합대학', '경영대학', '경찰사법대학', '공과대학', '문과대학', '미래융합대학', '바이오시스템대학', '법과대학', '불교대학', '사범대학', '사회과학대학', '약학대학', '예술대학', '이과대학']
+    
+    sorted_varsitys = sorted(varsitys, key=lambda v: custom_order.index(v.college) if v.college in custom_order else len(custom_order))
+
     liked_varsitys = request.session.get('liked_varsitys', [])
-    return render(request, 'main/mainpage.html', {'varsitys': varsitys, 'liked_varsitys': liked_varsitys})
+    return render(request, 'main/mainpage.html', {'varsitys': sorted_varsitys, 'liked_varsitys': liked_varsitys})
 
 def custompage(request):
     customs = Custom.objects.all()
