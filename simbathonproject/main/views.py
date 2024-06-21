@@ -53,3 +53,6 @@ def create(request):
 
     new_custom.save()
     return redirect('custom/')
+
+def filterpage(request):
+    return render(request, 'main/filterpage.html')
