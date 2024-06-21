@@ -11,8 +11,10 @@
 
 <body class="body">
     <div class="container">
-        <div class="head">          <!-- 상단 바 / 필터 -->
+        <div class="head">                  <!-- 상단 바 / 필터 -->
+            <a href="/main"><button>          
             <img src="{% static 'assets/icons/icon_back.png' %}">
+            </button></a>
             <h2>필터에요</h2>
             <img src="{% static 'assets/icons/icon_check.png' %}">
         </div>                      <!--헤드 닫기 -->
@@ -189,10 +191,6 @@
                     <div class="major_filter">
                         <input type="checkbox" id="foodScienceBiotechnology" class="department" data-college="bio" data-department="foodScienceBiotechnology">
                         <label for="foodScienceBiotechnology">식품생명공학과</label>
-                    </div>
-                    <div class="major_filter">
-                        <input type="checkbox" id="foodIndustryManagement" class="department" data-college="bio" data-department="foodIndustryManagement">
-                        <label for="foodIndustryManagement">식품산업관리학과</label>
                     </div>
                     <div class="major_filter">
                         <input type="checkbox" id="bioMedicalEngineering" class="department" data-college="bio" data-department="bioMedicalEngineering">
