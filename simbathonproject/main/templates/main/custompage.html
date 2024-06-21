@@ -10,7 +10,7 @@
         <div id="top_bar">
             <div class="button_container">
                 <div id="normal_custom">
-                    <a href='/'><button id="normal_btn">일반</button></a>
+                    <a href='/main'><button id="normal_btn">일반</button></a>
                     <button id="custom_btn">커스텀</button>
                 </div>
                 <button id="filter_btn">
@@ -27,6 +27,12 @@
                     <div class="slider__img">
                         <div class="slider__inner" style="width: 800 * 3">
                             <div class="slider"><img src="{% static 'assets/test.png' %}" class="test_img"/></div>
+                            {% for custom in customs %}
+                                <p><b>{{custom.major}}/{{custom.college}}</b></p>
+                                {% if custom.image %}
+                                    <p><img src="{{ custom.image.url }}" alt="사진" width="150px"></p>
+                                {% endif %}
+                            {% endfor %}
                             <div class="slider"><img src="{% static 'assets/test.png' %}" class="test_img"/></div>
                             <div class="slider"><img src="{% static 'assets/test.png' %}" class="test_img"/></div>
                         </div>
@@ -36,7 +42,12 @@
                     </div>
                 </div>
                 <div>
-                    <p><b>학과/단체명</b></p>
+                {% for custom in customs %}
+                    <p><b>{{custom.major}}/{{custom.college}}</b></p>
+                    {% if custom.image %}
+                        <p><img src="{{ custom.image.url }}" alt="사진" width="150px"></p>
+                    {% endif %}
+                {% endfor %}
                 </div>
                 <div>
                     <button id='heart_btn'>
