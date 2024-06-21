@@ -56,3 +56,6 @@ def create(request):
 
 def filterpage(request):
     return render(request, 'main/filterpage.html')
+
+def customfilterpage(request):
+    return render(request, 'main/customfilterpage.html')
