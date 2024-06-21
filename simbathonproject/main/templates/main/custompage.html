@@ -25,35 +25,27 @@
                         <a href="#" class="prev" title="이전">&lt;</a>
                     </div>
                     <div class="slider__img">
-                        <div class="slider__inner" style="width: 800 * 3">
-                            <div class="slider"><img src="{% static 'assets/test.png' %}" class="test_img"/></div>
+                        <div class="slider__inner">
                             {% for custom in customs %}
-                                <p><b>{{custom.major}}/{{custom.college}}</b></p>
+                            <div class="slider">
                                 {% if custom.image %}
-                                    <p><img src="{{ custom.image.url }}" alt="사진" width="150px"></p>
+                                    <img src="{{ custom.image.url }}" class="test_img"/>
                                 {% endif %}
+                                <p align="center"><b>{{custom.major}}/{{custom.college}}</b></p>
+                                <button id='heart_btn' data-custom-id="{{custom.id}}">
+                                    <img src="{% static 'assets/icons/heart.png' %}" id="icon_heart" />
+                                    {% if custom.id in liked_customs %}
+                                    <img src="{% static 'assets/icons/heart_filled.png' %}" id="icon_heart" />
+                                    {% endif %}
+                                    <p>{{ custom.like_count }}</p>
+                                </button>
+                            </div>
                             {% endfor %}
-                            <div class="slider"><img src="{% static 'assets/test.png' %}" class="test_img"/></div>
-                            <div class="slider"><img src="{% static 'assets/test.png' %}" class="test_img"/></div>
                         </div>
                     </div>
                     <div class="slider__btn">
                         <a href="#" class="next" title="다음">&gt;</a>
                     </div>
-                </div>
-                <div>
-                {% for custom in customs %}
-                    <p><b>{{custom.major}}/{{custom.college}}</b></p>
-                    {% if custom.image %}
-                        <p><img src="{{ custom.image.url }}" alt="사진" width="150px"></p>
-                    {% endif %}
-                {% endfor %}
-                </div>
-                <div>
-                    <button id='heart_btn'>
-                        <img src="{% static 'assets/icons/heart.png' %}" id="icon_heart"/>
-                        <p>xx</p>
-                    </button>
                 </div>
                 <div id='design_btn_container'>
                     <a href='/design/'><button id='design_btn'>Design</button></a>
