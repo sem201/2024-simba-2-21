@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     heartButtons.forEach(button => {
         button.addEventListener('click', function() {
+
             const varsityId = this.dataset.varsityId;
             const likeCountElem = this.querySelector('p');
             const iconHeart = this.querySelector('#icon_heart');
@@ -70,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else {
                         iconHeart.src = "/static/assets/icons/heart.png";
                     }
+                    console.log(`Total likes: ${data.like_count}`);
                 }
             });
         });
@@ -90,4 +92,3 @@ document.addEventListener('DOMContentLoaded', function() {
         return cookieValue;
     }
 });
-
