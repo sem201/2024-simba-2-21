@@ -1,0 +1,422 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Filter</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main/filter_page.css' %}">
+</head>
+
+
+<body class="body">
+    <div class="container">
+        <div class="head">          <!-- 상단 바 / 필터 -->
+            <a href='/custom'><img src="{% static 'assets/icons/icon_back.png' %}"></a>
+            <h2>필터에요</h2>
+            <img src="{% static 'assets/icons/icon_check.png' %}">
+        </div>                      <!--헤드 닫기 -->
+        <form class="search_form">  <!-- 검색 바_ 영역시작 -->
+        <img class="search_icon" src="{% static 'assets/icons/icon_search.png' %}" width="15px">
+        <input type="text" placeholder="Search" />
+        </form>                     <!-- 검색 바 닫기 -->
+        <div class="list">          <!--필터 목록-->
+            <div class="college_filter">            <!--필터1. AI융합-->
+                <input type="checkbox" id="aiCollege" class="college" data-college="ai">
+                <label for="aiCollege" class="college-label">AI융합대학</label>
+                <button onclick="toggleDepartments('ai')">▼</button>
+            </div>
+            <div class="departments-container" id="aiDepartments">  
+                <div class="department">
+                    <div class="major_filter">
+                    <input type="checkbox" id="aiSoftware" class="department" data-college="ai" data-department="aiSoftware">
+                    <label for="aiSoftware">AI소프트웨어융합학부</label>
+                    </div>
+                    <div class="major_filter">
+                    <input type="checkbox" id="semiconductor" class="department" data-college="ai" data-department="semiconductor">
+                    <label for="semiconductor">시스템반도체학부</label>
+                    </div>
+                </div>
+            </div>
+            <div class="college_filter">            <!--필터2. 경영-->
+                <input type="checkbox" id="businessCollege" class="college" data-college="business">
+                <label for="businessCollege" class="college-label">경영대학</label>
+                <button onclick="toggleDepartments('business')">▼</button>
+            </div>
+            <div class="departments-container" id="businessDepartments">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="businessManagement" class="department" data-college="business" data-department="management">
+                        <label for="businessManagement">경영학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="accounting" class="department" data-college="business" data-department="accounting">
+                        <label for="accounting">회계학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="businessInformation" class="department" data-college="business" data-department="information">
+                        <label for="businessInformation">경영정보학과</label>
+                    </div>
+                </div>
+            </div>              
+            <div class="college_filter">            <!--필터3. 경찰사법-->
+                <input type="checkbox" id="policeCollege" class="college" data-college="police">
+                <label for="policeCollege" class="college-label">경찰사법대학</label>
+                <button onclick="toggleDepartments('police')">▼</button>
+            </div>
+            <div class="departments-container" id="policeDepartments">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="policeScience" class="department" data-college="police" data-department="science">
+                        <label for="policeScience">경찰행정학부</label>
+                    </div>
+                </div>
+            </div>                
+            <div class="college_filter">            <!--필터4. 공과-->
+    <input type="checkbox" id="engineeringCollege" class="college" data-college="engineering">
+    <label for="engineeringCollege" class="college-label">공과대학</label>
+    <button onclick="toggleDepartments('engineering')">▼</button>
+            </div>
+            <div class="departments-container" id="engineeringDepartments">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="civilEngineering" class="department" data-college="engineering" data-department="civil">
+                        <label for="civilEngineering">건설환경공학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="architecture" class="department" data-college="engineering" data-department="architecture">
+                        <label for="architecture">건축공학부</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="mechanicalEngineering" class="department" data-college="engineering" data-department="mechanical">
+                        <label for="mechanicalEngineering">기계로봇에너지공학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="industrialSystems" class="department" data-college="engineering" data-department="industrial">
+                        <label for="industrialSystems">산업시스템공학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="energyMaterials" class="department" data-college="engineering" data-department="energy">
+                        <label for="energyMaterials">에너지신소재공학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="electricalEngineering" class="department" data-college="engineering" data-department="electrical">
+                        <label for="electricalEngineering">전자전기공학부</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="informationTechnology" class="department" data-college="engineering" data-department="information">
+                        <label for="informationTechnology">정보통신공학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="chemicalEngineering" class="department" data-college="engineering" data-department="chemical">
+                        <label for="chemicalEngineering">화공생물공학과</label>
+                    </div>
+                </div>
+            </div>
+            <div class="college_filter">            <!--필터5. 문과-->
+                <input type="checkbox" id="liberalArtsCollege" class="college" data-college="liberalArts">
+                <label for="liberalArtsCollege" class="college-label">문과대학</label>
+                <button onclick="toggleDepartments('liberalArts')">▼</button>
+            </div>
+            <div class="departments-container" id="liberalArtsDepartments">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="koreanLiterature" class="department" data-college="liberalArts" data-department="koreanLiterature">
+                        <label for="koreanLiterature">국어국문·문예창작학부</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="history" class="department" data-college="liberalArts" data-department="history">
+                        <label for="history">사학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="englishLiterature" class="department" data-college="liberalArts" data-department="englishLiterature">
+                        <label for="englishLiterature">영어영문학부</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="japanese" class="department" data-college="liberalArts" data-department="japanese">
+                        <label for="japanese">일본학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="chinese" class="department" data-college="liberalArts" data-department="chinese">
+                        <label for="chinese">중어중문학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="philosophy" class="department" data-college="liberalArts" data-department="philosophy">
+                        <label for="philosophy">철학과</label>
+                    </div>
+                </div>
+            </div>              
+            <div class="college_filter">             <!--필터6. 미래융합 -->
+                <input type="checkbox" id="futureConvergenceCollege" class="college" data-college="futureConvergence">
+                <label for="futureConvergenceCollege" class="college-label">미래융합대학</label>
+                <button onclick="toggleDepartments('futureConvergence')">▼</button>
+            </div>
+            <div class="departments-container" id="futureConvergenceDepartments">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="globalTrade" class="department" data-college="futureConvergence" data-department="globalTrade">
+                        <label for="globalTrade">글로벌무역학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="socialWelfareCounseling" class="department" data-college="futureConvergence" data-department="socialWelfareCounseling">
+                        <label for="socialWelfareCounseling">사회복지상담학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="securityConvergence" class="department" data-college="futureConvergence" data-department="securityConvergence">
+                        <label for="securityConvergence">융합보안학과</label>
+                    </div>
+                </div>
+            </div>
+            <div class="college_filter">             <!-- 필터7.바이오 -->
+                <input type="checkbox" id="bioCollege" class="college" data-college="bio">
+                <label for="bioCollege" class="college-label">바이오시스템대학</label>
+                <button onclick="toggleDepartments('bio')">▼</button>
+            </div>
+            <div class="departments-container" id="bioDepartments">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="bioEnvironmentalScience" class="department" data-college="bio" data-department="bioEnvironmentalScience">
+                        <label for="bioEnvironmentalScience">바이오환경과학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="lifeScience" class="department" data-college="bio" data-department="lifeScience">
+                        <label for="lifeScience">생명과학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="foodScienceBiotechnology" class="department" data-college="bio" data-department="foodScienceBiotechnology">
+                        <label for="foodScienceBiotechnology">식품생명공학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="bioMedicalEngineering" class="department" data-college="bio" data-department="bioMedicalEngineering">
+                        <label for="bioMedicalEngineering">의생명공학과</label>
+                    </div>
+                </div>
+            </div>
+            <div class="college_filter">  <!-- 필터8. 법과 -->
+                <input type="checkbox" id="lawCollege" class="college" data-college="law">
+                <label for="lawCollege" class="college-label">법과대학</label>
+                <button onclick="toggleDepartments('law')">▼</button>
+            </div>
+            <div class="departments-container" id="lawDepartments">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="law" class="department" data-college="law" data-department="law">
+                        <label for="law">법학과</label>
+                    </div>
+                </div>
+            </div>
+            <div class="college_filter"> <!-- 필터9. 불교 -->
+                <input type="checkbox" id="buddhismCollege" class="college" data-college="buddhism">
+                <label for="buddhismCollege" class="college-label">불교대학</label>
+                <button onclick="toggleDepartments('buddhism')">▼</button>
+            </div>
+            <div class="departments-container" id="buddhismDepartments">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="buddhismStudies" class="department" data-college="buddhism" data-department="buddhismStudies">
+                        <label for="buddhismStudies">불교학부</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="culturalHeritage" class="department" data-college="buddhism" data-department="culturalHeritage">
+                        <label for="culturalHeritage">문화재학과</label>
+                    </div>
+                </div>
+            </div>
+            <div class="college_filter">   <!-- 필터10. 사범 -->
+                <input type="checkbox" id="educationCollege" class="college" data-college="education">
+                <label for="educationCollege" class="college-label">사범대학</label>
+                <button onclick="toggleDepartments('education')">▼</button>
+            </div>
+            <div class="departments-container" id="educationDepartments">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="homeEconomicsEducation" class="department" data-college="education" data-department="homeEconomicsEducation">
+                        <label for="homeEconomicsEducation">가정교육과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="koreanLanguageEducation" class="department" data-college="education" data-department="koreanLanguageEducation">
+                        <label for="koreanLanguageEducation">국어교육과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="education" class="department" data-college="education" data-department="education">
+                        <label for="education">교육학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="historyEducation" class="department" data-college="education" data-department="historyEducation">
+                        <label for="historyEducation">역사교육과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="geographyEducation" class="department" data-college="education" data-department="geographyEducation">
+                        <label for="geographyEducation">지리교육과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="mathematicsEducation" class="department" data-college="education" data-department="mathematicsEducation">
+                        <label for="mathematicsEducation">수학교육과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="physicalEducation" class="department" data-college="education" data-department="physicalEducation">
+                        <label for="physicalEducation">체육교육과</label>
+                    </div>
+                </div>
+            </div>
+            <div class="college_filter">    <!--필터11. 사회과학 -->
+                <input type="checkbox" id="socialScienceCollege" class="college" data-college="socialScience">
+                <label for="socialScienceCollege" class="college-label">사회과학대학</label>
+                <button onclick="toggleDepartments('socialScience')">▼</button>
+            </div>
+            <div class="departments-container" id="socialScienceDepartments">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="advertisingPR" class="department" data-college="socialScience" data-department="advertisingPR">
+                        <label for="advertisingPR">광고홍보학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="economics" class="department" data-college="socialScience" data-department="economics">
+                        <label for="economics">경제학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="internationalTrade" class="department" data-college="socialScience" data-department="internationalTrade">
+                        <label for="internationalTrade">국제통상학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="northKoreanStudies" class="department" data-college="socialScience" data-department="northKoreanStudies">
+                        <label for="northKoreanStudies">북한학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="mediaCommunication" class="department" data-college="socialScience" data-department="mediaCommunication">
+                        <label for="mediaCommunication">미디어커뮤니케이션학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="sociology" class="department" data-college="socialScience" data-department="sociology">
+                        <label for="sociology">사회학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="socialWelfare" class="department" data-college="socialScience" data-department="socialWelfare">
+                        <label for="socialWelfare">사회복지학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="foodIndustryManagementSS" class="department" data-college="socialScience" data-department="foodIndustryManagementSS">
+                        <label for="foodIndustryManagementSS">식품산업관리학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="politicsPublicAdministration" class="department" data-college="socialScience" data-department="politicsPublicAdministration">
+                        <label for="politicsPublicAdministration">정치행정학부</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="publicAdministration" class="department" data-college="socialScience" data-department="publicAdministration">
+                        <label for="publicAdministration">행정학과</label>
+                    </div>
+                </div>
+            </div>
+            <div class="college_filter">    <!-- 필터12. 약학 -->
+                <input type="checkbox" id="pharmacyCollege" class="college" data-college="pharmacy">
+                <label for="pharmacyCollege" class="college-label">약학대학</label>
+                <button onclick="toggleDepartments('pharmacy')">▼</button>
+            </div>
+            <div class="departments-container" id="pharmacyDepartments">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="pharmacy" class="department" data-college="pharmacy" data-department="pharmacy">
+                        <label for="pharmacy">약학과</label>
+                    </div>
+                </div>
+            </div>
+            <div class="college_filter">    <!--필터13. 예술 -->
+                <input type="checkbox" id="artsCollege" class="college" data-college="arts">
+                <label for="artsCollege" class="college-label">예술대학</label>
+                <button onclick="toggleDepartments('arts')">▼</button>
+            </div>
+            <div class="departments-container" id="artsDepartments">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="filmMedia" class="department" data-college="arts" data-department="filmMedia">
+                        <label for="filmMedia">영화영상학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="theatre" class="department" data-college="arts" data-department="theatre">
+                        <label for="theatre">연극학부</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="koreanPainting" class="department" data-college="arts" data-department="koreanPainting">
+                        <label for="koreanPainting">한국화</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="koreanMusic" class="department" data-college="arts" data-department="koreanMusic">
+                        <label for="koreanMusic">한국음악과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="westernPainting" class="department" data-college="arts" data-department="westernPainting">
+                        <label for="westernPainting">서양화</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="sportsCulture" class="department" data-college="arts" data-department="sportsCulture">
+                        <label for="sportsCulture">스포츠문화학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="buddhistArt" class="department" data-college="arts" data-department="buddhistArt">
+                        <label for="buddhistArt">불교미술</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="fineArts" class="department" data-college="arts" data-department="fineArts">
+                        <label for="fineArts">미술학부</label>
+                    </div>
+                </div>
+            </div>
+            <div class="college_filter">        <!--필터14. 이과 -->
+                <input type="checkbox" id="scienceCollege" class="college" data-college="science">
+                <label for="scienceCollege" class="college-label">이과대학</label>
+                <button onclick="toggleDepartments('science')">▼</button>
+            </div>
+            <div class="departments-container" id="scienceDepartments">
+            <div class="department">
+                <div class="major_filter">
+                    <input type="checkbox" id="physics" class="department" data-college="science" data-department="physics">
+                    <label for="physics">물리학과</label>
+                </div>
+                <div class="major_filter">
+                    <input type="checkbox" id="mathematics" class="department" data-college="science" data-department="mathematics">
+                    <label for="mathematics">수학과</label>
+                </div>
+                <div class="major_filter">
+                    <input type="checkbox" id="statistics" class="department" data-college="science" data-department="statistics">
+                    <label for="statistics">통계학과</label>
+                </div>
+                <div class="major_filter">
+                    <input type="checkbox" id="chemistry" class="department" data-college="science" data-department="chemistry">
+                    <label for="chemistry">화학과</label>
+                </div>
+            </div>
+        </div>          <!--list 필터목록 닫기-->
+    </div>              <!--container 닫기-->
+
+    <script> // Toggle the display of departments for a given college
+      function toggleDepartments(collegeId) {
+         const departmentContainer = document.getElementById(collegeId + 'Departments');
+         if (departmentContainer.style.display === 'none' || departmentContainer.style.display === '') {
+             departmentContainer.style.display = 'block';
+         } else {
+             departmentContainer.style.display = 'none';
+         }
+     }
+     
+     // Toggle all department checkboxes based on the college checkbox state
+     document.querySelectorAll('.college').forEach(collegeCheckbox => {
+         collegeCheckbox.addEventListener('change', function() {
+             const collegeId = this.dataset.college;
+             const departmentCheckboxes = document.querySelectorAll(`.department[data-college="${collegeId}"]`);
+             departmentCheckboxes.forEach(departmentCheckbox => {
+                 departmentCheckbox.checked = this.checked;
+             });
+         });
+     });
+     
+     // Toggle department container visibility
+     document.querySelectorAll('.college-label').forEach(label => {
+         label.addEventListener('click', function() {
+             const collegeId = this.previousElementSibling.dataset.college;
+             toggleDepartments(collegeId);
+         });
+     });
+     </script>
+</body>
+</html>

@@ -11,5 +11,7 @@ urlpatterns = [
     path('design/select/designvarsity/', designpage, name='designpage'),
     path('design/select/designvarsity/information', informationpage, name='informationpage'),
     path('create', create, name='create'),
+    path('filter/', filterpage, name='filterpage'),
+    path('customfilter/', customfilterpage, name='customfilterpage'),
 ]
 
