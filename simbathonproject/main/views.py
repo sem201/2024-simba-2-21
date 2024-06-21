@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from .models import Varsity, Custom
+from django.views.decorators.csrf import csrf_exempt
 
 def startpage(request):
     return render(request, 'main/startpage.html')
@@ -31,6 +32,7 @@ def designpage(request):
 def informationpage(request):
     return render(request, 'design/informationpage.html')
 
+@csrf_exempt
 def like_varsity(request, varsity_id):
     if request.method == 'POST':
         varsity = get_object_or_404(Varsity, id=varsity_id)
