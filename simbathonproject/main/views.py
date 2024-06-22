@@ -18,7 +18,9 @@ def mainpage(request):
 
 def custompage(request):
     customs = Custom.objects.all()
-    return render(request, 'main/custompage.html', {'customs': customs})
+
+    liked_customs = request.session.get('liked_customs', [])
+    return render(request, 'main/custompage.html', {'customs': customs, 'liked_customs': liked_customs})
 
 def selectpage(request):
     return render(request, 'design/select_page.html')
@@ -66,3 +68,21 @@ def filterpage(request):
 
 def customfilterpage(request):
     return render(request, 'main/customfilterpage.html')
+
+@csrf_exempt
+def like_custom(request, custom_id):
+    if request.method == 'POST':
+        custom = get_object_or_404(Custom, id=custom_id)
+        liked_customs = request.session.get('liked_customs', [])
+        if custom_id in liked_customs:
+            liked_customs.remove(custom_id)
+            custom.like_count -= 1
+            is_liked = False
+        else:
+            liked_customs.append(custom_id)
+            custom.like_count += 1
+            is_liked = True
+        custom.save()
+        request.session['liked_customs'] = liked_customs
+        return JsonResponse({'like_custom': custom.like_count, 'is_liked': is_liked})
+    return JsonResponse({'error': 'Invalid request'}, status=400)

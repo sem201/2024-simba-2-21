@@ -28,15 +28,10 @@
                         <div class="slider__inner">
                             {% for custom in customs %}
                             <div class="slider">
-                                {% if custom.image %}
-                                    <img src="{{ custom.image.url }}" class="test_img"/>
-                                {% endif %}
+                                <img src="{{ custom.image.url }}" class="test_img"/>
                                 <p align="center"><b>{{custom.major}}/{{custom.college}}</b></p>
-                                <button id='heart_btn' data-custom-id="{{custom.id}}">
-                                    <img src="{% static 'assets/icons/heart.png' %}" id="icon_heart" />
-                                    {% if custom.id in liked_customs %}
-                                    <img src="{% static 'assets/icons/heart_filled.png' %}" id="icon_heart" />
-                                    {% endif %}
+                                <button id='heart_btn' data-custom-id="{{ custom.id }}">
+                                    <img src="{% if custom.id in liked_customs %}{% static 'assets/icons/heart_filled.png' %}{% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
                                     <p>{{ custom.like_count }}</p>
                                 </button>
                             </div>
@@ -47,9 +42,11 @@
                         <a href="#" class="next" title="다음">&gt;</a>
                     </div>
                 </div>
+                <a href='/design'>
                 <div id='design_btn_container'>
-                    <a href='/design/'><button id='design_btn'>Design</button></a>
+                    <button id="design_btn">Design</button>
                 </div>
+                </a>
             </div>
         </div>
     </div>
