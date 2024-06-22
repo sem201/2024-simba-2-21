@@ -95,12 +95,14 @@ body {
     align-items: center;
     justify-content: center;
     position: relative; /* 추가: 슬라이더 버튼 위치를 절대 위치로 지정 */
+    width: 540px;
+    height: 650px;
 }
 
 .slider__img {
     position: relative;
     width: 540px;
-    height: 450px;
+    height: 700px;
     overflow: hidden;
 }
 
@@ -115,10 +117,21 @@ body {
 
 .slider {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    position: relative;
+    align-items: center;
     width: 540px;
+    height: 500px;
+}
+#text_major{
+    font-weight: bold;
+}
+.test_img{
+    display: flex;
+    width: 450px;
     height: 450px;
+    margin: 0px 45px 0px 45px;
+    object-fit: contain;
 }
 
 .slider__btn a {
