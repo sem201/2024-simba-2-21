@@ -27,10 +27,12 @@
                     <div class="slider__inner">
                         {% for varsity in varsitys %}
                         <div class="slider">
-                            <img src="{{ varsity.image_front.url }}" class="test_img" data-front="{{ varsity.image_front.url }}" data-back="{{ varsity.image_back.url }}" onclick="toggleImage(this)"/>
+                            <img src="{{ varsity.image_front.url }}" class="test_img" 
+                            data-front="{{ varsity.image_front.url }}" data-back="{{ varsity.image_back.url }}" onclick="toggleImage(this)"/>
                             <p align="center"><b>{{ varsity.major }}/{{ varsity.college }}</b></p>
                             <button id='heart_btn' data-varsity-id="{{ varsity.id }}">
-                                <img src="{% if varsity.id in liked_varsitys %}{% static 'assets/icons/heart_filled.png' %}{% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
+                                <img src="{% if varsity.id in liked_varsitys %}{% static 'assets/icons/heart_filled.png' %}
+                                {% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
                                 <p>{{ varsity.like_count }}</p>
                             </button>
                         </div>
