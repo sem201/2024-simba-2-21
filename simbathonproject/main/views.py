@@ -20,7 +20,9 @@ def custompage(request):
     customs = Custom.objects.all()
 
     liked_customs = request.session.get('liked_customs', [])
-    return render(request, 'main/custompage.html', {'customs': customs, 'liked_customs': liked_customs})
+    total_customs = customs.count()  # total_customs 값을 설정
+
+    return render(request, 'main/custompage.html', {'customs': customs, 'liked_customs': liked_customs, 'total_customs': total_customs})
 
 def selectpage(request):
     return render(request, 'design/select_page.html')
