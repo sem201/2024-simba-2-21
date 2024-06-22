@@ -63,7 +63,7 @@ def create(request):
 
         if not title or not image or not college or not major:
             # 필드가 비어있는 경우
-            return HttpResponseBadRequest('All fields are required.')
+            return render(request, 'design/informationpage.html')
 
         new_custom = Custom(title=title, image=image, college=college, major=major)
         new_custom.save()
