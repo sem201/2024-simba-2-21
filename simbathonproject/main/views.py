@@ -84,5 +84,5 @@ def like_custom(request, custom_id):
             is_liked = True
         custom.save()
         request.session['liked_customs'] = liked_customs
-        return JsonResponse({'like_custom': custom.like_count, 'is_liked': is_liked})
+        return JsonResponse({'like_count': custom.like_count, 'is_liked': is_liked})
     return JsonResponse({'error': 'Invalid request'}, status=400)
