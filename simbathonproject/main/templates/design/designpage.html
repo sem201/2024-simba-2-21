@@ -1,3 +1,63 @@
-과잠디자인
+{%load static%}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Filter</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/design/designpage.css' %}">
+    <style>
+        .resize-button {
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            position: absolute;
+            cursor: se-resize;
+            z-index: 20;
+        }
+    </style>
+</head>
+<body>
+    <div id="main_container">
+        <div id="top_bar">
+            <p id="title">과잠 디자인하기</p>
+            <a href="/design/select/designvarsity/information"><button id="normal_btn"><img src={% static "assets/icons/icon_check.png" %}/></button></a>
+        </div>
+        <div id="top-container">
+            <img id="selected_image" src="" alt="Selected Image"/>
+        </div>
+        <div id="bottom-container">
+            <button id="add-text-button">
+                <img src={% static "assets/icons/text.png" %}/>
+            </button>
+            <div id="input-container" style="display: none;">
+                <input type="text" id="text-input" placeholder="Enter new text">
+                <button id="upload-text">text 업로드</button>
+            </div>
+            <button id="upload-img-button">
+                <img src={% static "assets/icons/image.png" %}/>
+            </button>
+            <button id="capture-button">
+                <img src={% static "assets/icons/download.png" %}/>
+            </button>
+        </div>
+        <div id='bottom-container2'>
+            <p>텍스트</p>
+            <p>이미지 업로드</p>
+            <p>디자인 다운</p>
+        </div>
+        <input type="file" id="image-input" style="display: none;">
+    </div>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="{% static 'js/design/designpage.js' %}"></script>
+    <script>
+        const selectedImageSrc = localStorage.getItem('selectedImage');
 
-<a href='/design/select/designvarsity/information'><button id="normal_btn">informationpage</button></a>
+        if (selectedImageSrc) {
+            document.getElementById('selected_image').src = selectedImageSrc;
+        } else {
+            alert('선택된 이미지가 없습니다.');
+        }
+    </script>
+</body>
+</html>

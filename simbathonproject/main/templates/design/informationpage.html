@@ -28,5 +28,13 @@
             preview.style.display = 'none';
         }
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+            // 에러 메시지가 있을 경우 alert 창을 띄움
+            var errorMessageElem = document.querySelector('.error');
+            if (errorMessageElem && errorMessageElem.textContent) {
+                alert(errorMessageElem.textContent);
+            }
+    });
 </script>
 {% endblock %}
