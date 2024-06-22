@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseBadRequest
 from .models import Varsity, Custom
 from django.views.decorators.csrf import csrf_exempt
 
@@ -53,14 +53,23 @@ def like_varsity(request, varsity_id):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 def create(request):
-    new_custom=Custom()
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        image = request.FILES.get('image')
+        college = request.POST.get('college')
+        major = request.POST.get('major')
 
-    new_custom.title=request.POST['title']
-    new_custom.image=request.FILES.get('image')
-    new_custom.college=request.POST['college']
-    new_custom.major=request.POST['major']
+        if not title or not image or not college or not major:
+            # 필드가 비어있는 경우
+            return HttpResponseBadRequest('All fields are required.')
 
-    new_custom.save()
+        new_custom = Custom(title=title, image=image, college=college, major=major)
+        new_custom.save()
+
+        # 저장된 데이터 개수를 가져옴
+        total_customs = Custom.objects.count()
+
+        return render(request, 'main/custompage.html', {'total_customs': total_customs})
     return redirect('custom/')
 
 def filterpage(request):
