@@ -97,3 +97,5 @@ def like_custom(request, custom_id):
         request.session['liked_customs'] = liked_customs
         return JsonResponse({'like_count': custom.like_count, 'is_liked': is_liked})
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+#심바톤 화이팅
