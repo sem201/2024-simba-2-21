@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseBadRequest
 from .models import Varsity, Custom
 from django.views.decorators.csrf import csrf_exempt
 
@@ -18,7 +18,11 @@ def mainpage(request):
 
 def custompage(request):
     customs = Custom.objects.all()
-    return render(request, 'main/custompage.html', {'customs': customs})
+
+    liked_customs = request.session.get('liked_customs', [])
+    total_customs = customs.count()  # total_customs 값을 설정
+
+    return render(request, 'main/custompage.html', {'customs': customs, 'liked_customs': liked_customs, 'total_customs': total_customs})
 
 def selectpage(request):
     return render(request, 'design/select_page.html')
@@ -51,14 +55,23 @@ def like_varsity(request, varsity_id):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 def create(request):
-    new_custom=Custom()
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        image = request.FILES.get('image')
+        college = request.POST.get('college')
+        major = request.POST.get('major')
 
-    new_custom.title=request.POST['title']
-    new_custom.image=request.FILES.get('image')
-    new_custom.college=request.POST['college']
-    new_custom.major=request.POST['major']
+        if not title or not image or not college or not major:
+            # 필드가 비어있는 경우
+            return HttpResponseBadRequest('All fields are required.')
 
-    new_custom.save()
+        new_custom = Custom(title=title, image=image, college=college, major=major)
+        new_custom.save()
+
+        # 저장된 데이터 개수를 가져옴
+        total_customs = Custom.objects.count()
+
+        return render(request, 'main/custompage.html', {'total_customs': total_customs})
     return redirect('custom/')
 
 def filterpage(request):
@@ -66,3 +79,23 @@ def filterpage(request):
 
 def customfilterpage(request):
     return render(request, 'main/customfilterpage.html')
+
+@csrf_exempt
+def like_custom(request, custom_id):
+    if request.method == 'POST':
+        custom = get_object_or_404(Custom, id=custom_id)
+        liked_customs = request.session.get('liked_customs', [])
+        if custom_id in liked_customs:
+            liked_customs.remove(custom_id)
+            custom.like_count -= 1
+            is_liked = False
+        else:
+            liked_customs.append(custom_id)
+            custom.like_count += 1
+            is_liked = True
+        custom.save()
+        request.session['liked_customs'] = liked_customs
+        return JsonResponse({'like_count': custom.like_count, 'is_liked': is_liked})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+#심바톤 화이팅
