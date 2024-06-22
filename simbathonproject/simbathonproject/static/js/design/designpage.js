@@ -67,57 +67,56 @@ document.addEventListener('DOMContentLoaded', () => {
         const file = e.target.files[0];
         if (!file) return;
 
-        const img = document.createElement('img');
-        img.src = URL.createObjectURL(file);
-        img.className = 'draggable resizable';
-        img.style.position = 'absolute';
-        img.style.left = '50%';
-        img.style.top = '50%';
-        img.style.transform = 'translate(-50%, -50%)';
-        img.style.cursor = 'move';
-        img.style.zIndex = '10';
-        img.onload = () => URL.revokeObjectURL(img.src);
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const img = document.createElement('img');
+            img.src = event.target.result;
+            img.className = 'draggable resizable';
+            img.style.position = 'absolute';
+            img.style.left = '50%';
+            img.style.top = '50%';
+            img.style.transform = 'translate(-50%, -50%)';
+            img.style.cursor = 'move';
+            img.style.zIndex = '10';
 
-        const rotateButton = document.createElement('img');
-        rotateButton.src = '/static/assets/icons/icon-rotate.png';
-        rotateButton.className = 'rotate-button';
-        rotateButton.style.position = 'absolute';
-        // rotateButton.style.top = '-20px';
-        // rotateButton.style.left = '50%';
-        rotateButton.style.transform = 'translateX(-50%)';
-        rotateButton.style.cursor = 'pointer';
-        rotateButton.style.display = 'none';
-        rotateButton.style.zIndex = '20';
+            const rotateButton = document.createElement('img');
+            rotateButton.src = '/static/assets/icons/icon-rotate.png';
+            rotateButton.className = 'rotate-button';
+            rotateButton.style.position = 'absolute';
+            rotateButton.style.transform = 'translateX(-50%)';
+            rotateButton.style.cursor = 'pointer';
+            rotateButton.style.display = 'none';
+            rotateButton.style.zIndex = '20';
 
-        const resizeButton = document.createElement('div');
-        resizeButton.className = 'resize-button';
-        resizeButton.style.position = 'absolute';
-        resizeButton.style.right = '0px';
-        resizeButton.style.bottom = '0px';
-        resizeButton.style.display = 'none';
+            const resizeButton = document.createElement('div');
+            resizeButton.className = 'resize-button';
+            resizeButton.style.position = 'absolute';
+            resizeButton.style.right = '0px';
+            resizeButton.style.bottom = '0px';
+            resizeButton.style.display = 'none';
 
-        topContainer.appendChild(img);
-        topContainer.appendChild(rotateButton);
-        topContainer.appendChild(resizeButton);
+            topContainer.appendChild(img);
+            topContainer.appendChild(rotateButton);
+            topContainer.appendChild(resizeButton);
 
-        makeDraggable(img);
-        makeRotatable(img, rotateButton);
-        makeResizable(img, resizeButton);
+            makeDraggable(img);
+            makeRotatable(img, rotateButton);
+            makeResizable(img, resizeButton);
 
-        img.addEventListener('click', (event) => {
-            event.stopPropagation();
-            hideAllButtons();
-            rotateButton.style.display = 'block';
-            resizeButton.style.display = 'block';
-            const imgRect = img.getBoundingClientRect();
-            rotateButton.style.top = `${imgRect.top - topContainer.getBoundingClientRect().top - rotateButton.offsetHeight}px`;
-            resizeButton.style.top = `${imgRect.bottom - topContainer.getBoundingClientRect().top - 5}px`;
-            resizeButton.style.left = `${imgRect.right - topContainer.getBoundingClientRect().left - 5}px`;
-            currentRotateButton = rotateButton;
-            currentResizeButton = resizeButton;
-        });
-
-        
+            img.addEventListener('click', (event) => {
+                event.stopPropagation();
+                hideAllButtons();
+                rotateButton.style.display = 'block';
+                resizeButton.style.display = 'block';
+                const imgRect = img.getBoundingClientRect();
+                rotateButton.style.top = `${imgRect.top - topContainer.getBoundingClientRect().top - rotateButton.offsetHeight}px`;
+                resizeButton.style.top = `${imgRect.bottom - topContainer.getBoundingClientRect().top - 5}px`;
+                resizeButton.style.left = `${imgRect.right - topContainer.getBoundingClientRect().left - 5}px`;
+                currentRotateButton = rotateButton;
+                currentResizeButton = resizeButton;
+            });
+        };
+        reader.readAsDataURL(file);
 
         imageInput.value = '';
     });
@@ -242,20 +241,46 @@ document.addEventListener('DOMContentLoaded', () => {
         hideAllButtons();
     });
 
-    // captureButton.addEventListener('click', () => {
-    //     html2canvas(document.querySelector('#top-container')).then(canvas => {
-    //         // 이미지를 다운로드할 수 있도록 Blob URL을 생성
-    //         const imageUrl = canvas.toDataURL('image/png');
-    
-    //         // Blob URL을 이용해 다운로드 링크를 생성
-    //         const link = document.createElement('a');
-    //         link.href = imageUrl;
-    //         link.download = 'capture.png';
-    
-    //         // 링크를 클릭하여 다운로드 진행
-    //         link.click();
-    //     }).catch(error => {
-    //         console.error('캡처 중 오류 발생:', error);
-    //     });
-    // });
+    captureButton.addEventListener('click', () => {
+        const images = document.querySelectorAll('img');
+        const promises = [];
+
+        images.forEach(img => {
+            if (img.src.startsWith('blob:')) {
+                promises.push(new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        img.src = event.target.result;
+                        resolve();
+                    };
+                    reader.onerror = reject;
+                    fetch(img.src)
+                        .then(response => response.blob())
+                        .then(blob => {
+                            reader.readAsDataURL(blob);
+                        })
+                        .catch(reject);
+                }));
+            }
+        });
+
+        Promise.all(promises).then(() => {
+            html2canvas(document.querySelector('#top-container')).then(canvas => {
+                // 이미지를 다운로드할 수 있도록 Blob URL을 생성
+                const imageUrl = canvas.toDataURL('image/png');
+
+                // Blob URL을 이용해 다운로드 링크를 생성
+                const link = document.createElement('a');
+                link.href = imageUrl;
+                link.download = 'capture.png';
+
+                // 링크를 클릭하여 다운로드 진행
+                link.click();
+            }).catch(error => {
+                console.error('캡처 중 오류 발생:', error);
+            });
+        }).catch(error => {
+            console.error('이미지 로드 중 오류 발생:', error);
+        });
+    });
 });
