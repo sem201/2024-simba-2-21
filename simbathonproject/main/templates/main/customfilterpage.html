@@ -11,10 +11,8 @@
 
 <body class="body">
     <div class="container">
-        <div class="head">                  <!-- 상단 바 / 필터 -->
-            <a href="/main"><button>          
-            <img src="{% static 'assets/icons/icon_back.png' %}">
-            </button></a>
+        <div class="head">          <!-- 상단 바 / 필터 -->
+            <a href='/custom'><img src="{% static 'assets/icons/icon_back.png' %}"></a>
             <h2>필터에요</h2>
             <img src="{% static 'assets/icons/icon_check.png' %}">
         </div>                      <!--헤드 닫기 -->
@@ -390,6 +388,35 @@
             </div>
         </div>          <!--list 필터목록 닫기-->
     </div>              <!--container 닫기-->
-    <script src="{% static 'js/main/filter.js' %}"></script>
+
+    <script> // Toggle the display of departments for a given college
+      function toggleDepartments(collegeId) {
+         const departmentContainer = document.getElementById(collegeId + 'Departments');
+         if (departmentContainer.style.display === 'none' || departmentContainer.style.display === '') {
+             departmentContainer.style.display = 'block';
+         } else {
+             departmentContainer.style.display = 'none';
+         }
+     }
+     
+     // Toggle all department checkboxes based on the college checkbox state
+     document.querySelectorAll('.college').forEach(collegeCheckbox => {
+         collegeCheckbox.addEventListener('change', function() {
+             const collegeId = this.dataset.college;
+             const departmentCheckboxes = document.querySelectorAll(`.department[data-college="${collegeId}"]`);
+             departmentCheckboxes.forEach(departmentCheckbox => {
+                 departmentCheckbox.checked = this.checked;
+             });
+         });
+     });
+     
+     // Toggle department container visibility
+     document.querySelectorAll('.college-label').forEach(label => {
+         label.addEventListener('click', function() {
+             const collegeId = this.previousElementSibling.dataset.college;
+             toggleDepartments(collegeId);
+         });
+     });
+     </script>
 </body>
 </html>
