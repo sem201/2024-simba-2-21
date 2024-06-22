@@ -26,36 +26,30 @@
                 <div class="slider__img">
                     <div class="slider__inner">
                         {% for varsity in varsitys %}
-                        <div class="slider">
-                            <img src="{{ varsity.image_front.url }}" class="test_img" 
-                            data-front="{{ varsity.image_front.url }}" data-back="{{ varsity.image_back.url }}" onclick="toggleImage(this)"/>
-                            <p align="center"><b>{{ varsity.major }}/{{ varsity.college }}</b></p>
-                            <button id='heart_btn' data-varsity-id="{{ varsity.id }}">
-                                <img src="{% if varsity.id in liked_varsitys %}{% static 'assets/icons/heart_filled.png' %}
-                                {% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
-                                <p>{{ varsity.like_count }}</p>
-                            </button>
-                        </div>
+                            {% if not filter_apply_dep or varsity.major in filter_apply_dep %}
+                                <div class="slider">
+                                    <img src="{{ varsity.image_front.url }}" class="test_img" 
+                                        data-front="{{ varsity.image_front.url }}" data-back="{{ varsity.image_back.url }}" onclick="toggleImage(this)"/>
+                                    <p align="center"><b>{{ varsity.major }}/{{ varsity.college }}</b></p>
+                                    <button id="heart_btn" data-varsity-id="{{ varsity.id }}">
+                                        <img src="{% if varsity.id in liked_varsitys %}{% static 'assets/icons/heart_filled.png' %}{% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
+                                        <p>{{ varsity.like_count }}</p>
+                                    </button>
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>
                 <div class="slider__btn" id="right_slider__btn">
                     <a href="#" class="next" title="다음">&gt;</a>
                 </div>      <!--좌 Slider_btn 닫음-->
-            </div>        
+            </div>          <!--slider__wrap 닫음-->
         </div>                  <!--메인컨테이너 닫음-->
+        <div id="selected-departments-count">
+            <p>학과의 수: <span id="count"></span><br>
+            {{ filter_apply_dep }}</p>
+        </div>
     </div>
     <script src="{% static 'js/main/mainpage.js' %}"></script>
-    <script>
-        function toggleImage(img) {
-            var frontSrc = img.getAttribute('data-front');
-            var backSrc = img.getAttribute('data-back');
-            if (img.src.endsWith(frontSrc.split('/').pop())) {
-                img.src = backSrc;
-            } else {
-                img.src = frontSrc;
-            }
-        }
-    </script>
 </body>
 </html>

@@ -92,3 +92,44 @@ document.addEventListener('DOMContentLoaded', function() {
         return cookieValue;
     }
 });
+
+function toggleImage(img) {
+    var frontSrc = img.getAttribute('data-front');
+    var backSrc = img.getAttribute('data-back');
+    if (img.src.endsWith(frontSrc.split('/').pop())) {
+        img.src = backSrc;
+    } else {
+        img.src = frontSrc;
+    }
+}
+
+// // ///////여기부터 필터///////
+// // function displaySelectedDepartments() {
+// //     const selectedDepartmentsList = document.getElementById('selected_departments_list');
+// //     selectedDepartmentsList.innerHTML = '';
+
+// //     const selectedDepartments = JSON.parse(localStorage.getItem('selectedDepartments')) || [];
+// //     selectedDepartments.forEach(department => {
+// //         const li = document.createElement('li');
+// //         li.textContent = `${department.label} (${department.college})`;
+// //         selectedDepartmentsList.appendChild(li);
+// //     });
+// // }
+
+// // 페이지 로드 시 선택된 학과를 표시
+// document.addEventListener('DOMContentLoaded', displaySelectedDepartments)
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 로컬 스토리지에서 selectedDepartments 불러오기
+    const selectedDepartments = JSON.parse(localStorage.getItem('selectedDepartments')) || [];
+
+    // 선택된 학과의 수 계산
+    const count = selectedDepartments.length;
+
+    // HTML 요소에 출력
+    document.getElementById('count').textContent = count;
+
+    console.log(selectedDepartments)
+    console.log(filter_apply_dep)
+
+});
