@@ -2,19 +2,39 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse, HttpResponseBadRequest
 from .models import Varsity, Custom
 from django.views.decorators.csrf import csrf_exempt
+import json
 
 def startpage(request):
     return render(request, 'main/startpage.html')
 
 def mainpage(request):
+    # 모든 Varsity 객체를 가져옵니다.
     varsitys = Varsity.objects.all()
 
+    # 정렬 순서를 정의합니다.
     custom_order = ['AI융합대학', '경영대학', '경찰사법대학', '공과대학', '문과대학', '미래융합대학', '바이오시스템대학', '법과대학', '불교대학', '사범대학', '사회과학대학', '약학대학', '예술대학', '이과대학']
-    
+
+    # Varsity 객체들을 custom_order에 따라 정렬합니다.
     sorted_varsitys = sorted(varsitys, key=lambda v: custom_order.index(v.college) if v.college in custom_order else len(custom_order))
 
+    # 사용자가 좋아하는 Varsity 객체들의 ID를 세션에서 가져옵니다.
     liked_varsitys = request.session.get('liked_varsitys', [])
-    return render(request, 'main/mainpage.html', {'varsitys': sorted_varsitys, 'liked_varsitys': liked_varsitys})
+
+    # 'selectedDepartments' 쿼리 매개변수를 GET 요청에서 가져옵니다.
+    selected_departments = request.GET.get('selectedDepartments', '[]')
+    # JSON 문자열을 리스트로 변환합니다.
+    data_list = json.loads(selected_departments)
+    
+    # 각 객체의 'label' 값 추출하여 리스트로 만들기
+    filter_apply_dep = [item['label'] for item in data_list]
+
+    # mainpage.html 템플릿을 렌더링할 때 필요한 데이터를 전달합니다.
+    context = {
+        'varsitys': sorted_varsitys,
+        'liked_varsitys': liked_varsitys,
+        'filter_apply_dep': filter_apply_dep,  # 추가된 부분
+    }
+    return render(request, 'main/mainpage.html', context)
 
 def custompage(request):
     customs = Custom.objects.all()
@@ -63,7 +83,7 @@ def create(request):
 
         if not title or not image or not college or not major:
             # 필드가 비어있는 경우
-            return HttpResponseBadRequest('All fields are required.')
+            return render(request, 'design/informationpage.html')
 
         new_custom = Custom(title=title, image=image, college=college, major=major)
         new_custom.save()
