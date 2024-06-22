@@ -3,51 +3,43 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     background-color: gray;
-    /* margin: 0; */
     height: 100vh;
 }
 
 #container {
-    border: 4px solid black;
+    /* border: 4px solid black; */
     background-color: white;
     width: 540px;
     height: 960px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start
-    justify-content: center;
-    /* display: grid; 
-    grid-template-rows: 1fr 10fr;
-    grid-template-columns: repeat(3, 1fr); */
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .button_container {
-    border: 6px solid pink;
+    /* border: 6px solid pink; */
     display: flex;
     justify-content: space-between;
-    width: 540px;
-    margin: 50px 0px 0px 0px;
-     /* flex-direction: row; */
-    /* align-items: center; */
-    /* width: 223px; */
-    /* margin-left: 40px; */
-    /* flex-wrap: nowrap; */
+    width: 510px;
+    margin: 15px 20px 0px 20px;
 }
 .nothing {
-    border: 1px solid violet;
-    width: 45px;
+    /* border: 1px solid violet; */
+    width: 50px;
 }
 
 #normal_custom {
-    border: 4px solid salmon;
+    /* border: 4px solid salmon; */
     display: flex;
     justify-content: center;
 }
 
 #normal_btn {
     /* border: 2px solid red; */
+    border: 0px;
     font-family: "Pretendard Variable";
     font-size: 24px;
     position: relative;
@@ -79,10 +71,8 @@ body {
     /* border: 2px solid red; */
     display: flex;
     align-items: center;
-    /* position: relative;
-    left: 130px;
-    bottom: 33px; */
     background-color: #FFFFFF;
+    border: none;
 }
 /*//////////////여기부터 사진//////////////*/
 
@@ -103,7 +93,7 @@ body {
 }
 
 .slider__wrap {
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -127,7 +117,7 @@ body {
 }
 
 .slider__img {
-    border: 4px solid yellowgreen;
+    /* border: 4px solid yellowgreen; */
     position: relative;
     width: 540px;
     height: 700px;
@@ -135,7 +125,7 @@ body {
 }
 
 .slider__inner {
-    border: 1px solid goldenrod;
+    /* border: 1px solid goldenrod; */
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -200,7 +190,8 @@ p{
     font-family: 'NanumGothic';
     font-size: 24px;
 }
-#heart_btn{
+
+#heart_btn {
     display:flex;
     flex-direction: row;
     justify-content: center;
