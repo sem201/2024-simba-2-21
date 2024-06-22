@@ -44,3 +44,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init();
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const heartButtons = document.querySelectorAll('#heart_btn');
+
+    heartButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            console.log("Heart button clicked"); // 디버그 로그 추가
+
+            const customId = this.dataset.customId;
+            const likeCountElem = this.querySelector('p');
+            const iconHeart = this.querySelector('#icon_heart');
+
+            fetch(`/likecustom/${customId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Response data:", data); // 디버그 로그 추가
+                if (data.like_count !== undefined) {
+                    likeCountElem.textContent = data.like_count;
+                    if (data.is_liked) {
+                        iconHeart.src = "/static/assets/icons/heart_filled.png";
+                    } else {
+                        iconHeart.src = "/static/assets/icons/heart.png";
+                    }
+                    console.log(`Total likes: ${data.like_count}`);
+                }else {
+                    console.log("like_count is undefined"); // 디버그 로그 추가
+                }
+            });
+        });
+    });
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+});
