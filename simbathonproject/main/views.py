@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse, HttpResponseBadRequest
-from .models import Varsity, Custom
+from .models import Varsity, Custom, Keyword
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -105,6 +105,14 @@ def create(request):
     return redirect('custom/')
 
 def filterpage(request):
+    varsitys = Varsity.objects.all()
+    
+    # 키워드 검색 추가
+    keyword_search = request.GET.get('keyword', '').strip()
+    if keyword_search:
+        keywords = Keyword.objects.filter(keyword__icontains=keyword_search).values_list('varsity_id', flat=True)
+        varsitys = Varsity.objects.filter(id__in=keywords)
+
     return render(request, 'main/filterpage.html')
 
 def customfilterpage(request):
