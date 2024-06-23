@@ -127,9 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const count = selectedDepartments.length;
 
     // HTML 요소에 출력
-    document.getElementById('count').textContent = count;
-
-    console.log(selectedDepartments)
-    console.log(filter_apply_dep)
+    document.getElementById('filter_count').textContent = count;
 
 });

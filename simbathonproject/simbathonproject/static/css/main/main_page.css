@@ -70,9 +70,26 @@ body {
 #filter_btn {
     /* border: 2px solid red; */
     display: flex;
+    position:relative;
     align-items: center;
     background-color: #FFFFFF;
     border: none;
+}
+#filter_count{
+    display:none;
+    /*filter 적용하면 추가*/
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    position:absolute; */
+    right:3px;
+    bottom:15px;
+    border-radius: 100%;
+    width: 16px;
+    height: 16px;
+    background-color: #8C52FF;
+    color:#fff;
+    font-size:10px;
 }
 /*//////////////여기부터 사진//////////////*/
 
