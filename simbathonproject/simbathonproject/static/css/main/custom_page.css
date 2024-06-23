@@ -93,7 +93,7 @@ body {
 .slider__img {
     position: relative;
     width: 540px;
-    height: 700px;
+    height: 750px;
     overflow: hidden;
 }
 
@@ -101,7 +101,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: nowrap;
-    /* width: 540px;  */
+    margin-top: 18vh;
     height: 450px;
     transition: transform 0.5s ease;
 }
