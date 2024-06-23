@@ -28,7 +28,8 @@ body {
 }
 .nothing {
     /* border: 1px solid violet; */
-    width: 133px;
+    width: 148px;
+    height: auto;
 }
 
 #normal_custom {

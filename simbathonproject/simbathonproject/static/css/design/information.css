@@ -17,7 +17,18 @@ form{
     align-items: center;
 }
 #top_container{
-    margin-top:50px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width:540px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.nothing {
+    /* border: 1px solid violet; */
+    width: 148px;
+    height: auto;
 }
 #title{
     border:0;

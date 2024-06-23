@@ -11,7 +11,9 @@
 <body>
     <div id="body_container">
         <div id='top_bar'>
+            <a href='/main/'><img src = "{% static 'assets/icons/varsity_logo.png' %}" class='nothing'/></a>
             <p id='design_text'>과잠 색상 선택</p>
+            <div class='nothing'></div>
         </div>
         <div id='template_container'>
             <div class='template_item'>
@@ -43,11 +45,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             let selectedImage = null;
             const images = document.querySelectorAll('.template_item img');
+            const image_container=document.querySelectorAll('.template_item');
 
             images.forEach((img) => {
                 img.addEventListener('click', () => {
                     if (selectedImage) {
-                        selectedImage.style.border = 'none';
+                        selectedImage.style.border = '2px solid black';
                         selectedImage.style.borderRadius = '10px';
                     }
 
