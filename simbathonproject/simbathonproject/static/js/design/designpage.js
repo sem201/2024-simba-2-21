@@ -12,6 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addTextButton.addEventListener('click', () => {
         inputContainer.style.display = 'block';
+        inputContainer.style.position = 'absolute';
+        inputContainer.style.bottom = '70px';
+        inputContainer.style.right = '50%';
+        inputContainer.style.transform = 'translateX(50%)';
     });
 
     uploadTextButton.addEventListener('click', () => {
@@ -26,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newDiv.style.top = '50%';
         newDiv.style.transform = 'translate(-50%, -50%)';
         newDiv.style.cursor = 'move';
+        newDiv.style.whiteSpace = 'nowrap'; 
 
         const rotateButton = document.createElement('img');
         rotateButton.src = '/static/assets/icons/icon-rotate.png';
@@ -38,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rotateButton.style.display = 'none';
         rotateButton.style.zIndex = '20';
 
-        newDiv.appendChild(rotateButton);
+        topContainer.appendChild(rotateButton);
         topContainer.appendChild(newDiv);
 
         makeDraggable(newDiv);
@@ -51,9 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
             currentRotateButton = rotateButton;
         });
 
-        newDiv.addEventListener('mouseleave', () => {
-            rotateButton.style.display = 'none';
-        });
 
         textInput.value = '';
         inputContainer.style.display = 'none';
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!file) return;
 
         const reader = new FileReader();
-        reader.onload = function(event) {
+        reader.onload = function (event) {
             const img = document.createElement('img');
             img.src = event.target.result;
             img.className = 'draggable resizable';
@@ -125,25 +127,21 @@ document.addEventListener('DOMContentLoaded', () => {
         element.addEventListener('mousedown', (e) => {
             if (e.target.className.includes('rotate-button') || e.target.className.includes('resize-button')) return;
 
-            let shiftX = e.clientX - element.getBoundingClientRect().left;
-            let shiftY = e.clientY - element.getBoundingClientRect().top;
+            let shiftX = element.clientWidth / 5;
+            let shiftY = element.clientHeight / 5;
 
             function moveAt(pageX, pageY) {
                 const topContainerRect = topContainer.getBoundingClientRect();
                 const newLeft = pageX - shiftX - topContainerRect.left;
                 const newTop = pageY - shiftY - topContainerRect.top;
 
-                if (newLeft < 0 || newTop < 0 || newLeft + element.offsetWidth > topContainerRect.width || newTop + element.offsetHeight > topContainerRect.height) {
-                    return;
-                }
-
                 element.style.left = newLeft + 'px';
                 element.style.top = newTop + 'px';
 
                 if (currentRotateButton) {
                     const elemRect = element.getBoundingClientRect();
-                    currentRotateButton.style.top = `${elemRect.top - topContainer.getBoundingClientRect().top - 5}px`;
-                    currentRotateButton.style.left = `${elemRect.right - topContainer.getBoundingClientRect().left - 5}px`;
+                    currentRotateButton.style.top = `${elemRect.top - topContainer.getBoundingClientRect().top - currentRotateButton.offsetHeight}px`;
+                    currentRotateButton.style.left = `${elemRect.left + elemRect.width / 2 - currentRotateButton.offsetWidth / 2 - topContainer.getBoundingClientRect().left}px`;
                 }
 
                 if (currentResizeButton) {
@@ -163,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.removeEventListener('mousemove', onMouseMove);
             }, { once: true });
 
-            element.ondragstart = function() {
+            element.ondragstart = function () {
                 return false;
             };
         });
@@ -249,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (img.src.startsWith('blob:')) {
                 promises.push(new Promise((resolve, reject) => {
                     const reader = new FileReader();
-                    reader.onload = function(event) {
+                    reader.onload = function (event) {
                         img.src = event.target.result;
                         resolve();
                     };
