@@ -7,16 +7,15 @@
 </head>
 <body>
     <div id="container" data-total-customs="{{ total_customs }}">
-        <div id="top_bar">
-            <div class="button_container">
-                <div id="normal_custom">
-                    <a href='/main'><button id="normal_btn">일반</button></a>
-                    <button id="custom_btn">커스텀</button>
-                </div>
-                <a href="/customfilter"><button id="filter_btn">
-                    <img src="{% static 'assets/icons/icon_filter.png' %}" id="icon_filter">
-                </button></a>
+        <div class="button_container">
+            <div class="nothing"></div>
+            <div id="normal_custom">
+                <a href='/main'><button id="normal_btn">일반</button></a>
+                <button id="custom_btn">커스텀</button>
             </div>
+            <button id="filter_btn">
+                <a href='/customfilter'><img src="{% static 'assets/icons/icon_filter.png' %}" id="icon_filter"></a>
+            </button>
         </div>
         <div id="main_container">
             <div id="main_box">

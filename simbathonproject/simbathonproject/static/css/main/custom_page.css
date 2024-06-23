@@ -3,10 +3,9 @@
 body {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     background-color: gray;
-    margin: 0;
     height: 100vh;
-    align-items: center;
 }
 
 #container {
@@ -14,40 +13,35 @@ body {
     background-color: white;
     width: 540px;
     height: 960px;
-    display: grid;
-    grid-template-rows: 1fr 10fr;
-}
-
-#top_bar {
-    /* border: 4px solid green; */
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-row: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .button_container {
-    /* border: 5px solid pink; */
-    grid-column: 2/3;
+    /* border: 6px solid pink; */
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    /* margin-left: 130px; */
-    width: 223px;
-    /* flex-wrap: nowrap; */
+    justify-content: space-between;
+    width: 510px;
+    margin: 15px 20px 0px 20px;
+}
+.nothing {
+    /* border: 1px solid violet; */
+    width: 50px;
 }
 
 #normal_btn {
+    /* border: 2px solid red; */
+    border: 0px;
     font-family: "Pretendard Variable";
     font-size: 24px;
     position: relative;
-    /* left: 30px; */
+    left: 10px;
     background-color: #F5F5F5;
     width: 120px;
     height: 60px;
     border-radius: 45px;
-    border: 0;
     color: #919191;
 }
 
@@ -55,8 +49,7 @@ body {
     font-family: "Pretendard Variable";
     font-size: 24px;
     position: relative;
-    left: 100px;
-    bottom: 60px;
+    right : 10px;
     background-color:#442A78;
     width: 120px;
     height: 60px;
@@ -70,11 +63,9 @@ body {
 #filter_btn {
     /* border: 2px solid red; */
     display: flex;
-    position: relative;
-    left: 130px;
-    bottom: 33px;
-    border: 0;
+    align-items: center;
     background-color: #FFFFFF;
+    border: none;
 }
 
 #main_container {
@@ -102,7 +93,7 @@ body {
 .slider__img {
     position: relative;
     width: 540px;
-    height: 700px;
+    height: 750px;
     overflow: hidden;
 }
 
@@ -110,7 +101,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: nowrap;
-    /* width: 540px;  */
+    margin-top: 18vh;
     height: 450px;
     transition: transform 0.5s ease;
 }

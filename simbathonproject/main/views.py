@@ -37,10 +37,11 @@ def mainpage(request):
     return render(request, 'main/mainpage.html', context)
 
 def custompage(request):
-    customs = Custom.objects.all()
+    # like_count가 높은 순서대로 Custom 객체를 조회
+    customs = Custom.objects.all().order_by('-like_count')
 
     liked_customs = request.session.get('liked_customs', [])
-    total_customs = customs.count()  # total_customs 값을 설정
+    total_customs = request.session.pop('total_customs', customs.count())  # 세션에서 total_customs 값을 가져오고, 없으면 기본값으로 전체 개수
 
     return render(request, 'main/custompage.html', {'customs': customs, 'liked_customs': liked_customs, 'total_customs': total_customs})
 
@@ -97,10 +98,11 @@ def create(request):
         new_custom = Custom(title=title, image=image, college=college, major=major)
         new_custom.save()
 
-        # 저장된 데이터 개수를 가져옴
-        total_customs = Custom.objects.count()
+        # 저장된 데이터 개수를 세션에 저장
+        request.session['total_customs'] = Custom.objects.count()
 
-        return render(request, 'main/custompage.html', {'total_customs': total_customs})
+        # 데이터가 성공적으로 저장된 후 리디렉션 수행
+        return redirect('main:custompage')
     return redirect('custom/')
 
 def filterpage(request):
