@@ -30,10 +30,6 @@
             <button id="add-text-button">
                 <img src={% static "assets/icons/text.png" %}/>
             </button>
-            <div id="input-container" style="display: none;">
-                <input type="text" id="text-input" placeholder="Enter new text">
-                <button id="upload-text">text 업로드</button>
-            </div>
             <button id="upload-img-button">
                 <img src={% static "assets/icons/image.png" %}/>
             </button>
@@ -45,6 +41,10 @@
             <p>텍스트</p>
             <p>이미지 업로드</p>
             <p>디자인 다운</p>
+        </div>
+        <div id="input-container" style="display: none;">
+            <input type="text" id="text-input" placeholder="Enter new text">
+            <button id="upload-text">text 업로드</button>
         </div>
         <input type="file" id="image-input" style="display: none;">
     </div>
