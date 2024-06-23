@@ -12,6 +12,8 @@
         {% csrf_token %}
         <div id='top_container'>
             <input type="text" name="title" id='title' placeholder='제목을 입력해주세요'>
+            <!-- hidden input to store the selected color -->
+            <input type="hidden" name="color" id="color">
         </div>
         <div id='main_container'>
             <img id="imagePreview" src="{% static "assets/icons/default-image.png" %}" alt="Image preview">
@@ -39,6 +41,18 @@
     </form>
 </body>
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // 이전 페이지에서 선택한 키워드 값을 가져와서 콘솔에 출력
+    const selectedKeyword = localStorage.getItem('selectedKeyword');
+    if (selectedKeyword) {
+        const colorInput = document.getElementById('color');
+        colorInput.value = selectedKeyword;
+        console.log('설정된 키워드:', colorInput.value); // 콘솔에 출력
+    } else {
+        console.log('선택한 키워드가 없습니다.');
+    }
+
+    // 이미지 미리보기 기능
     document.getElementById('imageInput').addEventListener('change', function(event) {
         const file = event.target.files[0];
         const reader = new FileReader();
@@ -47,10 +61,10 @@
         reader.onload = function(e) {
             preview.src = e.target.result;
             preview.style.display = 'block';
-            preview.style.width= '370px';
-            preview.style.height='370px';
-            preview.style.border='0px';
-            preview.style.padding='0px'
+            preview.style.width = '370px';
+            preview.style.height = '370px';
+            preview.style.border = '0px';
+            preview.style.padding = '0px';
         }
 
         if (file) {
@@ -61,6 +75,7 @@
         }
     });
 
+    // 단과대 목록을 가져와서 업데이트하는 함수
     async function fetchColleges() {
         const response = await fetch('/get_colleges/');
         const colleges = await response.json();
@@ -73,6 +88,7 @@
         });
     }
 
+    // 선택된 단과대에 따라 세부학과 목록을 업데이트하는 함수
     async function updateMajors() {
         const collegeSelect = document.getElementById('college');
         const majorSelect = document.getElementById('major');
@@ -94,6 +110,11 @@
         }
     }
 
-    // Fetch colleges on page load
-    window.onload = fetchColleges;
+    // 페이지 로드 시 단과대 목록을 가져옴
+    fetchColleges();
+
+    // 단과대 선택 시 세부학과 목록을 업데이트
+    document.getElementById('college').addEventListener('change', updateMajors);
+});
+
 </script>

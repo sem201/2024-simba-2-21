@@ -10,6 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentRotateButton = null;
     let currentResizeButton = null;
 
+    // 이전 페이지에서 선택한 키워드 값을 콘솔에 출력
+    const selectedKeyword = localStorage.getItem('selectedKeyword');
+    if (selectedKeyword) {
+        console.log('선택한 키워드:', selectedKeyword);
+    } else {
+        console.log('선택한 키워드가 없습니다.');
+    }
+    
+
     addTextButton.addEventListener('click', () => {
         inputContainer.style.display = 'block';
         inputContainer.style.position = 'absolute';
