@@ -4,6 +4,8 @@
     {% load static %}
     <link rel='stylesheet' type='text/css' href="{% static "css/design/information.css"%}">
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="{% static 'assets/charcol.png' %}">
+    <title>뭐입을과</title>
 </head>
 <body>
     <form action="{% url 'main:create' %}" method="POST" enctype="multipart/form-data">
