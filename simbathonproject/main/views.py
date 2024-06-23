@@ -110,8 +110,8 @@ def create(request):
         request.session['total_customs'] = Custom.objects.count()
 
         # 데이터가 성공적으로 저장된 후 리디렉션 수행
-        return redirect('main:custompage')
-    return redirect('custom/')
+        return redirect('main:finishpage')
+    return redirect('/finish')
 
 def filterpage(request):
     return render(request, 'main/filterpage.html')
@@ -145,3 +145,6 @@ def search_suggestions(request):
     else:
         suggestions = []
     return JsonResponse({'suggestions': suggestions})
+
+def finishpage(request):
+    return render(request, 'design/finishpage.html')
