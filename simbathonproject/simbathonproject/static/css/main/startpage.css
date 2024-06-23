@@ -7,7 +7,6 @@ body {
 }
 
 #main_container {
-    /* border: 4px solid black; */
     background-color: white;
     width: 540px;
     height: 960px;
@@ -15,26 +14,112 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-}
-img{
-    width: 400px;
-    height: auto;
-}
-#slider_wrap{
     position: relative;
-    width: 540px;
-    height: auto;
     overflow: hidden;
 }
 
-#slider__inner{
+#top_bar {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
+    justify-content: flex-end;
     align-items: center;
-    width: auto; 
+    width: 100%;
+    margin-top: 50px;
+    padding-right: 50px;
+}
+
+#skip {
+    font-family: 'NanumGothic';
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(116, 116, 118, 1);
+    background-color: #FFFFFF;
+    border: 0;
+}
+#skip:hover{
+    text-decoration: underline;
+}
+
+img {
+    width: 500px;
     height: auto;
-    padding-left: 10px;
-    transition: transform 0.5s ease;
+}
+
+#slider_wrap {
+    display: flex;
+    width: 100%;
+    height: 80%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.slider__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+#slider_dot_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.slider_dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: lightgray;
+    border-radius: 50%;
+}
+
+.slider_dot_select {
+    background-color: black;
+}
+
+.slider__btn_container {
+    margin-top: 20px;
+}
+
+.slider__btn {
+    font-family: 'NanumGothic';
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(151, 71, 255, 1);
+    border-radius: 12px;
+    border:0;
+    width:367px;
+    height: 67px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#start_btn {
+    display: none;
+    font-family: 'NanumGothic';
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(151, 71, 255, 1);
+    border-radius: 12px;
+    border:0;
+    width:367px;
+    height: 67px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.logo_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
 }

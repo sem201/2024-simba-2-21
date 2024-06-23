@@ -3,81 +3,45 @@
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkbox Filter</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main/startpage.css' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Checkbox Filter</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main/startpage.css' %}">
     </head>
     <body>
-        <div id='main_container'>
-            <div id='top_bar'><a href='/main'><button id="skip">mainpage</button></a></div>
-            <div id='slider_wrap'>
-                <div class='slider__inner'>
-                    <img src="{% static "assets/start1.png" %}">
-                    <div id='slider_dot_container'>
-                        <div class='slider_dot' class='slider_dot_select'></div>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot'></div>
-                    </div>
-                    <div class='slider__btn_container'>
-                        <button class='slider__btn'>계속<button>
-                    </div>
+        <div id="main_container">
+            <div id="top_bar">
+                <a href="/main"><button id="skip">건너뛰기</button></a>
+            </div>
+            <div id="slider_wrap">
+                <div class="logo_page">
+                    <img src="{% static 'assets/start1.png' %}">
                 </div>
-                <div class='slider__inner'>
-                    <img src="{% static "assets/start2.png" %}">
-                    <div id='slider_dot_container'>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot' class='slider_dot_select'></div>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot'></div>
-                    </div>
-                    <div class='slider__btn_container'>
-                        <button class='slider__btn'>계속<button>
-                    </div>
+                <div class="slider__inner">
+                    <img src="{% static 'assets/start2.png' %}">
                 </div>
-                <div class='slider__inner'>
-                    <img src="{% static "assets/start3.png" %}">
-                    <div id='slider_dot_container'>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot' class='slider_dot_select'></div>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot'></div>
-                    </div>
-                    <div class='slider__btn_container'>
-                        <button class='slider__btn'>계속<button>
-                    </div>
+                <div class="slider__inner">
+                    <img src="{% static 'assets/start3.png' %}">
                 </div>
-                <div class='slider__inner'>
-                    <img src="{% static "assets/start4.png" %}">
-                    <div id='slider_dot_container'>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot' class='slider_dot_select'></div>
-                        <div class='slider_dot'></div>
-                    </div>
-                    <div class='slider__btn_container'>
-                        <button class='slider__btn'>계속<button>
-                    </div>
+                <div class="slider__inner">
+                    <img src="{% static 'assets/start4.png' %}">
                 </div>
-                <div class='slider__inner'>
-                    <img src="{% static "assets/start5.png" %}">
-                        <div id='slider_dot_container'>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot'></div>
-                        <div class='slider_dot' class='slider_dot_select'></div>
-                    </div>
-                    <div class='slider__btn_container'>
-                        <a href='/main'><button class='slider__btn'>시작하기<button></a>
-                    </div>
+                <div class="slider__inner">
+                    <img src="{% static 'assets/start5.png' %}">
                 </div>
             </div>
+            <div id="slider_dot_container">
+                <div class="slider_dot slider_dot_select"></div>
+                <div class="slider_dot"></div>
+                <div class="slider_dot"></div>
+                <div class="slider_dot"></div>
+            </div>
+            <div class="slider__btn_container">
+                <button class="slider__btn" id="continue_btn">계속</button>
+            </div>
+            <div class="slider__btn_container">
+                <a href="/main"><button class="slider__btn" id="start_btn">시작하기</button></a>
+            </div>
         </div>
+        <script src="{% static 'js/main/startpage.js' %}"></script>
     </body>
-
 </html>
