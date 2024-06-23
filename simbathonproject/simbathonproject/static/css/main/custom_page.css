@@ -24,11 +24,17 @@ body {
     display: flex;
     justify-content: space-between;
     width: 510px;
-    margin: 15px 20px 0px 20px;
+    margin: 15px 20px 10px 20px;
 }
 .nothing {
     /* border: 1px solid violet; */
-    width: 50px;
+    width: 133px;
+}
+
+#normal_custom {
+    /* border: 4px solid salmon; */
+    display: flex;
+    justify-content: center;
 }
 
 #normal_btn {
@@ -37,11 +43,12 @@ body {
     font-family: "Pretendard Variable";
     font-size: 24px;
     position: relative;
-    left: 10px;
+    left: 12px;
     background-color: #F5F5F5;
     width: 120px;
     height: 60px;
-    border-radius: 45px;
+    border-top-left-radius: 45px;
+    border-bottom-left-radius: 45px;
     color: #919191;
 }
 
@@ -49,7 +56,7 @@ body {
     font-family: "Pretendard Variable";
     font-size: 24px;
     position: relative;
-    right : 10px;
+    right : 12px;
     background-color:#442A78;
     width: 120px;
     height: 60px;
@@ -63,17 +70,55 @@ body {
 #filter_btn {
     /* border: 2px solid red; */
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     background-color: #FFFFFF;
+    width: 133px;
     border: none;
 }
 
+#filter_count{
+    border: 2px solid white;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+    right: 20px;
+    top: 10px;
+    border-radius: 100%;
+    width: 22px;
+    height: 22px;
+    background-color: #8C52FF;
+    color:#fff;
+    font-size: 16px;
+}
+
+#filter_btn > img {
+    zoom: 0.09;
+    background-color: none;
+}
+
+#icon_filter_bk {
+    position: relative;
+    left: 40px;
+}
+
+#icon_filter_blue {
+    position: relative;
+    left: 40px;
+}
+
+/*///////////여기부터 사진////////*/
+
 #main_container {
-    display: grid;
-    grid-row: 2 / 3;
+    /* border: 4px solid brown; */
+    display: flex;
+    align-items: center;
+    margin: 110px 0px 0px 0px;
 }
 
 #main_box {
+    /* border: 4px solid yellow; */
     height: 100%;
     display: flex;
     justify-content: center;
