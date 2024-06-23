@@ -3,8 +3,9 @@
 <head>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/main/main_page.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/charcol.png' %}">
     <meta charset="UTF-8">
-    <title>뭐입을꽈</title>
+    <title>뭐입을과</title>
 </head>
 <body>
     <div id="container">
@@ -26,6 +27,7 @@
                     <a href="#" class="prev" title="이전">&lt;</a>
                 </div>
                 <div class="slider__img">
+                    <p id="toggle_instruction" align="center">이미지를 누르면 앞/뒤가 변환됩니다</p>
                     <div class="slider__inner">
                         {% for varsity in varsitys %}
                             {% if not filter_apply_dep or varsity.major in filter_apply_dep %}

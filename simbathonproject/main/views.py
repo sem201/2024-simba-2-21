@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse, HttpResponseBadRequest
-from .models import Varsity, Custom
+from .models import Varsity, Custom, Keyword,Information
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -28,6 +28,13 @@ def mainpage(request):
     # 각 객체의 'label' 값 추출하여 리스트로 만들기
     filter_apply_dep = [item['label'] for item in data_list]
 
+# 키워드 검색 쿼리 매개변수를 가져옵니다.
+    keyword_search = request.GET.get('keyword', '').strip()
+    if keyword_search:
+        keywords = Keyword.objects.filter(keyword__icontains=keyword_search).values_list('varsity_id', flat=True)
+        varsitys = Varsity.objects.filter(id__in=keywords)
+        sorted_varsitys = sorted(varsitys, key=lambda v: custom_order.index(v.college) if v.college in custom_order else len(custom_order))
+
     # mainpage.html 템플릿을 렌더링할 때 필요한 데이터를 전달합니다.
     context = {
         'varsitys': sorted_varsitys,
@@ -37,7 +44,8 @@ def mainpage(request):
     return render(request, 'main/mainpage.html', context)
 
 def custompage(request):
-    customs = Custom.objects.all()
+    # like_count가 높은 순서대로 Custom 객체를 조회
+    customs = Custom.objects.all().order_by('-like_count')
 
     liked_customs = request.session.get('liked_customs', [])
     total_customs = request.session.pop('total_customs', customs.count())  # 세션에서 total_customs 값을 가져오고, 없으면 기본값으로 전체 개수
@@ -54,12 +62,12 @@ def designpage(request):
     return render(request, 'design/designpage.html')
 
 def get_colleges(request):
-    colleges = Varsity.objects.values_list('college', flat=True).distinct()
+    colleges = Information.objects.values_list('college', flat=True).distinct()
     return JsonResponse(list(colleges), safe=False)
 
 def get_majors(request):
     college = request.GET.get('college')
-    majors = Varsity.objects.filter(college=college).values_list('major', flat=True).distinct()
+    majors = Information.objects.filter(college=college).values_list('major', flat=True).distinct()
     return JsonResponse(list(majors), safe=False)
 
 def informationpage(request):
@@ -89,12 +97,13 @@ def create(request):
         image = request.FILES.get('image')
         college = request.POST.get('college')
         major = request.POST.get('major')
+        color = request.POST.get('color')  # 폼에서 넘어온 color 값 받기
 
-        if not title or not image or not college or not major:
+        if not title or not image or not college or not major or not color:
             # 필드가 비어있는 경우
             return render(request, 'design/informationpage.html')
 
-        new_custom = Custom(title=title, image=image, college=college, major=major)
+        new_custom = Custom(title=title, image=image, college=college, major=major, color=color)
         new_custom.save()
 
         # 저장된 데이터 개수를 세션에 저장
@@ -128,4 +137,11 @@ def like_custom(request, custom_id):
         return JsonResponse({'like_count': custom.like_count, 'is_liked': is_liked})
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
-#심바톤 화이팅
+def search_suggestions(request):
+    query = request.GET.get('query', '').strip()
+    if query:
+        keywords = Keyword.objects.filter(keyword__icontains=query).values_list('keyword', flat=True).distinct()
+        suggestions = list(keywords)
+    else:
+        suggestions = []
+    return JsonResponse({'suggestions': suggestions})
