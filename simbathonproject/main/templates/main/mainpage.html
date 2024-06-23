@@ -16,6 +16,7 @@
             </div>
             <button id="filter_btn">
                 <a href='/filter'><img src="{% static 'assets/icons/icon_filter.png' %}" id="icon_filter"></a>
+                <div id='filter_count'>{{ filter_apply_dep }}</div>
             </button>
         </div>
         <div id="main_container"> <!--메인컨테이너-->
@@ -45,10 +46,10 @@
                 </div>      <!--좌 Slider_btn 닫음-->
             </div>          <!--slider__wrap 닫음-->
         </div>                  <!--메인컨테이너 닫음-->
-        <div id="selected-departments-count">
+        {% comment %} <div id="selected-departments-count">
             <p>학과의 수: <span id="count"></span><br>
             {{ filter_apply_dep }}</p>
-        </div>
+        </div> {% endcomment %}
     </div>
     <script src="{% static 'js/main/mainpage.js' %}"></script>
 </body>
