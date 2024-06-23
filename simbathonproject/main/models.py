@@ -18,6 +18,7 @@ class Custom(models.Model):
     like_count=models.PositiveIntegerField(default=0)
     college=models.CharField(max_length=20, null=True)
     major=models.CharField(max_length=20, null=True)
+    color=models.CharField(max_length=10, null=True)
 
 class Information(models.Model):
     college=models.CharField(max_length=20, null=True)

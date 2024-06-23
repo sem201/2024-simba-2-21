@@ -21,9 +21,10 @@
                 <img src="{% static 'assets/icons/icon_check.png' %}">
             </button>
         </div>                      <!--헤드 닫기 -->
-        <form class="search_form">  <!-- 검색 바_ 영역시작 -->
-        <img class="search_icon" src="{% static 'assets/icons/icon_search.png' %}" width="15px">
-        <input type="text" placeholder="Search" />
+        <form class="search_form">
+            <img class="search_icon" src="{% static 'assets/icons/icon_search.png' %}" width="15px">
+            <input type="text" id="search-input" placeholder="Search" autocomplete="off" />
+            <div id="suggestions" class="suggestions"></div>
         </form>                     <!-- 검색 바 닫기 -->
         <div class="list">          <!--필터 목록-->
             <div class="college_filter">            <!--필터1. AI융합-->
