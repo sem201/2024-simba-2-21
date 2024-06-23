@@ -5,16 +5,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/main/custom_page.css' %}">
     <link rel="icon" type="image/png" href="{% static 'assets/charcol.png' %}">
     <meta charset="UTF-8">
-<<<<<<< HEAD
+
     <title>커스텀 과잠</title>
-=======
-    <title>뭐입을과</title>
->>>>>>> 9addd4463435e93d5ce21ed119b4fdc208c7e686
 </head>
 <body>
     <div id="container" data-total-customs="{{ total_customs }}">
         <div class="button_container">
-            <div class="nothing"></div>
+            <a href='/main/'><img src = "{% static 'assets/icons/varsity_logo.png' %}" class='nothing'/></a>
             <div id="normal_custom">
                 <a href='/main'><button id="normal_btn">일반</button></a>
                 <button id="custom_btn">커스텀</button>

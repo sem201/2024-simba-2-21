@@ -11,7 +11,9 @@
     <form action="{% url 'main:create' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div id='top_container'>
+            <a href='/main/'><img src = "{% static 'assets/icons/varsity_logo.png' %}" class='nothing'/></a>
             <input type="text" name="title" id='title' placeholder='제목을 입력해주세요'>
+            <div class='nothing'></div>
             <!-- hidden input to store the selected color -->
             <input type="hidden" name="color" id="color">
         </div>
@@ -36,7 +38,7 @@
             </select>
         </div>
         <div id='foot_container'>
-            <button type="submit" id='submit'>공유하기</button>
+            <button type="submit" id='submit' disabled>공유하기</button>
         </div>
     </form>
 </body>
@@ -73,6 +75,7 @@
             preview.src = '';
             preview.style.display = 'none';
         }
+        checkFormValidity();
     });
 
     // 단과대 목록을 가져와서 업데이트하는 함수
@@ -109,12 +112,32 @@
             majorSelect.disabled = true;
         }
     }
+    function checkFormValidity() {
+        const title = document.getElementById('title').value.trim();
+        const color = document.getElementById('color').value.trim();
+        const college = document.getElementById('college').value;
+        const major = document.getElementById('major').value;
+        const imageInput = document.getElementById('imageInput').files.length > 0;
+        const submitBtn = document.getElementById('submit')
+
+        const isFormValid = title && color && college !== 'none' && major !== 'none' && imageInput;
+        if (isFormValid) {
+            submitBtn.disabled = false;
+            submitBtn.style.backgroundColor = `rgba(151, 71, 255, 1)`;
+        } else {
+            submitBtn.disabled = true;
+            submitBtn.style.backgroundColor = `rgba(227, 227, 227, 1)`;
+        }
+    }
 
     // 페이지 로드 시 단과대 목록을 가져옴
     fetchColleges();
 
     // 단과대 선택 시 세부학과 목록을 업데이트
     document.getElementById('college').addEventListener('change', updateMajors);
+    document.getElementById('title').addEventListener('input', checkFormValidity);
+    document.getElementById('college').addEventListener('change', checkFormValidity);
+    document.getElementById('major').addEventListener('change', checkFormValidity);
 });
 
 </script>
