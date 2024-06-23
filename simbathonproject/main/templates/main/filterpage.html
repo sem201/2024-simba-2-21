@@ -12,11 +12,13 @@
 <body class="body">
     <div class="container">
         <div class="head">                  <!-- 상단 바 / 필터 -->
-            <a href="/main"><button>          
+            <button id="back_btn">          
             <img src="{% static 'assets/icons/icon_back.png' %}">
-            </button></a>
+            </button>
             <h2>필터에요</h2>
-            <img src="{% static 'assets/icons/icon_check.png' %}">
+            <button id="apply_filter_btn">
+                <img src="{% static 'assets/icons/icon_check.png' %}">
+            </button>
         </div>                      <!--헤드 닫기 -->
         <form class="search_form">  <!-- 검색 바_ 영역시작 -->
         <img class="search_icon" src="{% static 'assets/icons/icon_search.png' %}" width="15px">
@@ -124,7 +126,7 @@
                 <div class="department">
                     <div class="major_filter">
                         <input type="checkbox" id="koreanLiterature" class="department" data-college="liberalArts" data-department="koreanLiterature">
-                        <label for="koreanLiterature">국어국문·문예창작학부</label>
+                        <label for="koreanLiterature">국어국문.문예창작학부</label>
                     </div>
                     <div class="major_filter">
                         <input type="checkbox" id="history" class="department" data-college="liberalArts" data-department="history">
