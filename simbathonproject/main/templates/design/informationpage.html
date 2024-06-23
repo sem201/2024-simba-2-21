@@ -45,6 +45,10 @@
         reader.onload = function(e) {
             preview.src = e.target.result;
             preview.style.display = 'block';
+            preview.style.width= '370px';
+            preview.style.height='370px';
+            preview.style.border='0px';
+            preview.style.padding='0px'
         }
 
         if (file) {
