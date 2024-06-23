@@ -97,14 +97,14 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     /* position: relative;  */
     /*추가: 슬라이더 버튼 위치를 절대 위치로 지정 */
 }
 .slider__btn {
     /* border: 8px solid navy; */
     position: relative;
-    bottom: 110px;
+    bottom: 105px;
 }
 
 #left_slider__btn {
@@ -120,29 +120,31 @@ body {
     /* border: 4px solid yellowgreen; */
     position: relative;
     width: 540px;
-    height: 700px;
+    height: auto;
     overflow: hidden;
 }
 
 .slider__inner {
-    /* border: 1px solid goldenrod; */
+    /* border: 5px solid goldenrod; */
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: nowrap;
     align-items: center;
-    width: 22680px; 
-    height: 450px;
+    width: auto; 
+    height: auto;
+    padding-left: 10px;
     transition: transform 0.5s ease;
 }
 
 .slider {
-    /* border: 1px solid skyblue; */
+    /* border: 10px solid skyblue; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 540px;
+    width: 600px;
+    /* margin-left: 10px; */
     /* height: 500px; */
 }
 #text_major{
@@ -150,8 +152,8 @@ body {
 }
 .test_img{
     display: flex;
-    width: 450px;
-    height: 450px;
+    width: 430px;
+    height: 430px;
     margin: 0px 45px 0px 45px;
     object-fit: contain;
 }
@@ -203,4 +205,15 @@ p{
     width:136px;
     height: 46px;
     margin-top: 30px;
+}
+
+#selected-departments-count {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#selected-departments-count > p {
+    text-align: center;
+    font-size: 15px;
 }
