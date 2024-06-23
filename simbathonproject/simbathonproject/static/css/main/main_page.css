@@ -24,11 +24,11 @@ body {
     display: flex;
     justify-content: space-between;
     width: 510px;
-    margin: 15px 20px 0px 20px;
+    margin: 15px 20px 10px 20px;
 }
 .nothing {
     /* border: 1px solid violet; */
-    width: 50px;
+    width: 133px;
 }
 
 #normal_custom {
@@ -43,7 +43,7 @@ body {
     font-family: "Pretendard Variable";
     font-size: 24px;
     position: relative;
-    left: 10px;
+    left: 12px;
     background-color: #8C52FF;
     width: 120px;
     height: 60px;
@@ -57,7 +57,7 @@ body {
     font-family: "Pretendard Variable";
     font-size: 24px;
     position: relative;
-    right : 10px;
+    right : 12px;
     background-color: #F5F5F5;
     width: 120px;
     height: 60px;
@@ -70,27 +70,45 @@ body {
 #filter_btn {
     /* border: 2px solid red; */
     display: flex;
-    position:relative;
+    justify-content: flex-end;
     align-items: center;
     background-color: #FFFFFF;
+    width: 133px;
     border: none;
 }
+
 #filter_count{
-    display:none;
-    /*filter 적용하면 추가*/
-    /* display: flex;
+    border: 2px solid white;
+    display: flex; 
     justify-content: center;
     align-items: center;
-    position:absolute; */
-    right:3px;
-    bottom:15px;
+    position: relative; 
+    right: 20px;
+    top: 10px;
     border-radius: 100%;
-    width: 16px;
-    height: 16px;
+    width: 22px;
+    height: 22px;
     background-color: #8C52FF;
     color:#fff;
-    font-size:10px;
+    font-size: 16px;
 }
+
+#filter_btn > img {
+    zoom: 0.09;
+    background-color: none;
+}
+
+#icon_filter_bk {
+    position: relative;
+    left: 40px;
+}
+
+#icon_filter_blue {
+    position: relative;
+    left: 40px;
+}
+
+
 /*//////////////여기부터 사진//////////////*/
 
 #main_container {
@@ -181,14 +199,14 @@ body {
     transform: translateY(-50%);
     width: 40px;
     height: 40px;
-    background-color: rgb(217, 217, 217);
     line-height: 35px;
     text-align: center;
     text-decoration: none;
     color: black;
-    font-size: 24px;
+    font-size: 30px;
     z-index: 10;
     border-radius: 50%;
+    font-weight: bold;
 }
 
 .slider__btn > a:hover {
@@ -233,4 +251,12 @@ p{
 #selected-departments-count > p {
     text-align: center;
     font-size: 15px;
+}
+
+/* 추가: 새로운 문구에 대한 스타일 */
+#toggle_instruction {
+    font-family: 'NanumGothic';
+    font-size: 18px;
+    color: gray;
+    margin-top: 20px;
 }

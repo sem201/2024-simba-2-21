@@ -104,20 +104,6 @@ function toggleImage(img) {
 }
 
 // // ///////여기부터 필터///////
-// // function displaySelectedDepartments() {
-// //     const selectedDepartmentsList = document.getElementById('selected_departments_list');
-// //     selectedDepartmentsList.innerHTML = '';
-
-// //     const selectedDepartments = JSON.parse(localStorage.getItem('selectedDepartments')) || [];
-// //     selectedDepartments.forEach(department => {
-// //         const li = document.createElement('li');
-// //         li.textContent = `${department.label} (${department.college})`;
-// //         selectedDepartmentsList.appendChild(li);
-// //     });
-// // }
-
-// // 페이지 로드 시 선택된 학과를 표시
-// document.addEventListener('DOMContentLoaded', displaySelectedDepartments)
 
 document.addEventListener('DOMContentLoaded', function() {
     // 로컬 스토리지에서 selectedDepartments 불러오기
@@ -129,4 +115,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // HTML 요소에 출력
     document.getElementById('filter_count').textContent = count;
 
+    if (count === 0) {
+        document.getElementById('icon_filter_bk').style.display = 'flex';
+        document.getElementById('icon_filter_blue').style.display = 'none';
+        document.getElementById('filter_count').style.display = 'none';
+    } else {
+        // count가 0이 아니면 필터 이미지를 파란색으로 바꾸고 filter_count 요소를 표시
+        document.getElementById('icon_filter_bk').style.display = 'none';
+        document.getElementById('icon_filter_blue').style.display = 'flex';
+        document.getElementById('filter_count').style.display = 'flex';
+        document.getElementById('filter_count').textContent = count;
+    }
+
+    // 필터 버튼 클릭 시 필터 페이지로 이동
+    document.getElementById('filter_btn').addEventListener('click', function() {
+        window.location.href = '/filter';
+    });
 });

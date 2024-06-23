@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkbox Filter</title>
+    <title>뭐입을과</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/main/filter_page.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/charcol.png' %}">
 </head>
 
 
@@ -20,9 +21,10 @@
                 <img src="{% static 'assets/icons/icon_check.png' %}">
             </button>
         </div>                      <!--헤드 닫기 -->
-        <form class="search_form">  <!-- 검색 바_ 영역시작 -->
-        <img class="search_icon" src="{% static 'assets/icons/icon_search.png' %}" width="15px">
-        <input type="text" placeholder="Search" />
+        <form class="search_form">
+            <img class="search_icon" src="{% static 'assets/icons/icon_search.png' %}" width="15px">
+            <input type="text" id="search-input" placeholder="Search" autocomplete="off" />
+            <div id="suggestions" class="suggestions"></div>
         </form>                     <!-- 검색 바 닫기 -->
         <div class="list">          <!--필터 목록-->
             <div class="college_filter">            <!--필터1. AI융합-->
@@ -126,7 +128,7 @@
                 <div class="department">
                     <div class="major_filter">
                         <input type="checkbox" id="koreanLiterature" class="department" data-college="liberalArts" data-department="koreanLiterature">
-                        <label for="koreanLiterature">국어국문·문예창작학부</label>
+                        <label for="koreanLiterature">국어국문.문예창작학부</label>
                     </div>
                     <div class="major_filter">
                         <input type="checkbox" id="history" class="department" data-college="liberalArts" data-department="history">
@@ -304,7 +306,7 @@
                     </div>
                     <div class="major_filter">
                         <input type="checkbox" id="politicsPublicAdministration" class="department" data-college="socialScience" data-department="politicsPublicAdministration">
-                        <label for="politicsPublicAdministration">정치행정학부</label>
+                        <label for="politicsPublicAdministration">정치외교학과</label>
                     </div>
                     <div class="major_filter">
                         <input type="checkbox" id="publicAdministration" class="department" data-college="socialScience" data-department="publicAdministration">

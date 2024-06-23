@@ -3,8 +3,9 @@
 <head>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/main/main_page.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/charcol.png' %}">
     <meta charset="UTF-8">
-    <title>뭐입을꽈</title>
+    <title>뭐입을과</title>
 </head>
 <body>
     <div id="container">
@@ -14,8 +15,9 @@
                 <button id="normal_btn">일반</button>
                 <a href='/custom'><button id="custom_btn">커스텀</button></a>
             </div>
-            <button id="filter_btn">
-                <a href='/filter'><img src="{% static 'assets/icons/icon_filter.png' %}" id="icon_filter"></a>
+            <button id="filter_btn">       
+                <img src="{% static 'assets/icons/icon_filter_bk.png' %}" id="icon_filter_bk">
+                <img src="{% static 'assets/icons/icon_filter_blue.png' %}" id="icon_filter_blue">
                 <div id='filter_count'>{{ filter_apply_dep }}</div>
             </button>
         </div>
@@ -25,6 +27,7 @@
                     <a href="#" class="prev" title="이전">&lt;</a>
                 </div>
                 <div class="slider__img">
+                    <p id="toggle_instruction" align="center">이미지를 누르면 앞/뒤가 변환됩니다</p>
                     <div class="slider__inner">
                         {% for varsity in varsitys %}
                             {% if not filter_apply_dep or varsity.major in filter_apply_dep %}
@@ -52,5 +55,6 @@
         </div> {% endcomment %}
     </div>
     <script src="{% static 'js/main/mainpage.js' %}"></script>
+    <script src="https://kit.fontawesome.com/e18eac0141.js" crossorigin="anonymous"></script>
 </body>
 </html>
