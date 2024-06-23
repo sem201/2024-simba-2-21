@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkbox Filter</title>
+    <title>뭐입을과</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/design/designpage.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/charcol.png' %}">
     <style>
         .resize-button {
             width: 10px;
@@ -28,23 +29,23 @@
         </div>
         <div id="bottom-container">
             <button id="add-text-button">
-                <img src={% static "assets/icons/text.png" %}/>
+                <img src={% static "assets/icons/text_icon.png" %} width="40px"/>
             </button>
-            <div id="input-container" style="display: none;">
-                <input type="text" id="text-input" placeholder="Enter new text">
-                <button id="upload-text">text 업로드</button>
-            </div>
             <button id="upload-img-button">
-                <img src={% static "assets/icons/image.png" %}/>
+                <img src={% static "assets/icons/image_icon_2.png" %} width="55px"/>
             </button>
             <button id="capture-button">
-                <img src={% static "assets/icons/download.png" %}/>
+                <img src={% static "assets/icons/download_icon.png" %} width="40px"/>
             </button>
         </div>
         <div id='bottom-container2'>
             <p>텍스트</p>
             <p>이미지 업로드</p>
             <p>디자인 다운</p>
+        </div>
+        <div id="input-container" style="display: none;">
+            <input type="text" id="text-input" placeholder="Enter new text">
+            <button id="upload-text">text 업로드</button>
         </div>
         <input type="file" id="image-input" style="display: none;">
     </div>

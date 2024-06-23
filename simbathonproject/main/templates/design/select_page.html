@@ -4,6 +4,8 @@
     {% load static %}
     <link rel='stylesheet' type='text/css' href="{% static "css/design/select_page.css"%}">
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="{% static 'assets/charcol.png' %}">
+    <title>뭐입을과</title>
 </head>
 
 <body>
@@ -45,7 +47,7 @@
             images.forEach((img) => {
                 img.addEventListener('click', () => {
                     if (selectedImage) {
-                        selectedImage.style.border = '2px solid black';
+                        selectedImage.style.border = 'none';
                         selectedImage.style.borderRadius = '10px';
                     }
 

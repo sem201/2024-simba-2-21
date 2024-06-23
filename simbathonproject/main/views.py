@@ -44,7 +44,8 @@ def mainpage(request):
     return render(request, 'main/mainpage.html', context)
 
 def custompage(request):
-    customs = Custom.objects.all()
+    # like_count가 높은 순서대로 Custom 객체를 조회
+    customs = Custom.objects.all().order_by('-like_count')
 
     liked_customs = request.session.get('liked_customs', [])
     total_customs = request.session.pop('total_customs', customs.count())  # 세션에서 total_customs 값을 가져오고, 없으면 기본값으로 전체 개수
