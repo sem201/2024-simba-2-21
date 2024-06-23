@@ -33,6 +33,15 @@ def designstartpage(request):
 def designpage(request):
     return render(request, 'design/designpage.html')
 
+def get_colleges(request):
+    colleges = Varsity.objects.values_list('college', flat=True).distinct()
+    return JsonResponse(list(colleges), safe=False)
+
+def get_majors(request):
+    college = request.GET.get('college')
+    majors = Varsity.objects.filter(college=college).values_list('major', flat=True).distinct()
+    return JsonResponse(list(majors), safe=False)
+
 def informationpage(request):
     return render(request, 'design/informationpage.html')
 
