@@ -12,8 +12,6 @@ body{
     background-color: white;
     width: 540px;
     height: 960px;
-    /* display: grid;
-    grid-template-rows: 1fr 10fr; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,4 +73,7 @@ body{
     font-family: "Pretendard Variable";
     width: 360px;
     height: 63px;
+}
+button{
+    cursor: pointer;
 }

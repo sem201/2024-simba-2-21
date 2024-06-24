@@ -26,6 +26,15 @@
                 </button>
             </div>
         </div>
+        <div id="search_container" style="display: none;">
+            <form id="search_form" method="get" action="/custom/">
+                <input type="text" name="search" placeholder="Search by title" id="search_input">
+                <button type="submit">검색</button>
+            </form>
+            <div id="suggestions" style="display: none;">
+                <ul id="suggestions_list"></ul>
+            </div>
+        </div>
         <div id="main_container">
                 <div class="slider__wrap">
                     <div class="slider__btn">
@@ -33,11 +42,11 @@
                     </div>
                     <div class="slider__img">
                         <div id="sliderInner" class="slider__inner">
-                            {% for custom in customs %}
+                        {% for custom in customs %}
                             {% if not filter_apply_dep or custom.major in filter_apply_dep %}
                                 <div class="slider">
                                     <img src="{{ custom.image.url }}" class="test_img"/>
-                                    <p align="center"><b>{{ custom.major }}/{{ custom.college }}</b></p>
+                                    <p align="center"><b>{{ custom.title }}</b></p>
                                     <button id="heart_btn" data-custom-id="{{ custom.id }}">
                                         <img src="{% if custom.id in liked_customs %}{% static 'assets/icons/heart_filled.png' %}{% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
                                         <p>{{ custom.like_count }}</p>
@@ -61,6 +70,74 @@
     <script>
         // total_customs 값을 콘솔에 출력하여 확인
         console.log("템플릿에서 전달된 total_customs: {{ total_customs }}");
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('search_input');
+            const suggestionsContainer = document.getElementById('suggestions');
+            const suggestionsList = document.getElementById('suggestions_list');
+
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                if (query.length > 0) {
+                    fetch(`/custom/suggestions/?q=${query}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Suggestions:', data); // 서버에서 반환된 데이터 확인
+                            suggestionsList.innerHTML = '';
+
+                            data.forEach(item => {
+                                const titleMatch = item.title.toLowerCase().includes(query);
+                                const majorMatch = item.major.toLowerCase().includes(query);
+                                const colorMatch = item.color.toLowerCase().includes(query);
+                                const collegeMatch = item.college.toLowerCase().includes(query);
+
+                                let liContent = '';
+
+                                if (titleMatch) {
+                                    liContent = item.title;
+                                } else if (majorMatch) {
+                                    liContent = item.major;
+                                } else if (colorMatch) {
+                                    liContent = item.color;
+                                } else if (collegeMatch) {
+                                    liContent = item.college;
+                                } else {
+                                    return; // 일치하는 항목이 없으면 넘어가기
+                                }
+
+                                const li = document.createElement('li');
+                                li.innerHTML = liContent;
+                                li.addEventListener('click', function() {
+                                    searchInput.value = item.title; // 검색창에 제목만 채우기
+                                    suggestionsContainer.style.display = 'none';
+                                    document.getElementById('search_form').submit(); // 검색 폼 제출
+                                });
+                                suggestionsList.appendChild(li);
+                            });
+
+                            if (data.length > 0) {
+                                suggestionsContainer.style.display = 'block';
+                            } else {
+                                suggestionsContainer.style.display = 'none';
+                            }
+                        });
+                } else {
+                    suggestionsContainer.style.display = 'none';
+                }
+            });
+
+            // 검색 창 토글
+            document.getElementById('icon_filter_bk').addEventListener('click', () => {
+                const searchContainer = document.getElementById('search_container');
+                if (searchContainer.style.display === 'none') {
+                    searchContainer.style.display = 'block';
+                } else {
+                    searchContainer.style.display = 'none';
+                }
+            });
+        }); 
+
+
     </script>
     <script src="{% static 'js/main/custompage.js' %}"></script>
 </body>

@@ -285,3 +285,6 @@ p{
     font-size: 20px;
     font-family: "Pretendard Variable";
 }
+button{
+    cursor: pointer;
+}
