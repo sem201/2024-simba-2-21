@@ -35,7 +35,7 @@ function toggleDepartments(collegeId) {
        }
    }
 
-///////필터/////
+////////////필터//////////
 
 document.getElementById('apply_filter_btn').addEventListener('click', function() {
     // 선택된 학과 저장
@@ -44,10 +44,8 @@ document.getElementById('apply_filter_btn').addEventListener('click', function()
         selectedDepartments.push({
             label: checkbox.nextElementSibling.textContent
         });
-    });
+    });    
     
-    console.log(selectedDepartments);
-
     // 로컬 스토리지에 저장
     localStorage.setItem('selectedDepartments', JSON.stringify(selectedDepartments));
 
@@ -70,43 +68,3 @@ document.getElementById('back_btn').addEventListener('click', function() {
     // 메인 페이지로 이동하면서 쿼리 매개변수 전달
     window.location.href = `/main?selectedDepartments=${query}`;
 })
-
-
-/// 검색 기능
-document.querySelector('.search_form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const searchInput = document.querySelector('.search_form input').value.trim();
-    if (searchInput) {
-        window.location.href = `/main?keyword=${encodeURIComponent(searchInput)}`;
-    }
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('search-input');
-    const suggestions = document.getElementById('suggestions');
-
-    searchInput.addEventListener('input', function() {
-        const query = searchInput.value.trim();
-        if (query.length > 0) {
-            fetch(`/search_suggestions/?query=${encodeURIComponent(query)}`)
-                .then(response => response.json())
-                .then(data => {
-                    suggestions.innerHTML = '';
-                    data.suggestions.forEach(suggestion => {
-                        const div = document.createElement('div');
-                        div.className = 'suggestion';
-                        div.textContent = suggestion;
-                        div.addEventListener('click', function() {
-                            searchInput.value = suggestion;
-                            suggestions.innerHTML = '';
-                        });
-                        suggestions.appendChild(div);
-                    });
-                });
-        } else {
-            suggestions.innerHTML = '';
-        }
-    });
-});
-
-
