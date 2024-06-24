@@ -26,6 +26,17 @@
                 </button>
             </div>
         </div>
+
+        <div id="search_container" style="display: none;">
+            <form id="search_form" method="get" action="/main/">
+                <input type="text" name="search" placeholder="Search by major, color" id="search_input">
+                <button type="submit">검색</button>
+            </form>
+            <div id="suggestions" style="display: none;">
+                <ul id="suggestions_list"></ul>
+            </div>
+        </div>
+
         <div id="main_container">   <!--메인컨테이너-->
             <div class="slider__wrap">
                 <div class="slider__btn" id="left_slider__btn">

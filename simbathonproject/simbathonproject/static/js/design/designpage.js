@@ -4,11 +4,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputContainer = document.getElementById('input-container');
     const textInput = document.getElementById('text-input');
     const uploadTextButton = document.getElementById('upload-text');
+    const sample = document.getElementById('sample');
     const topContainer = document.getElementById('top-container');
     const uploadImgButton = document.getElementById('upload-img-button');
     const imageInput = document.getElementById('image-input');
     let currentRotateButton = null;
     let currentResizeButton = null;
+
+    // 디자인 제출 페이지로 넘어가기 전 확인 메시지
+    const normalBtn = document.getElementById('normal_btn');
+
+    const confirm_alert = (event) => {
+        const userConfirmed = confirm('이미지 다운로드 하셨나요?');
+        if (!userConfirmed) {
+            event.preventDefault(); // 기본 동작을 취소합니다.
+        }
+    }
+
+    normalBtn.addEventListener('click',confirm_alert)
 
     // 이전 페이지에서 선택한 키워드 값을 콘솔에 출력
     const selectedKeyword = localStorage.getItem('selectedKeyword');
@@ -22,12 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
     addTextButton.addEventListener('click', () => {
         if (inputContainer.style.display === 'block') {
             inputContainer.style.display = 'none';
+            sample.style.zIndex=-10;
         } else {
             inputContainer.style.display = 'block';
             inputContainer.style.position = 'absolute';
-            inputContainer.style.bottom = '70px';
+            inputContainer.style.bottom = '50%';
             inputContainer.style.right = '50%';
+            inputContainer.style.zIndex=20;
             inputContainer.style.transform = 'translateX(50%)';
+            sample.style.zIndex=10;
         }
     });
 
@@ -46,12 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
         newDiv.style.whiteSpace = 'nowrap'; 
         newDiv.style.fontSize='20px';
         newDiv.style.fontWeight='bold';
+        sample.style.zIndex=-10;
 
         const rotateButton = document.createElement('img');
         rotateButton.src = '/static/assets/icons/icon-rotate.png';
         rotateButton.className = 'rotate-button';
         rotateButton.style.position = 'absolute';
-        rotateButton.style.top = '-20px';
+        rotateButton.style.top = '50%';
         rotateButton.style.left = '50%';
         rotateButton.style.transform = 'translateX(-50%)';
         rotateButton.style.cursor = 'pointer';
@@ -255,6 +272,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     captureButton.addEventListener('click', () => {
+        const topContainer = document.getElementById('top-container');
+        topContainer.style.borderTop = 'none';
+        topContainer.style.borderBottom = 'none';
         const images = document.querySelectorAll('img');
         const promises = [];
 
