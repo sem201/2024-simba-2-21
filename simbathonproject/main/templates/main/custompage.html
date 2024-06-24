@@ -42,18 +42,18 @@
                     </div>
                     <div class="slider__img">
                         <div id="sliderInner" class="slider__inner">
-                        {% for custom in customs %}
-                            {% if not filter_apply_dep or custom.major in filter_apply_dep %}
-                                <div class="slider">
-                                    <img src="{{ custom.image.url }}" class="test_img"/>
-                                    <p align="center"><b>{{ custom.title }}</b></p>
-                                    <button id="heart_btn" data-custom-id="{{ custom.id }}">
-                                        <img src="{% if custom.id in liked_customs %}{% static 'assets/icons/heart_filled.png' %}{% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
-                                        <p>{{ custom.like_count }}</p>
-                                    </button>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                            {% for custom in customs %}
+                                {% if not filter_apply_dep or custom.major in filter_apply_dep %}
+                                    <div class="slider">
+                                        <img src="{{ custom.image.url }}" class="test_img"/>
+                                        <p align="center"><b>{{ custom.title }}</b></p>
+                                        <button id="heart_btn" data-custom-id="{{ custom.id }}">
+                                            <img src="{% if custom.id in liked_customs %}{% static 'assets/icons/heart_filled.png' %}{% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
+                                            <p>{{ custom.like_count }}</p>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="slider__btn" id="right_slider__btn">
@@ -127,14 +127,12 @@
             });
 
             // 검색 창 토글
-            document.getElementById('icon_filter_bk').addEventListener('click', () => {
-                const searchContainer = document.getElementById('search_container');
-                if (searchContainer.style.display === 'none') {
-                    searchContainer.style.display = 'block';
-                } else {
-                    searchContainer.style.display = 'none';
-                }
-            });
+            const searchContainer = document.getElementById('search_container');
+            if (searchContainer.style.display === 'none') {
+                searchContainer.style.display = 'block';
+            } else {
+                searchContainer.style.display = 'none';
+            }
         }); 
 
 
