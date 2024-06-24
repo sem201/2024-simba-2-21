@@ -5,18 +5,21 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/main/custom_page.css' %}">
     <link rel="icon" type="image/png" href="{% static 'assets/charcol.png' %}">
     <meta charset="UTF-8">
-    <title>뭐입을과</title>
+
+    <title>커스텀 과잠</title>
 </head>
 <body>
     <div id="container" data-total-customs="{{ total_customs }}">
         <div class="button_container">
-            <div class="nothing"></div>
+            <a href='/main/'><img src = "{% static 'assets/icons/varsity_logo.png' %}" class='nothing'/></a>
             <div id="normal_custom">
                 <a href='/main'><button id="normal_btn">일반</button></a>
                 <button id="custom_btn">커스텀</button>
             </div>
             <button id="filter_btn">
-                <a href='/customfilter'><img src="{% static 'assets/icons/icon_filter.png' %}" id="icon_filter"></a>
+                <img src="{% static 'assets/icons/icon_filter_bk.png' %}" id="icon_filter_bk">
+                <img src="{% static 'assets/icons/icon_filter_blue.png' %}" id="icon_filter_blue">
+                <div id='filter_count'>{{ filter_apply_dep }}</div>
             </button>
         </div>
         <div id="main_container">

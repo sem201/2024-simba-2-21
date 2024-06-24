@@ -20,11 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
     addTextButton.addEventListener('click', () => {
-        inputContainer.style.display = 'block';
-        inputContainer.style.position = 'absolute';
-        inputContainer.style.bottom = '70px';
-        inputContainer.style.right = '50%';
-        inputContainer.style.transform = 'translateX(50%)';
+        if (inputContainer.style.display === 'block') {
+            inputContainer.style.display = 'none';
+        } else {
+            inputContainer.style.display = 'block';
+            inputContainer.style.position = 'absolute';
+            inputContainer.style.bottom = '70px';
+            inputContainer.style.right = '50%';
+            inputContainer.style.transform = 'translateX(50%)';
+        }
     });
 
     uploadTextButton.addEventListener('click', () => {
@@ -40,6 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
         newDiv.style.transform = 'translate(-50%, -50%)';
         newDiv.style.cursor = 'move';
         newDiv.style.whiteSpace = 'nowrap'; 
+        newDiv.style.fontSize='20px';
+        newDiv.style.fontWeight='bold';
 
         const rotateButton = document.createElement('img');
         rotateButton.src = '/static/assets/icons/icon-rotate.png';

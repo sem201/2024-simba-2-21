@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse, HttpResponseBadRequest
-from .models import Varsity, Custom, Keyword
+from .models import Varsity, Custom, Keyword,Information
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -62,12 +62,12 @@ def designpage(request):
     return render(request, 'design/designpage.html')
 
 def get_colleges(request):
-    colleges = Varsity.objects.values_list('college', flat=True).distinct()
+    colleges = Information.objects.values_list('college', flat=True).distinct()
     return JsonResponse(list(colleges), safe=False)
 
 def get_majors(request):
     college = request.GET.get('college')
-    majors = Varsity.objects.filter(college=college).values_list('major', flat=True).distinct()
+    majors = Information.objects.filter(college=college).values_list('major', flat=True).distinct()
     return JsonResponse(list(majors), safe=False)
 
 def informationpage(request):
@@ -110,8 +110,8 @@ def create(request):
         request.session['total_customs'] = Custom.objects.count()
 
         # 데이터가 성공적으로 저장된 후 리디렉션 수행
-        return redirect('main:custompage')
-    return redirect('custom/')
+        return redirect('main:finishpage')
+    return redirect('/finish')
 
 def filterpage(request):
     return render(request, 'main/filterpage.html')
@@ -145,3 +145,6 @@ def search_suggestions(request):
     else:
         suggestions = []
     return JsonResponse({'suggestions': suggestions})
+
+def finishpage(request):
+    return render(request, 'design/finishpage.html')
