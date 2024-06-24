@@ -1,3 +1,5 @@
+//////////// main - custom 공통부분 /////////
+// 1. 슬라이더 기능
 document.addEventListener('DOMContentLoaded', () => {
     const sliderWrap = document.querySelector('.slider__wrap');
     const sliderImg = sliderWrap.querySelector('.slider__img');
@@ -44,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init();
 });
+
+// 2. 하트 기능
 
 document.addEventListener('DOMContentLoaded', function() {
     const heartButtons = document.querySelectorAll('#heart_btn');
@@ -93,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// 이미지 앞뒤 전환
 function toggleImage(img) {
     var frontSrc = img.getAttribute('data-front');
     var backSrc = img.getAttribute('data-back');
@@ -118,12 +123,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (count === 0) {
         document.getElementById('icon_filter_bk').style.display = 'flex';
         document.getElementById('icon_filter_blue').style.display = 'none';
-        document.getElementById('filter_count').style.display = 'none';
+        document.getElementById('filter_count').style.visibility = 'hidden';
     } else {
         // count가 0이 아니면 필터 이미지를 파란색으로 바꾸고 filter_count 요소를 표시
         document.getElementById('icon_filter_bk').style.display = 'none';
         document.getElementById('icon_filter_blue').style.display = 'flex';
-        document.getElementById('filter_count').style.display = 'flex';
+        document.getElementById('filter_count').style.visibility = 'visible';
         document.getElementById('filter_count').textContent = count;
     }
 
