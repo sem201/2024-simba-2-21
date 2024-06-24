@@ -344,6 +344,7 @@ p{
     font-size: 18px;
     color: gray;
     margin-top: 20px;
+    font-weight: bold;
 }
 button{
     cursor: pointer;
