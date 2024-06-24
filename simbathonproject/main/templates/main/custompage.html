@@ -127,14 +127,12 @@
             });
 
             // 검색 창 토글
-            document.getElementById('icon_filter_bk').addEventListener('click', () => {
-                const searchContainer = document.getElementById('search_container');
-                if (searchContainer.style.display === 'none') {
-                    searchContainer.style.display = 'block';
-                } else {
-                    searchContainer.style.display = 'none';
-                }
-            });
+            const searchContainer = document.getElementById('search_container');
+            if (searchContainer.style.display === 'none') {
+                searchContainer.style.display = 'block';
+            } else {
+                searchContainer.style.display = 'none';
+            }
         }); 
 
 
