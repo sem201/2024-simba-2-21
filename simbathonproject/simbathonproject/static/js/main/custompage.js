@@ -129,3 +129,87 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+///////////    초기화 버튼    /////////
+document.getElementById('reset_btn').addEventListener('click', function() {
+    //selectedDepartments 초기화
+    const selectedDepartments = [];
+    console.log(selectedDepartments);
+
+    // 로컬 스토리지에 저장
+    localStorage.setItem('selectedDepartments', JSON.stringify(selectedDepartments));
+
+    //새로고침 시행
+    location.reload();
+})
+
+
+
+
+///4. 검색기능///
+// total_customs 값을 콘솔에 출력하여 확인
+console.log("템플릿에서 전달된 total_customs: {{ total_customs }}");
+
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search_input');
+    const suggestionsContainer = document.getElementById('suggestions');
+    const suggestionsList = document.getElementById('suggestions_list');
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        if (query.length > 0) {
+            fetch(`/custom/suggestions/?q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Suggestions:', data); // 서버에서 반환된 데이터 확인
+                    suggestionsList.innerHTML = '';
+
+                    data.forEach(item => {
+                        const titleMatch = item.title.toLowerCase().includes(query);
+                        const majorMatch = item.major.toLowerCase().includes(query);
+                        const colorMatch = item.color.toLowerCase().includes(query);
+                        const collegeMatch = item.college.toLowerCase().includes(query);
+
+                        let liContent = '';
+
+                        if (titleMatch) {
+                            liContent = item.title;
+                        } else if (majorMatch) {
+                            liContent = item.major;
+                        } else if (colorMatch) {
+                            liContent = item.color;
+                        } else if (collegeMatch) {
+                            liContent = item.college;
+                        } else {
+                            return; // 일치하는 항목이 없으면 넘어가기
+                        }
+
+                        const li = document.createElement('li');
+                        li.innerHTML = liContent;
+                        li.addEventListener('click', function() {
+                            searchInput.value = item.title; // 검색창에 제목만 채우기
+                            suggestionsContainer.style.display = 'none';
+                            document.getElementById('search_form').submit(); // 검색 폼 제출
+                        });
+                        suggestionsList.appendChild(li);
+                    });
+
+                    if (data.length > 0) {
+                        suggestionsContainer.style.display = 'block';
+                    } else {
+                        suggestionsContainer.style.display = 'none';
+                    }
+                });
+        } else {
+            suggestionsContainer.style.display = 'none';
+        }
+    });
+
+    // 검색 창 토글
+    const searchContainer = document.getElementById('search_container');
+    if (searchContainer.style.display === 'none') {
+        searchContainer.style.display = 'block';
+    } else {
+        searchContainer.style.display = 'none';
+    }
+}); 
+
