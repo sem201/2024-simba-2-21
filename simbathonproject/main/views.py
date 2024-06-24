@@ -77,11 +77,23 @@ def custompage(request):
     # 각 객체의 'label' 값 추출하여 리스트로 만들기
     filter_apply_dep = [item['label'] for item in data_list]
 
+
+    if filter_apply_dep:
+        # 디버깅 출력을 추가합니다.
+        print("filter_apply_dep:", filter_apply_dep)
+        customs = customs.filter(major__in=filter_apply_dep)
+        print("Filtered customs count after applying filter:", customs.count())
+
+    # 디버깅 출력을 추가합니다.
+    for custom in customs:
+        print(f"Custom ID: {custom.id}, Major: {custom.major}")
+
+
     # mainpage.html 템플릿을 렌더링할 때 필요한 데이터를 전달합니다.
     context = {
         'customs': customs,
         'liked_customs': liked_customs,
-        'filter_apply_dep': filter_apply_dep,  # 추가된 부분
+        'filter_apply_dep': filter_apply_dep,  
     }
     return render(request, 'main/custompage.html', context)
 
