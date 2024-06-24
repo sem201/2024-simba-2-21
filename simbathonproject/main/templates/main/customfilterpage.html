@@ -12,14 +12,19 @@
 
 <body class="body">
     <div class="container">
-        <div class="head">          <!-- 상단 바 / 필터 -->
-            <a href='/custom'><img src="{% static 'assets/icons/icon_back.png' %}"></a>
-            <h2>필터에요</h2>
-            <img src="{% static 'assets/icons/icon_check.png' %}">
+        <div class="head">                  <!-- 상단 바 / 필터 -->
+            <button id="back_btn">          
+            <img src="{% static 'assets/icons/icon_back.png' %}">
+            </button>
+            <h2>커스텀 필터</h2>
+            <button id="apply_filter_btn">
+                <img src="{% static 'assets/icons/icon_check.png' %}">
+            </button>
         </div>                      <!--헤드 닫기 -->
-        <form class="search_form">  <!-- 검색 바_ 영역시작 -->
-        <img class="search_icon" src="{% static 'assets/icons/icon_search.png' %}" width="15px">
-        <input type="text" placeholder="Search" />
+        <form class="search_form">
+            <img class="search_icon" src="{% static 'assets/icons/icon_search.png' %}" width="15px">
+            <input type="text" id="search-input" placeholder="Search" autocomplete="off" />
+            <div id="suggestions" class="suggestions"></div>
         </form>                     <!-- 검색 바 닫기 -->
         <div class="list">          <!--필터 목록-->
             <div class="college_filter">            <!--필터1. AI융합-->
@@ -389,35 +394,6 @@
             </div>
         </div>          <!--list 필터목록 닫기-->
     </div>              <!--container 닫기-->
-
-    <script> // Toggle the display of departments for a given college
-      function toggleDepartments(collegeId) {
-         const departmentContainer = document.getElementById(collegeId + 'Departments');
-         if (departmentContainer.style.display === 'none' || departmentContainer.style.display === '') {
-             departmentContainer.style.display = 'block';
-         } else {
-             departmentContainer.style.display = 'none';
-         }
-     }
-     
-     // Toggle all department checkboxes based on the college checkbox state
-     document.querySelectorAll('.college').forEach(collegeCheckbox => {
-         collegeCheckbox.addEventListener('change', function() {
-             const collegeId = this.dataset.college;
-             const departmentCheckboxes = document.querySelectorAll(`.department[data-college="${collegeId}"]`);
-             departmentCheckboxes.forEach(departmentCheckbox => {
-                 departmentCheckbox.checked = this.checked;
-             });
-         });
-     });
-     
-     // Toggle department container visibility
-     document.querySelectorAll('.college-label').forEach(label => {
-         label.addEventListener('click', function() {
-             const collegeId = this.previousElementSibling.dataset.college;
-             toggleDepartments(collegeId);
-         });
-     });
-     </script>
+    <script src="{% static 'js/main/custom_filter.js' %}"></script>
 </body>
 </html>

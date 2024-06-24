@@ -1,3 +1,5 @@
+//////////// main - custom 공통부분 /////////
+// 1. 슬라이더 기능
 document.addEventListener('DOMContentLoaded', () => {
     const sliderWrap = document.querySelector('.slider__wrap');
     const sliderImg = sliderWrap.querySelector('.slider__img');
@@ -44,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init();
 });
+
+// 2. 하트 기능
 
 document.addEventListener('DOMContentLoaded', function() {
     const heartButtons = document.querySelectorAll('#heart_btn');
@@ -93,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// 이미지 앞뒤 전환
 function toggleImage(img) {
     var frontSrc = img.getAttribute('data-front');
     var backSrc = img.getAttribute('data-back');
@@ -118,12 +123,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (count === 0) {
         document.getElementById('icon_filter_bk').style.display = 'flex';
         document.getElementById('icon_filter_blue').style.display = 'none';
-        document.getElementById('filter_count').style.display = 'none';
+        document.getElementById('filter_count').style.visibility = 'hidden';
     } else {
         // count가 0이 아니면 필터 이미지를 파란색으로 바꾸고 filter_count 요소를 표시
         document.getElementById('icon_filter_bk').style.display = 'none';
         document.getElementById('icon_filter_blue').style.display = 'flex';
-        document.getElementById('filter_count').style.display = 'flex';
+        document.getElementById('filter_count').style.visibility = 'visible';
         document.getElementById('filter_count').textContent = count;
     }
 
@@ -131,4 +136,64 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('filter_btn').addEventListener('click', function() {
         window.location.href = '/filter';
     });
+
+    //////여기부터 검색 기능/////
+
+    const searchInput = document.getElementById('search_input');
+    const suggestionsContainer = document.getElementById('suggestions');
+    const suggestionsList = document.getElementById('suggestions_list');
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        if (query.length > 0) {
+            fetch(`/search_suggestions/?q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Suggestions:', data); // 서버에서 반환된 데이터 확인
+                    suggestionsList.innerHTML = '';
+
+                    // 중복 제거를 위한 Set
+                    const uniqueSuggestions = new Set();
+
+                    data.forEach(item => {
+                        let suggestionText = '';
+                        if (item.major) {
+                            suggestionText = item.major;
+                        } else if (item.keyword) {
+                            suggestionText = item.keyword;
+                        }
+
+                        // 중복된 항목을 제외하고 Set에 추가
+                        if (!uniqueSuggestions.has(suggestionText)) {
+                            uniqueSuggestions.add(suggestionText);
+                            const li = document.createElement('li');
+                            li.textContent = suggestionText;
+                            li.addEventListener('click', function() {
+                                searchInput.value = suggestionText;
+                                suggestionsContainer.style.display = 'none';
+                                document.getElementById('search_form').submit(); // 검색 폼 제출
+                            });
+                            suggestionsList.appendChild(li);
+                        }
+                    });
+
+                    if (uniqueSuggestions.size > 0) {
+                        suggestionsContainer.style.display = 'block';
+                    } else {
+                        suggestionsContainer.style.display = 'none';
+                    }
+                });
+        } else {
+            suggestionsContainer.style.display = 'none';
+        }
+    });
+
+    // 검색 창 토글
+    const searchContainer = document.getElementById('search_container');
+    if (searchContainer.style.display === 'none') {
+        searchContainer.style.display = 'block';
+    } else {
+            searchContainer.style.display = 'none';
+    }
+
 });
