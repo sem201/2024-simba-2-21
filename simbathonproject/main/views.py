@@ -51,7 +51,7 @@ def custompage(request):
             Q(title__icontains=query) | Q(major__icontains=query) | Q(college__icontains=query) | Q(color__icontains=query)
         )
     else:
-        customs = Custom.objects.all()
+        customs = Custom.objects.all().order_by('-like_count')
 
     liked_customs = request.session.get('liked_customs', [])
     total_customs = request.session.pop('total_customs', customs.count())  # 세션에서 total_customs 값을 가져오고, 없으면 기본값으로 전체 개수
