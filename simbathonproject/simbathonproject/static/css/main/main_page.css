@@ -23,13 +23,25 @@ body {
     /* border: 6px solid pink; */
     display: flex;
     justify-content: space-between;
-    width: 510px;
-    margin: 15px 20px 10px 20px;
+    width: 530px;
+    /* margin: 15px 20px 10px 20px; */
+    padding: 15px 8px 10px 8px;
 }
-.nothing {
+
+.logo_box {
     /* border: 1px solid violet; */
-    width: 148px;
+    width: 103px;
     height: auto;
+    display : flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 25px;
+}
+
+#logo {
+    width : 90px;
+    padding-left: 10;
+    color: #8C52FF;
 }
 
 #normal_custom {
@@ -58,7 +70,7 @@ body {
     font-family: "Pretendard Variable";
     font-size: 24px;
     position: relative;
-    right : 12px;
+    right: 12px;
     background-color: #F5F5F5;
     width: 120px;
     height: 60px;
@@ -68,14 +80,36 @@ body {
     color: #919191;
 }
 
+.tool_bar {
+    display: flex;
+    flex-direction: row;
+    width: 125px;
+    align-items: center;
+    justify-content: flex-end;
+    /* padding-left:  */
+}
+
+#search_btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #FFFFFF;
+    width: 30px;
+    height: 30px;
+    border: none;
+    padding-top: 5px;
+    /* padding-right: 20px; */
+}
+
 #filter_btn {
     /* border: 2px solid red; */
     display: flex;
     justify-content: flex-end;
     align-items: center;
     background-color: #FFFFFF;
-    width: 133px;
+    /* width: 125px; */
     border: none;
+    /* padding-right: 20px; */
 }
 
 #filter_count{
@@ -115,8 +149,9 @@ body {
 #main_container {
     /* border: 4px solid brown; */
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    margin: 110px 0px 0px 0px;
+    margin: 50px 0px 0px 0px;
 }
 
 #main_box {
@@ -137,6 +172,7 @@ body {
     /* position: relative;  */
     /*추가: 슬라이더 버튼 위치를 절대 위치로 지정 */
 }
+
 .slider__btn {
     /* border: 8px solid navy; */
     position: relative;
@@ -158,6 +194,14 @@ body {
     width: 540px;
     height: auto;
     overflow: hidden;
+}
+
+/* 이미지 전환 안내 문구에 대한 스타일 */
+    #toggle_instruction {
+    font-family: 'NanumGothic';
+    font-size: 18px;
+    color: grey;
+    opacity: 50%;
 }
 
 .slider__inner {
@@ -243,7 +287,7 @@ p{
     margin-top: 30px;
 }
 
-#selected-departments-count {
+/* #selected-departments-count {
     display: flex;
     justify-content: center;
     margin-top: 50px;
@@ -252,12 +296,4 @@ p{
 #selected-departments-count > p {
     text-align: center;
     font-size: 15px;
-}
-
-/* 추가: 새로운 문구에 대한 스타일 */
-#toggle_instruction {
-    font-family: 'NanumGothic';
-    font-size: 18px;
-    color: gray;
-    margin-top: 20px;
-}
+} */

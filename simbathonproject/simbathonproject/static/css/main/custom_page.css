@@ -23,13 +23,25 @@ body {
     /* border: 6px solid pink; */
     display: flex;
     justify-content: space-between;
-    width: 510px;
-    margin: 15px 20px 10px 20px;
+    width: 530px;
+    /* margin: 15px 20px 10px 20px; */
+    padding: 15px 8px 10px 8px;
 }
-.nothing {
+
+.logo_box {
     /* border: 1px solid violet; */
-    width: 148px;
+    width: 103px;
     height: auto;
+    display : flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 25px;
+}
+
+#logo {
+    width : 90px;
+    padding-left: 10;
+    color: #8C52FF;
 }
 
 #normal_custom {
@@ -68,14 +80,36 @@ body {
     font-weight: bold;
 }
 
+.tool_bar {
+    display: flex;
+    flex-direction: row;
+    width: 125px;
+    align-items: center;
+    justify-content: flex-end;
+    /* padding-left:  */
+}
+
+#search_btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #FFFFFF;
+    width: 30px;
+    height: 30px;
+    border: none;
+    padding-top: 5px;
+    /* padding-right: 20px; */
+}
+
 #filter_btn {
     /* border: 2px solid red; */
     display: flex;
     justify-content: flex-end;
     align-items: center;
     background-color: #FFFFFF;
-    width: 133px;
+    /* width: 125px; */
     border: none;
+    /* padding-right: 20px; */
 }
 
 #filter_count{
@@ -109,13 +143,15 @@ body {
     left: 40px;
 }
 
-/*///////////여기부터 사진////////*/
+/*/////////////////여기부터 사진///////////////*/
 
 #main_container {
     /* border: 4px solid brown; */
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    margin: 110px 0px 0px 0px;
+    flex-direction: column;
+    margin: 40px 0px 0px 0px;
 }
 
 #main_box {
@@ -129,26 +165,44 @@ body {
 
 .slider__wrap {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
-    position: relative; /* 추가: 슬라이더 버튼 위치를 절대 위치로 지정 */
-    width: 540px;
-    height: 650px;
+    justify-content: flex-start;
+    margin-top: 40px;
+}
+
+.slider__btn {
+    /* border: 8px solid navy; */
+    position: relative;
+    bottom: 105px;
+}
+
+#left_slider__btn {
+    left: 10px;
+    /* border: 10px solid gold; */
+}
+#right_slider__btn {
+    right: 10px;
+    /* border: 10px solid gold; */
 }
 
 .slider__img {
+    /* border: 4px solid yellowgreen; */
     position: relative;
     width: 540px;
-    height: 750px;
+    height: auto;
     overflow: hidden;
 }
 
 .slider__inner {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
     flex-wrap: nowrap;
-    margin-top: 18vh;
-    height: 450px;
+    align-items: center;
+    width: auto; 
+    height: auto;
+    padding-left: 10px;
     transition: transform 0.5s ease;
 }
 
@@ -157,16 +211,15 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 540px;
-    height: 500px;
+    width: 600px;
 }
 #text_major{
     font-weight: bold;
 }
 .test_img{
     display: flex;
-    width: 450px;
-    height: 450px;
+    width: 430px;
+    height: 430px;
     margin: 0px 45px 0px 45px;
     object-fit: contain;
 }
@@ -189,6 +242,7 @@ body {
 
 .slider__btn a:hover {
     border-radius: 50%;
+    background-color: #919191;
     color: #fff;
 }
 
@@ -218,7 +272,7 @@ p{
 }
 
 #design_btn_container{
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 #design_btn{

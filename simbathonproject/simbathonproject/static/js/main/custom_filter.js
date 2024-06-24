@@ -54,7 +54,7 @@ document.getElementById('apply_filter_btn').addEventListener('click', function()
     // 선택된 학과를 쿼리 매개변수로 변환
     const query = encodeURIComponent(JSON.stringify(selectedDepartments));
     // 메인 페이지로 이동하면서 쿼리 매개변수 전달
-    window.location.href = `/main?selectedDepartments=${query}`;
+    window.location.href = `/custom/?selectedDepartments=${query}`;
 });
 
 document.getElementById('back_btn').addEventListener('click', function() {
@@ -68,8 +68,9 @@ document.getElementById('back_btn').addEventListener('click', function() {
     // 선택된 학과를 쿼리 매개변수로 변환
     const query = encodeURIComponent(JSON.stringify(selectedDepartments));
     // 메인 페이지로 이동하면서 쿼리 매개변수 전달
-    window.location.href = `/main?selectedDepartments=${query}`;
+    window.location.href = `/custom/?selectedDepartments=${query}`;
 })
+
 
 
 /// 검색 기능
@@ -77,9 +78,10 @@ document.querySelector('.search_form').addEventListener('submit', function(event
     event.preventDefault();
     const searchInput = document.querySelector('.search_form input').value.trim();
     if (searchInput) {
-        window.location.href = `/main?keyword=${encodeURIComponent(searchInput)}`;
+        window.location.href = `/custom?keyword=${encodeURIComponent(searchInput)}`;
     }
 });
+
 
 document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search-input');
