@@ -6,6 +6,7 @@ body {
     align-items: flex-start;
     background-color: gray;
     height: 100vh;
+    margin:0px;
 }
 
 #container {
@@ -298,8 +299,8 @@ p{
     font-size: 15px;
 <<<<<<< HEAD
 } */
-=======
-}
+
+
 
 /* 추가: 새로운 문구에 대한 스타일 */
 #toggle_instruction {
@@ -311,4 +312,3 @@ p{
 button{
     cursor: pointer;
 }
->>>>>>> 1e74bb4d2df4e6cd837996f8d01bf413bcce2e56

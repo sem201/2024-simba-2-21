@@ -6,6 +6,7 @@ body {
     align-items: flex-start;
     background-color: gray;
     height: 100vh;
+    margin:0px;
 }
 
 #container {
