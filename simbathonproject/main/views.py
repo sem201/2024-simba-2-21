@@ -66,6 +66,16 @@ def custompage(request):
     # 각 객체의 'label' 값 추출하여 리스트로 만들기
     filter_apply_dep = [item['label'] for item in data_list]
 
+    if filter_apply_dep:
+        # 디버깅 출력을 추가합니다.
+        print("filter_apply_dep:", filter_apply_dep)
+        customs = customs.filter(major__in=filter_apply_dep)
+        print("Filtered customs count after applying filter:", customs.count())
+
+    # 디버깅 출력을 추가합니다.
+    for custom in customs:
+        print(f"Custom ID: {custom.id}, Major: {custom.major}")
+
     # # 키워드 검색 쿼리 매개변수를 가져옵니다.
     # keyword_search = request.GET.get('keyword', '').strip()
     # if keyword_search:
@@ -77,7 +87,7 @@ def custompage(request):
     context = {
         'customs': customs,
         'liked_customs': liked_customs,
-        'filter_apply_dep': filter_apply_dep,  # 추가된 부분
+        'filter_apply_dep': filter_apply_dep,  
     }
     return render(request, 'main/custompage.html', context)
 
