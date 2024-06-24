@@ -33,7 +33,7 @@
                             {% for custom in customs %}
                             <div class="slider">
                                 <img src="{{ custom.image.url }}" class="test_img"/>
-                                <p align="center"><b>{{ custom.major }}/{{ custom.college }}</b></p>
+                                <p align="center"><b>{{ custom.title }}</b></p>
                                 <button id='heart_btn' data-custom-id="{{ custom.id }}">
                                     <img src="{% if custom.id in liked_customs %}{% static 'assets/icons/heart_filled.png' %}{% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
                                     <p>{{ custom.like_count }}</p>
