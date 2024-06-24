@@ -108,11 +108,12 @@ function toggleImage(img) {
     }
 }
 
-// // ///////여기부터 필터///////
+/////////////여기부터 필터////////////
 
 document.addEventListener('DOMContentLoaded', function() {
     // 로컬 스토리지에서 selectedDepartments 불러오기
     const selectedDepartments = JSON.parse(localStorage.getItem('selectedDepartments')) || [];
+    console.log(selectedDepartments);
 
     // 선택된 학과의 수 계산
     const count = selectedDepartments.length;
@@ -137,7 +138,24 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = '/filter';
     });
 
-    //////여기부터 검색 기능/////
+///////////    초기화 버튼    /////////
+document.getElementById('reset_btn').addEventListener('click', function() {
+    //selectedDepartments 초기화
+    const selectedDepartments = [];
+    console.log(selectedDepartments);
+
+    // 로컬 스토리지에 저장
+    localStorage.setItem('selectedDepartments', JSON.stringify(selectedDepartments));
+
+    //새로고침 시행
+    location.reload();
+})
+
+
+
+
+
+///////////여기부터 검색 기능//////////
 
     const searchInput = document.getElementById('search_input');
     const suggestionsContainer = document.getElementById('suggestions');
@@ -197,3 +215,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
