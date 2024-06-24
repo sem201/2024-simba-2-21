@@ -16,6 +16,7 @@ urlpatterns = [
     path('filter/', filterpage, name='filterpage'),
     path('customfilter/', customfilterpage, name='customfilterpage'),
     path('search_suggestions/', search_suggestions, name='search_suggestions'),
+    path('custom/suggestions/', custom_suggestions, name='custom_suggestions'),
     path('finish/', finishpage, name='finishpage'),
 
     path('get_colleges/', get_colleges, name='get_colleges'),
