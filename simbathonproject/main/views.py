@@ -9,8 +9,13 @@ def startpage(request):
     return render(request, 'main/startpage.html')
 
 def mainpage(request):
-    # 모든 Varsity 객체를 가져옵니다.
-    varsitys = Varsity.objects.all()
+    query = request.GET.get('search', '').strip()
+    
+    if query:
+        keywords = Keyword.objects.filter(keyword__icontains=query).values_list('varsity_id', flat=True)
+        varsitys = Varsity.objects.filter(Q(id__in=keywords) | Q(major__icontains=query))
+    else:
+        varsitys = Varsity.objects.all()
 
     # 정렬 순서를 정의합니다.
     custom_order = ['AI융합대학', '경영대학', '경찰사법대학', '공과대학', '문과대학', '미래융합대학', '바이오시스템대학', '법과대학', '불교대학', '사범대학', '사회과학대학', '약학대학', '예술대학', '이과대학']
@@ -31,9 +36,15 @@ def mainpage(request):
 
     # 키워드 검색 쿼리 매개변수를 가져옵니다.
     keyword_search = request.GET.get('keyword', '').strip()
+    major_search = request.GET.get('major', '').strip()  # 전공 검색 쿼리 매개변수 가져오기
+
     if keyword_search:
         keywords = Keyword.objects.filter(keyword__icontains=keyword_search).values_list('varsity_id', flat=True)
         varsitys = Varsity.objects.filter(id__in=keywords)
+        sorted_varsitys = sorted(varsitys, key=lambda v: custom_order.index(v.college) if v.college in custom_order else len(custom_order))
+
+    elif major_search:  # 전공 검색 쿼리 매개변수가 있으면 필터링
+        varsitys = Varsity.objects.filter(major__icontains=major_search)
         sorted_varsitys = sorted(varsitys, key=lambda v: custom_order.index(v.college) if v.college in custom_order else len(custom_order))
 
     # mainpage.html 템플릿을 렌더링할 때 필요한 데이터를 전달합니다.
@@ -65,13 +76,6 @@ def custompage(request):
     
     # 각 객체의 'label' 값 추출하여 리스트로 만들기
     filter_apply_dep = [item['label'] for item in data_list]
-
-    # # 키워드 검색 쿼리 매개변수를 가져옵니다.
-    # keyword_search = request.GET.get('keyword', '').strip()
-    # if keyword_search:
-    #     keywords = Keyword.objects.filter(keyword__icontains=keyword_search).values_list('varsity_id', flat=True)
-    #     varsitys = Varsity.objects.filter(id__in=keywords)
-    #     sorted_varsitys = sorted(varsitys, key=lambda v: custom_order.index(v.college) if v.college in custom_order else len(custom_order))
 
     # mainpage.html 템플릿을 렌더링할 때 필요한 데이터를 전달합니다.
     context = {
@@ -168,13 +172,20 @@ def like_custom(request, custom_id):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 def search_suggestions(request):
-    query = request.GET.get('query', '').strip()
+    query = request.GET.get('q', '').strip()
     if query:
-        keywords = Keyword.objects.filter(keyword__icontains=query).values_list('keyword', flat=True).distinct()
-        suggestions = list(keywords)
-    else:
-        suggestions = []
-    return JsonResponse({'suggestions': suggestions})
+        varsity_suggestions = Varsity.objects.filter(
+            Q(major__icontains=query) | Q(college__icontains=query)
+        ).values('major', 'college')
+
+        keyword_suggestions = Keyword.objects.filter(
+            Q(keyword__icontains=query)
+        ).values('keyword')
+
+        suggestions = list(varsity_suggestions) + list(keyword_suggestions)
+        return JsonResponse(suggestions, safe=False)
+    return JsonResponse([], safe=False)
+
 
 def custom_suggestions(request):
     query = request.GET.get('q', '')
