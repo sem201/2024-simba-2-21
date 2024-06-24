@@ -12,7 +12,7 @@
         {% csrf_token %}
         <div id='top_container'>
             <a href='/main/'><img src = "{% static 'assets/icons/varsity_logo.png' %}" class='nothing'/></a>
-            <input type="text" name="title" id='title' placeholder='제목을 입력해주세요'>
+            <input type="text" name="title" id='title' placeholder='제목을 입력해주세요' maxlength="20">
             <div class='nothing'></div>
             <!-- hidden input to store the selected color -->
             <input type="hidden" name="color" id="color">
@@ -44,100 +44,114 @@
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-    // 이전 페이지에서 선택한 키워드 값을 가져와서 콘솔에 출력
-    const selectedKeyword = localStorage.getItem('selectedKeyword');
-    if (selectedKeyword) {
-        const colorInput = document.getElementById('color');
-        colorInput.value = selectedKeyword;
-        console.log('설정된 키워드:', colorInput.value); // 콘솔에 출력
-    } else {
-        console.log('선택한 키워드가 없습니다.');
-    }
-
-    // 이미지 미리보기 기능
-    document.getElementById('imageInput').addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        const preview = document.getElementById('imagePreview');
-
-        reader.onload = function(e) {
-            preview.src = e.target.result;
-            preview.style.display = 'block';
-            preview.style.width = '370px';
-            preview.style.height = '370px';
-            preview.style.border = '0px';
-            preview.style.padding = '0px';
-        }
-
-        if (file) {
-            reader.readAsDataURL(file);
+        // 이전 페이지에서 선택한 키워드 값을 가져와서 콘솔에 출력
+        const selectedKeyword = localStorage.getItem('selectedKeyword');
+        if (selectedKeyword) {
+            const colorInput = document.getElementById('color');
+            colorInput.value = selectedKeyword;
+            console.log('설정된 키워드:', colorInput.value); // 콘솔에 출력
         } else {
-            preview.src = '';
-            preview.style.display = 'none';
+            console.log('선택한 키워드가 없습니다.');
         }
-        checkFormValidity();
-    });
 
-    // 단과대 목록을 가져와서 업데이트하는 함수
-    async function fetchColleges() {
-        const response = await fetch('/get_colleges/');
-        const colleges = await response.json();
-        const collegeSelect = document.getElementById('college');
-        colleges.forEach(college => {
-            const option = document.createElement('option');
-            option.value = college;
-            option.textContent = college;
-            collegeSelect.appendChild(option);
+        // 이미지 미리보기 기능
+        document.getElementById('imageInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            const preview = document.getElementById('imagePreview');
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                preview.style.width = '370px';
+                preview.style.height = '370px';
+                preview.style.border = '0px';
+                preview.style.padding = '0px';
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+            checkFormValidity();
         });
-    }
 
-    // 선택된 단과대에 따라 세부학과 목록을 업데이트하는 함수
-    async function updateMajors() {
-        const collegeSelect = document.getElementById('college');
-        const majorSelect = document.getElementById('major');
-        majorSelect.innerHTML = '<option value="none" selected disabled>세부학과 선택하기</option>'; // Reset majors
-        const selectedCollege = collegeSelect.value;
-
-        if (selectedCollege !== 'none') {
-            const response = await fetch(`/get_majors/?college=${selectedCollege}`);
-            const majors = await response.json();
-            majors.forEach(major => {
+        // 단과대 목록을 가져와서 업데이트하는 함수
+        async function fetchColleges() {
+            const response = await fetch('/get_colleges/');
+            const colleges = await response.json();
+            const collegeSelect = document.getElementById('college');
+            colleges.forEach(college => {
                 const option = document.createElement('option');
-                option.value = major;
-                option.textContent = major;
-                majorSelect.appendChild(option);
+                option.value = college;
+                option.textContent = college;
+                collegeSelect.appendChild(option);
             });
-            majorSelect.disabled = false;
-        } else {
-            majorSelect.disabled = true;
         }
-    }
-    function checkFormValidity() {
-        const title = document.getElementById('title').value.trim();
-        const color = document.getElementById('color').value.trim();
-        const college = document.getElementById('college').value;
-        const major = document.getElementById('major').value;
-        const imageInput = document.getElementById('imageInput').files.length > 0;
-        const submitBtn = document.getElementById('submit')
 
-        const isFormValid = title && color && college !== 'none' && major !== 'none' && imageInput;
-        if (isFormValid) {
-            submitBtn.disabled = false;
-            submitBtn.style.backgroundColor = `rgba(151, 71, 255, 1)`;
-        } else {
-            submitBtn.disabled = true;
-            submitBtn.style.backgroundColor = `rgba(227, 227, 227, 1)`;
+        // 선택된 단과대에 따라 세부학과 목록을 업데이트하는 함수
+        async function updateMajors() {
+            const collegeSelect = document.getElementById('college');
+            const majorSelect = document.getElementById('major');
+            majorSelect.innerHTML = '<option value="none" selected disabled>세부학과 선택하기</option>'; // Reset majors
+            const selectedCollege = collegeSelect.value;
+
+            if (selectedCollege !== 'none') {
+                const response = await fetch(`/get_majors/?college=${selectedCollege}`);
+                const majors = await response.json();
+                majors.forEach(major => {
+                    const option = document.createElement('option');
+                    option.value = major;
+                    option.textContent = major;
+                    majorSelect.appendChild(option);
+                });
+                majorSelect.disabled = false;
+            } else {
+                majorSelect.disabled = true;
+            }
         }
-    }
 
-    // 페이지 로드 시 단과대 목록을 가져옴
-    fetchColleges();
+        function checkFormValidity() {
+            const title = document.getElementById('title').value.trim();
+            const color = document.getElementById('color').value.trim();
+            const college = document.getElementById('college').value;
+            const major = document.getElementById('major').value;
+            const imageInput = document.getElementById('imageInput').files.length > 0;
+            const submitBtn = document.getElementById('submit');
 
-    // 단과대 선택 시 세부학과 목록을 업데이트
-    document.getElementById('college').addEventListener('change', updateMajors);
-    document.getElementById('title').addEventListener('input', checkFormValidity);
-    document.getElementById('college').addEventListener('change', checkFormValidity);
-    document.getElementById('major').addEventListener('change', checkFormValidity);
-});
+            const isFormValid = title && color && college !== 'none' && major !== 'none' && imageInput;
+            if (isFormValid) {
+                submitBtn.disabled = false;
+                submitBtn.style.backgroundColor = 'rgba(151, 71, 255, 1)';
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.style.backgroundColor = 'rgba(227, 227, 227, 1)';
+            }
+        }
 
+        // 페이지 로드 시 단과대 목록을 가져옴
+        fetchColleges();
+
+        // 단과대 선택 시 세부학과 목록을 업데이트
+        document.getElementById('college').addEventListener('change', updateMajors);
+
+        // 제목 입력 시 '*' 문자 제거 및 20글자 이상 입력 방지
+        document.getElementById('title').addEventListener('input', function(event) {
+            let title = event.target.value;
+            title = title.replace(/\*/g, ''); // '*' 문자 제거
+            if (title.length > 20) {
+                title = title.substring(0, 20); // 20글자 이상 입력 방지
+            }
+            event.target.value = title;
+            checkFormValidity();
+        });
+
+        // 다른 입력 요소들에도 유효성 검사 적용
+        document.getElementById('title').addEventListener('input', checkFormValidity);
+        document.getElementById('college').addEventListener('change', checkFormValidity);
+        document.getElementById('major').addEventListener('change', checkFormValidity);
+    });
 </script>
+</html>
