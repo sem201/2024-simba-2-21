@@ -1,30 +1,12 @@
+//////////// main - custom 공통부분 /////////
+// 1. 슬라이더 기능
 document.addEventListener('DOMContentLoaded', () => {
-    // HTML의 data- 속성에서 total_customs 값을 가져옴
-    var totalCustoms = document.getElementById('container').getAttribute('data-total-customs');
-    console.log("Total customs: ", totalCustoms);
-
-    if (totalCustoms === null) {
-        console.error('totalCustoms 값이 null입니다.');
-        return;
-    }
-
-    var sliderInner = document.getElementById('sliderInner');
-    if (!sliderInner) {
-        console.error('sliderInner 요소를 찾을 수 없습니다.');
-        return;
-    }
-    sliderInner.style.width = (540 * totalCustoms) + 'px';
-
     const sliderWrap = document.querySelector('.slider__wrap');
     const sliderImg = sliderWrap.querySelector('.slider__img');
+    const sliderInner = sliderWrap.querySelector('.slider__inner');
     const sliders = sliderWrap.querySelectorAll('.slider');
     const sliderDot = sliderWrap.querySelector('.slider__dot');
     const sliderBtn = sliderWrap.querySelectorAll('.slider__btn a');
-
-    if (!sliderDot) {
-        console.error('sliderDot 요소를 찾을 수 없습니다.');
-        return;
-    }
 
     let currentIndex = 0;
     const sliderCount = sliders.length;
@@ -73,18 +55,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     init();
+});
 
+// 2. 하트 기능
+
+document.addEventListener('DOMContentLoaded', function() {
     const heartButtons = document.querySelectorAll('#heart_btn');
 
     heartButtons.forEach(button => {
         button.addEventListener('click', function() {
-            console.log("Heart button clicked"); // 디버그 로그 추가
-
-            const customId = this.dataset.customId;
+            const customId = this.dataset.customId;  // main.js: 'varsityId'
             const likeCountElem = this.querySelector('p');
             const iconHeart = this.querySelector('#icon_heart');
 
-            fetch(`/likecustom/${customId}/`, {
+            fetch(`/likecustom/${customId}/`, {  // main.js: '/like/${varsityId}/'
                 method: 'POST',
                 headers: {
                     'X-CSRFToken': getCookie('csrftoken'),
@@ -93,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => response.json())
             .then(data => {
-                console.log("Response data:", data); // 디버그 로그 추가
                 if (data.like_count !== undefined) {
                     likeCountElem.textContent = data.like_count;
                     if (data.is_liked) {
@@ -102,8 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         iconHeart.src = "/static/assets/icons/heart.png";
                     }
                     console.log(`Total likes: ${data.like_count}`);
-                } else {
-                    console.log("like_count is undefined"); // 디버그 로그 추가
                 }
             });
         });
@@ -124,3 +105,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return cookieValue;
     }
 });
+
+///3. 필터기능
+document.addEventListener('DOMContentLoaded', function() {
+    const selectedDepartments = JSON.parse(localStorage.getItem('selectedDepartments')) || [];
+    const count = selectedDepartments.length;
+    document.getElementById('filter_count').textContent = count;
+
+    if (count === 0) {
+        document.getElementById('icon_filter_bk').style.display = 'flex';
+        document.getElementById('icon_filter_blue').style.display = 'none';
+        document.getElementById('filter_count').style.visibility = 'hidden';
+    } else {
+         // count가 0이 아니면 필터 이미지를 파란색으로 바꾸고 filter_count 요소를 표시
+         document.getElementById('icon_filter_bk').style.display = 'none';
+         document.getElementById('icon_filter_blue').style.display = 'flex';
+         document.getElementById('filter_count').style.visibility = 'visible';
+         document.getElementById('filter_count').textContent = count;
+    }
+
+    document.getElementById('filter_btn').addEventListener('click', function() {
+        window.location.href = '/customfilter';
+    });
+});
+

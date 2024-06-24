@@ -29,7 +29,7 @@ def mainpage(request):
     # 각 객체의 'label' 값 추출하여 리스트로 만들기
     filter_apply_dep = [item['label'] for item in data_list]
 
-# 키워드 검색 쿼리 매개변수를 가져옵니다.
+    # 키워드 검색 쿼리 매개변수를 가져옵니다.
     keyword_search = request.GET.get('keyword', '').strip()
     if keyword_search:
         keywords = Keyword.objects.filter(keyword__icontains=keyword_search).values_list('varsity_id', flat=True)
@@ -40,11 +40,13 @@ def mainpage(request):
     context = {
         'varsitys': sorted_varsitys,
         'liked_varsitys': liked_varsitys,
-        'filter_apply_dep': filter_apply_dep,  # 추가된 부분
+        'filter_apply_dep': filter_apply_dep,  
     }
     return render(request, 'main/mainpage.html', context)
 
 def custompage(request):
+    customs = Custom.objects.all().order_by('-like_count')
+
     query = request.GET.get('search')
     if query:
         customs = Custom.objects.filter(
@@ -54,9 +56,31 @@ def custompage(request):
         customs = Custom.objects.all()
 
     liked_customs = request.session.get('liked_customs', [])
-    total_customs = request.session.pop('total_customs', customs.count())  # 세션에서 total_customs 값을 가져오고, 없으면 기본값으로 전체 개수
+    # total_customs = request.session.pop('total_customs', customs.count())  # 세션에서 total_customs 값을 가져오고, 없으면 기본값으로 전체 개수
+    
+    # 'selectedDepartments' 쿼리 매개변수를 GET 요청에서 가져옵니다.
+    selected_departments = request.GET.get('selectedDepartments', '[]')
+    # JSON 문자열을 리스트로 변환합니다.
+    data_list = json.loads(selected_departments)
+    
+    # 각 객체의 'label' 값 추출하여 리스트로 만들기
+    filter_apply_dep = [item['label'] for item in data_list]
 
-    return render(request, 'main/custompage.html', {'customs': customs, 'liked_customs': liked_customs, 'total_customs': total_customs})
+    # # 키워드 검색 쿼리 매개변수를 가져옵니다.
+    # keyword_search = request.GET.get('keyword', '').strip()
+    # if keyword_search:
+    #     keywords = Keyword.objects.filter(keyword__icontains=keyword_search).values_list('varsity_id', flat=True)
+    #     varsitys = Varsity.objects.filter(id__in=keywords)
+    #     sorted_varsitys = sorted(varsitys, key=lambda v: custom_order.index(v.college) if v.college in custom_order else len(custom_order))
+
+    # mainpage.html 템플릿을 렌더링할 때 필요한 데이터를 전달합니다.
+    context = {
+        'customs': customs,
+        'liked_customs': liked_customs,
+        'filter_apply_dep': filter_apply_dep,  # 추가된 부분
+    }
+    return render(request, 'main/custompage.html', context)
+
 
 def selectpage(request):
     return render(request, 'design/select_page.html')
