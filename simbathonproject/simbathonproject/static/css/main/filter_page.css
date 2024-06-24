@@ -1,4 +1,8 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
 
+label {
+    font-family: "Pretendard Variable";
+}
 .body {
     background-color: #442A78;
     display: grid;
