@@ -11,9 +11,7 @@
     <form action="{% url 'main:create' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div id='top_container'>
-            <a href='/main/'><img src = "{% static 'assets/icons/varsity_logo.png' %}" class='nothing'/></a>
             <input type="text" name="title" id='title' placeholder='제목을 입력해주세요' maxlength="20">
-            <div class='nothing'></div>
             <!-- hidden input to store the selected color -->
             <input type="hidden" name="color" id="color">
         </div>

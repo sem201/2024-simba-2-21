@@ -163,7 +163,12 @@ body {
     align-items: center;
     flex-direction: column;
 }
-
+/*//////////이미지 없는거 텍스트 ////////////////*/
+#no_text{
+    position: absolute;
+    width: 50%;
+    height: 50%;
+}
 .slider__wrap {
     /* border: 2px solid blue; */
     display: flex;
