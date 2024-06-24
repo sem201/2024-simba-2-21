@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse, HttpResponseBadRequest
 from .models import Varsity, Custom, Keyword,Information
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 import json
 
 def startpage(request):
@@ -44,8 +45,13 @@ def mainpage(request):
     return render(request, 'main/mainpage.html', context)
 
 def custompage(request):
-    # like_count가 높은 순서대로 Custom 객체를 조회
-    customs = Custom.objects.all().order_by('-like_count')
+    query = request.GET.get('search')
+    if query:
+        customs = Custom.objects.filter(
+            Q(title__icontains=query) | Q(major__icontains=query) | Q(college__icontains=query) | Q(color__icontains=query)
+        )
+    else:
+        customs = Custom.objects.all()
 
     liked_customs = request.session.get('liked_customs', [])
     total_customs = request.session.pop('total_customs', customs.count())  # 세션에서 total_customs 값을 가져오고, 없으면 기본값으로 전체 개수
@@ -145,6 +151,16 @@ def search_suggestions(request):
     else:
         suggestions = []
     return JsonResponse({'suggestions': suggestions})
+
+def custom_suggestions(request):
+    query = request.GET.get('q', '')
+    if query:
+        suggestions = Custom.objects.filter(
+            Q(title__icontains=query) | Q(major__icontains=query) | Q(college__icontains=query) | Q(color__icontains=query)
+        ).values('title', 'major', 'college', 'color')
+        return JsonResponse(list(suggestions), safe=False)
+    return JsonResponse([], safe=False)
+
 
 def finishpage(request):
     return render(request, 'design/finishpage.html')
