@@ -45,20 +45,25 @@
                 <div class="slider__img">
                     <p id="toggle_instruction" align="center">※이미지를 누르면 앞/뒤가 전환됩니다</p>
                     <div class="slider__inner">
-                        {% for varsity in varsitys %}
-                            {% if not filter_apply_dep or varsity.major in filter_apply_dep %}
-                                <div class="slider">
-                                    <img src="{{ varsity.image_front.url }}" class="test_img" 
-                                        data-front="{{ varsity.image_front.url }}" data-back="{{ varsity.image_back.url }}" onclick="toggleImage(this)"/>
-                                    <p align="center"><b>{{ varsity.major }}/{{ varsity.college }}</b></p>
-                                    <button id="heart_btn" data-varsity-id="{{ varsity.id }}">
-                                        <img src="{% if varsity.id in liked_varsitys %}{% static 'assets/icons/heart_filled.png' %}{% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
-                                        <p>{{ varsity.like_count }}</p>
-                                    </button>
-                                </div>
-                            
-                            {% endif %}
-                        {% endfor %}
+                        {% if not we_dont_have %}  <!-- 수정된 부분 -->
+                            {% for varsity in varsitys %}
+                                {% if not filter_apply_dep or varsity.major in filter_apply_dep %}
+                                    <div class="slider">
+                                        <img src="{{ varsity.image_front.url }}" class="test_img" 
+                                            data-front="{{ varsity.image_front.url }}" data-back="{{ varsity.image_back.url }}" onclick="toggleImage(this)"/>
+                                        <p align="center"><b>{{ varsity.major }}/{{ varsity.college }}</b></p>
+                                        <button id="heart_btn" data-varsity-id="{{ varsity.id }}">
+                                            <img src="{% if varsity.id in liked_varsitys %}{% static 'assets/icons/heart_filled.png' %}{% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
+                                            <p>{{ varsity.like_count }}</p>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="slider">
+                                <p align="center"><b>이미지가 없습니다.</b></p>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="slider__btn" id="right_slider__btn">

@@ -46,12 +46,14 @@ def mainpage(request):
     elif major_search:  # 전공 검색 쿼리 매개변수가 있으면 필터링
         varsitys = Varsity.objects.filter(major__icontains=major_search)
         sorted_varsitys = sorted(varsitys, key=lambda v: custom_order.index(v.college) if v.college in custom_order else len(custom_order))
+    # 필터 조건을 만족하는 항목이 있는지 확인
+    we_dont_have = not any(not filter_apply_dep or varsity.major in filter_apply_dep for varsity in sorted_varsitys)   
 
-    # mainpage.html 템플릿을 렌더링할 때 필요한 데이터를 전달합니다.
     context = {
         'varsitys': sorted_varsitys,
         'liked_varsitys': liked_varsitys,
         'filter_apply_dep': filter_apply_dep,  
+        'we_dont_have' : we_dont_have,
     }
     return render(request, 'main/mainpage.html', context)
 
