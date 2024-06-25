@@ -210,6 +210,7 @@ document.getElementById('reset_btn').addEventListener('click', function() {
                             uniqueSuggestions.add(suggestionText);
                             const li = document.createElement('li');
                             li.textContent = suggestionText;
+                
                             li.addEventListener('click', function() {
                                 searchInput.value = suggestionText;
                                 suggestionsContainer.style.display = 'none';
