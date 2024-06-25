@@ -129,6 +129,7 @@ p {
     padding: 10px;
     box-sizing: border-box;
     cursor: move;
+    font-family: 'Playball', cursive; /* 추가된 부분 */
 }
 
 .rotate-button {
@@ -148,6 +149,7 @@ p {
     font-size: 16px;
     width: 300px;
     height: 50px;
+    margin-right: 5px;
 }
 #upload-text{
     font-family: "Pretendard Variable";
@@ -155,6 +157,11 @@ p {
     font-size:16px;
     width: 70px;
     height: 50px;
+    border-radius: 12px;
+}
+#upload-text:hover{
+    background-color: rgba(178, 119, 255, 1);
+    color:#FFFFFF;
 }
 
 /* 추가: 새로운 문구에 대한 스타일 */

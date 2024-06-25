@@ -20,12 +20,18 @@ body {
     justify-content: flex-start;
 }
 
+#top_menu {
+    width: 540px;
+    padding-bottom: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .button_container {
     /* border: 6px solid pink; */
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 530px;
-    /* margin: 15px 20px 10px 20px; */
     padding: 15px 8px 10px 8px;
 }
 
@@ -33,8 +39,9 @@ body {
     /* border: 1px solid violet; */
     width: 113px;
     height: auto;
-    display : flex;
-    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
     padding-left: 15px;
 }
@@ -70,8 +77,8 @@ body {
     position: relative;
     left: 12px;
     background-color: #F5F5F5;
-    width: 120px;
-    height: 60px;
+    width: 118px;
+    height: 40px;
     border-top-left-radius: 45px;
     border-bottom-left-radius: 45px;
     color: #919191;
@@ -83,8 +90,8 @@ body {
     position: relative;
     right : 12px;
     background-color:#442A78;
-    width: 120px;
-    height: 60px;
+    width: 118px;
+    height: 40px;
     border-radius: 45px;
     border: 0;
     color: #FFFFFF;
@@ -124,18 +131,6 @@ a {
 #reset_btn:hover {
     background-color: #f4e7ff;
     color: #151B54;
-}
-
-#search_btn {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: #FFFFFF;
-    width: 30px;
-    height: 30px;
-    border: none;
-    padding-top: 5px;
-    /* padding-right: 20px; */
 }
 
 #filter_btn {
@@ -186,12 +181,160 @@ a {
     left: 40px;
 }
 
+/*///////////여기부터 검색창/////////////*/
+#search_btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #FFFFFF;
+    width: 30px;
+    height: 30px;
+    border: none;
+    padding-top: 5px;
+    /* padding-right: 20px; */
+}
+
+#search_input::placeholder {
+    font-size: 16px;
+    color: #838383;
+}
+
+#search_container {
+    position: relative;
+    margin-top : 8px;
+}
+
+#search_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#search_input{
+    width: 490px;
+    height: 38px;
+    font-size: 16px;
+    font-family: "Pretendard Variable";
+    border-radius: 18px;
+    border:0px;
+    background-color: rgba(118, 118, 128, 0.12);
+    padding-left: 10px;
+}
+
+#submit{
+    position: absolute;
+    right:25px;
+    top: 8px;
+    border:0;
+    zoom: 1.2;
+}
+
+#search_icon{
+    width: 16px;
+    height: 16px;
+}
+
+#suggestions{
+    position: absolute;
+    top:50px;
+    width: 456px;
+    border-radius: 20px;
+    background-color: rgba(238, 238, 239, 1);
+    z-index: 10;
+}
+
+/* 정렬버튼 : 인기순-최신순 */
+#sort_btn_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin: 20px 50px 0px 0px;
+    width: 540px;
+    gap: 10px;
+}
+
+#sort_likes_btn {
+    font-family: "Pretendard Variable";
+    font-size: 18px;
+    background-color: hsl(0, 0%, 96%);
+    width: 70px;
+    height: 42.6px;
+    border: none;
+    color: #919191;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.4s ease;
+}
+
+#sort_newest_btn {
+    font-family: "Pretendard Variable";
+    font-size: 18px;
+    background-color: hsl(0, 0%, 96%);
+    width: 70px;
+    height: 42.6px;
+    border: none;
+    color: #919191;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.4s ease;
+}
+
+#sort_likes_btn.active {
+    background-color: #eeeeef;
+    color: #8C52FF;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#sort_newest_btn.active {
+    background-color: #eeeeef;
+    color: #8C52FF;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/*//////인기순 최신순 위치 정렬///////*/
+#sort_buttons{
+    display:flex;
+    width:450px;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap:15px;
+}
+.sort_btn{
+    background-color: rgba(238, 238, 239, 1);
+    border:0;
+    font-family: "Pretendard Variable";
+    width: 65px;
+    height: 31px;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 10px;
+}
+#sort_likes_btn{
+    text-wrap: nowrap;
+    color:rgba(68, 42, 120, 1);
+}
+
+#sort_newest_btn{
+    text-wrap: nowrap;
+    color:rgba(184, 184, 184, 1);
+}
+
+.active {
+    color: rgba(68, 42, 120, 1) !important;
+}
+
+.inactive {
+    color: rgba(184, 184, 184, 1) !important;
+} */
+
 /*/////////////////여기부터 사진///////////////*/
 
 #main_container {
     /* border: 4px solid brown; */
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     margin: 40px 0px 0px 0px;
@@ -210,7 +353,7 @@ a {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     margin-top: 40px;
 }
 
@@ -311,100 +454,30 @@ p{
     background-color: #FFFFFF;
     width:136px;
     height: 46px;
-    margin-top: 30px;
+    margin-top: 0px;
 }
 
 #design_btn_container{
+    display: flex;
+    justify-self: center;
+    align-items: center;
     margin-top: 40px;
+    width: 500px;
 }
 
 #design_btn{
-    background-color: #8C52FF;
+    background-color: #9747FF;
+    align-self: center;
     color:#FFFFFF;
-    width:168px;
-    height:48px;
+    width:500px;
+    height:67px;
     border:0px;
     border-radius: 12px;
     font-size: 20px;
     font-family: "Pretendard Variable";
+    margin-left: 45px;
 }
 button{
     cursor: pointer;
 }
 
-/*//////검색부분///////*/
-#search_container{
-    position: relative;
-}
-#search_form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#search_input{
-    width: 455px;
-    height: 36px;
-    border-radius: 20px;
-    border:0px;
-    background-color: rgba(118, 118, 128, 0.12);
-
-}
-#submit{
-    position: absolute;
-    right:10px;
-    border:0;
-}
-
-#search_icon{
-    width: 14px;
-    height: 14px;
-}
-#suggestions{
-    position: absolute;
-    top:50px;
-    width: 456px;
-    border-radius: 20px;
-    background-color: rgba(238, 238, 239, 1);
-    z-index: 10;
-}
-
-/*//////인기순 최신순 위치 정렬///////*/
-#sort_buttons{
-    display:flex;
-    width:450px;
-    justify-content: flex-end;
-    align-items: flex-end;
-    gap:15px;
-}
-.sort_btn{
-    background-color: rgba(238, 238, 239, 1);
-    border:0;
-    font-family: "Pretendard Variable";
-    width: 65px;
-    height: 31px;
-    font-size: 16px;
-    font-weight: 400;
-    border-radius: 10px;
-}
-#sort_likes_btn{
-    text-wrap: nowrap;
-    color:rgba(68, 42, 120, 1);
-}
-
-#sort_newest_btn{
-    text-wrap: nowrap;
-    color:rgba(184, 184, 184, 1);
-}
-
-.active {
-    color: rgba(68, 42, 120, 1) !important;
-    font-weight: bold;
-}
-
-.inactive {
-    color: rgba(184, 184, 184, 1) !important;
-}
-
-#show_back_button{
-    
-}

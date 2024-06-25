@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const newText = textInput.value;
         if (newText.trim() === '') return;
     
-        if (newText.length > 10) {
-            alert('텍스트는 10글자 이하로 입력해주세요.');
+        if (newText.length > 20) {
+            alert('텍스트는 20글자 이하로 입력해주세요.');
             return;
         }
     
@@ -69,8 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
         newDiv.style.cursor = 'move';
         newDiv.style.whiteSpace = 'nowrap'; 
 
-        newDiv.style.fontSize = '20px';
+        newDiv.style.fontSize = '25px';
         newDiv.style.fontWeight = 'bold';
+        newDiv.style.fontFamily = 'Playball, cursive'; /* 추가된 부분 */
         sample.style.zIndex = -10;
         const rotateButton = document.createElement('img');
         rotateButton.src = '/static/assets/icons/icon-rotate.png';

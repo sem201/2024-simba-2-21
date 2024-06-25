@@ -4,16 +4,17 @@ label {
     font-family: "Pretendard Variable";
 }
 .body {
-    background-color: #442A78;
+    background-color: gray;
     display: grid;
     justify-content: center;
+    margin: 0px;
 }
 
 .container {
     /* border: 2px solid orange; */
     background-color: white;
     width: 540px;
-    /* min-width: 450px; */
+    margin: 0px;
 }
 
 .head {
