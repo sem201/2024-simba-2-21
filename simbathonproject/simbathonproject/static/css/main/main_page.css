@@ -349,3 +349,59 @@ p{
 button{
     cursor: pointer;
 }
+
+
+/*//////인기순 최신순 위치 정렬///////*/
+#search_container{
+    position: relative;
+}
+#search_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#search_input{
+    width: 455px;
+    height: 36px;
+    border-radius: 20px;
+    border:0px;
+    background-color: rgba(118, 118, 128, 0.12);
+
+}
+#submit{
+    position: absolute;
+    right:10px;
+    border:0;
+}
+
+#search_icon{
+    width: 14px;
+    height: 14px;
+}
+#suggestions{
+    position: absolute;
+    top:50px;
+    width: 456px;
+    border-radius: 20px;
+    background-color: rgba(238, 238, 239, 1);
+    z-index: 10;
+}
+
+/* 버튼 기본 스타일 */
+#show_back_button {
+    font-family: "Pretendard Variable";
+    font-size: 18px;
+    background-color: #F5F5F5;
+    border: none;
+    color: #919191;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 활성화된 버튼 스타일 */
+#show_back_button.active {
+    background-color: #8C52FF;
+    color: #FFFFFF;
+}
