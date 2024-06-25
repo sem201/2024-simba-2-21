@@ -105,7 +105,7 @@
         }
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
+    //document.addEventListener('DOMContentLoaded', () => {
         const searchInput = document.getElementById('search_input');
         const suggestionsContainer = document.getElementById('suggestions');
         const suggestionsList = document.getElementById('suggestions_list');
@@ -123,9 +123,12 @@
 
                         data.forEach(item => {
                             let suggestionText = '';
-                            if (item.major) {
+                            if (item.color) {
+                                suggestionText = item.color;
+                            }else if (item.major) {
                                 suggestionText = item.major;
-                            } else if (item.keyword) {
+                            } 
+                            else if (item.keyword) {
                                 suggestionText = item.keyword;
                             }
 
@@ -162,6 +165,6 @@
                 searchContainer.style.display = 'none';
             }
         });
-    });
+    //});
 </script>
 </html>
