@@ -2,10 +2,8 @@
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:b972e9,100:d9a7fb&height=180&text=Welcome%20to%202NE1!&animation=fadeIn&fontColor=000000&fontSize=60" />
 </div>
 
-<div style="text-align: left;"> 
-  <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 뭐 입을과 </h2>  
-  <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;"> 멋쟁이사자처럼 12기 2&E1 </div> 
-</div>
+# 뭐 입을과
+멋쟁이사자처럼 12기 2&E1
 
 # 👋 팀원 소개
 
@@ -13,7 +11,7 @@
 
 | 이름                                       | 전공           | 학번   | Email                |
 | ------------------------------------------ | -------------- | ------ | -------------------- |
-| [온다빈](https://github.com/datarchive)    | 경영정보학과   | 19학번 | ??                   |
+| [온다빈](https://github.com/datarchive)    | 경영정보학과   | 19학번 | univekqls@gmail.com   |
 
 ## Front-End
 
@@ -34,8 +32,11 @@
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=Django&logoColor=white)
 ![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=Discord&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white)
 ![Github](https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
+![HTML](https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white) 
+![CSS](https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![Javascript](https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
-![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white)
+![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white)
