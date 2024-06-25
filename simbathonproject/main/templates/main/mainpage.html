@@ -69,7 +69,9 @@
                             {% endfor %}
                         {% else %}
                             <div class="slider">
-                                <p align="center"><b>이미지가 없습니다.</b></p>
+                                <img src="{% static 'assets/icons/icon_no_img.png' %}" id="icon_no_img">
+                                <p id="sorry">이미지가 존재하지 않습니다</p>
+                                <p id="soon">조만간 채울게요..:D</p>
                             </div>
                         {% endif %}
                     </div>
@@ -84,3 +86,4 @@
     <script src="https://kit.fontawesome.com/e18eac0141.js" crossorigin="anonymous"></script>
 </body>
 </html>
+  

@@ -392,6 +392,25 @@
                     <label for="chemistry">화학과</label>
                 </div>
             </div>
+        </div>
+            
+            <div class="college_filter">    <!-- 필터15. 기타 -->
+                <input type="checkbox" id="etcCollege" class="college" data-college="etc">
+                <label for="etcCollege" class="college-label">기타</label>
+                <button onclick="toggleDepartments('etc')">▼</button>
+            </div>
+            <div class="departments-container" id="etcDepartments" style="display: none;">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="davinci" class="department" data-college="etc" data-department="davinci">
+                        <label for="davinci">다빈치</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="donggam" class="department" data-college="etc" data-department="donggam">
+                        <label for="donggam">동감</label>
+                    </div>
+                </div>
+            </div>
         </div>          <!--list 필터목록 닫기-->
     </div>              <!--container 닫기-->
     <script src="{% static 'js/main/custom_filter.js' %}"></script>

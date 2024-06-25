@@ -21,16 +21,16 @@
                 <img src="{% static 'assets/icons/icon_check.png' %}">
             </button>
         </div>                      <!--헤드 닫기 -->
-        <form class="search_form">
+        <!-- <form class="search_form">
             <img class="search_icon" src="{% static 'assets/icons/icon_search.png' %}" width="15px">
             <input type="text" id="search-input" placeholder="Search" autocomplete="off" />
             <div id="suggestions" class="suggestions"></div>
-        </form>                     <!-- 검색 바 닫기 -->
+        </form>                     검색 바 닫기 -->
         <div class="list">          <!--필터 목록-->
             <div class="college_filter">            <!--필터1. AI융합-->
                 <input type="checkbox" id="aiCollege" class="college" data-college="ai">
                 <label for="aiCollege" class="college-label">AI융합대학</label>
-                <button onclick="toggleDepartments('ai')">▼</button>
+                <button onclick="toggleDepartments('ai')" data-college="ai">▼</button>
             </div>
             <div class="departments-container" id="aiDepartments">  
                 <div class="department">
@@ -368,30 +368,50 @@
                     </div>
                 </div>
             </div>
-            <div class="college_filter">        <!--필터14. 이과 -->
+            <div class="college_filter">    <!-- 필터14. 이과 -->
                 <input type="checkbox" id="scienceCollege" class="college" data-college="science">
                 <label for="scienceCollege" class="college-label">이과대학</label>
                 <button onclick="toggleDepartments('science')">▼</button>
             </div>
-            <div class="departments-container" id="scienceDepartments">
-            <div class="department">
-                <div class="major_filter">
-                    <input type="checkbox" id="physics" class="department" data-college="science" data-department="physics">
-                    <label for="physics">물리학과</label>
-                </div>
-                <div class="major_filter">
-                    <input type="checkbox" id="mathematics" class="department" data-college="science" data-department="mathematics">
-                    <label for="mathematics">수학과</label>
-                </div>
-                <div class="major_filter">
-                    <input type="checkbox" id="statistics" class="department" data-college="science" data-department="statistics">
-                    <label for="statistics">통계학과</label>
-                </div>
-                <div class="major_filter">
-                    <input type="checkbox" id="chemistry" class="department" data-college="science" data-department="chemistry">
-                    <label for="chemistry">화학과</label>
+            <div class="departments-container" id="scienceDepartments" style="display: none;">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="physics" class="department" data-college="science" data-department="physics">
+                        <label for="physics">물리학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="mathematics" class="department" data-college="science" data-department="mathematics">
+                        <label for="mathematics">수학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="statistics" class="department" data-college="science" data-department="statistics">
+                        <label for="statistics">통계학과</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="chemistry" class="department" data-college="science" data-department="chemistry">
+                        <label for="chemistry">화학과</label>
+                    </div>
                 </div>
             </div>
+            
+            <div class="college_filter">    <!-- 필터15. 기타 -->
+                <input type="checkbox" id="etcCollege" class="college" data-college="etc">
+                <label for="etcCollege" class="college-label">기타</label>
+                <button onclick="toggleDepartments('etc')">▼</button>
+            </div>
+            <div class="departments-container" id="etcDepartments" style="display: none;">
+                <div class="department">
+                    <div class="major_filter">
+                        <input type="checkbox" id="davinci" class="department" data-college="etc" data-department="davinci">
+                        <label for="davinci">다빈치</label>
+                    </div>
+                    <div class="major_filter">
+                        <input type="checkbox" id="donggam" class="department" data-college="etc" data-department="donggam">
+                        <label for="donggam">동감</label>
+                    </div>
+                </div>
+            </div>
+             
         </div>          <!--list 필터목록 닫기-->
     </div>              <!--container 닫기-->
     <script src="{% static 'js/main/filter.js' %}"></script>

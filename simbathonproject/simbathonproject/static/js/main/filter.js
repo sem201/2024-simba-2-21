@@ -1,13 +1,17 @@
 function toggleDepartments(collegeId) {
     const departmentContainer = document.getElementById(collegeId + 'Departments');
+    const button = document.querySelector(`[data-college="${collegeId}"]`).nextElementSibling;
+
     if (departmentContainer.style.display === 'none' || departmentContainer.style.display === '') {
         departmentContainer.style.display = 'block';
+        button.textContent = '◀'; // 버튼 텍스트를 ◀로 변경
     } else {
         departmentContainer.style.display = 'none';
+        button.textContent = '▼'; // 버튼 텍스트를 ▼로 변경
     }
 }
 
-// Toggle all department checkboxes based on the college checkbox state
+// 대학 확인란 상태를 기준으로 모든 학과 확인란을 전환
 document.querySelectorAll('.college').forEach(collegeCheckbox => {
     collegeCheckbox.addEventListener('change', function() {
         const collegeId = this.dataset.college;
@@ -18,7 +22,7 @@ document.querySelectorAll('.college').forEach(collegeCheckbox => {
     });
 });
 
-// Toggle department container visibility
+// 단과대 컨테이너 가시성 전환
 document.querySelectorAll('.college-label').forEach(label => {
     label.addEventListener('click', function() {
         const collegeId = this.previousElementSibling.dataset.college;
