@@ -48,7 +48,7 @@ body {
     transition: color 0.3s ease, background-color 0.3s ease;
 }
 #logo_box:hover {
-    background-color: #9AFEFF;
+    background-color: #f4e7ff;
 }
 
 #logo {
@@ -122,7 +122,7 @@ a {
 }
 
 #reset_btn:hover {
-    background-color: #9AFEFF;
+    background-color: #f4e7ff;
     color: #151B54;
 }
 
@@ -172,7 +172,7 @@ a {
 }
 
 #filter_btn > img:hover {
-    background-color: #9AFEFF;
+    background-color: #f4e7ff;
     color: #151B54;
 }
 
