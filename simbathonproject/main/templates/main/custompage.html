@@ -5,14 +5,15 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/main/custom_page.css' %}">
     <link rel="icon" type="image/png" href="{% static 'assets/charcol.png' %}">
     <meta charset="UTF-8">
-    <title>커스텀 뭐입을꽈</title>
+    <title>커스텀 뭐입을과</title>
 </head>
 <body>
     <div id="container" data-total-customs="{{ total_customs }}">
         <div class="button_container">    <!--버튼 컨테이너 -->
             <div class='left_box'><div id="logo_box">
                 <a href='/custom/'><img src = "{% static 'assets/icons/varsity_logo.png' %}" id='logo'/></a>
-            </div></div>
+            </div>
+        </div>
             <div id="normal_custom">      <!--일반/커스텀 선택 슬라이더-->
                 <a href='/main'><button id="normal_btn">일반</button></a>
                 <button id="custom_btn">커스텀</button>

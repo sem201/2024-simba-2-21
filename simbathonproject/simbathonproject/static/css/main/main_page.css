@@ -48,7 +48,7 @@ body {
     transition: color 0.3s ease, background-color 0.3s ease;
 }
 #logo_box:hover {
-    background-color: #9AFEFF;
+    background-color: #f4e7ff;
 }
 
 #logo {
@@ -123,7 +123,7 @@ a {
 }
 
 #reset_btn:hover {
-    background-color: #9AFEFF;
+    background-color: #f4e7ff;
     color: #151B54;
 }
 
@@ -161,7 +161,7 @@ a {
 }
 
 #filter_btn > img:hover {
-    background-color: #9AFEFF;
+    background-color: #f4e7ff;
     color: #151B54;
 }
 
@@ -183,7 +183,8 @@ a {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: 50px 0px 0px 0px;
+    flex-direction: column;
+    margin: 20px 0px 0px 0px;
 }
 
 #main_box {
@@ -404,4 +405,12 @@ button{
 #show_back_button.active {
     background-color: #8C52FF;
     color: #FFFFFF;
+}
+
+#sort_buttons{
+    display:flex;
+    width:450px;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap:15px;
 }
