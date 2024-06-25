@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputContainer = document.getElementById('input-container');
     const textInput = document.getElementById('text-input');
     const uploadTextButton = document.getElementById('upload-text');
+    const colorSelect = document.getElementById('color-select'); // 추가된 부분
     const sample = document.getElementById('sample');
     const topContainer = document.getElementById('top-container');
     const uploadImgButton = document.getElementById('upload-img-button');
@@ -53,10 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     uploadTextButton.addEventListener('click', () => {
         const newText = textInput.value;
+        const textColor = colorSelect.value; // 추가된 부분
         if (newText.trim() === '') return;
     
-        if (newText.length > 10) {
-            alert('텍스트는 10글자 이하로 입력해주세요.');
+        if (newText.length > 20) {
+            alert('텍스트는 20글자 이하로 입력해주세요.');
             return;
         }
     
@@ -69,10 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
         newDiv.style.transform = 'translate(-50%, -50%)';
         newDiv.style.cursor = 'move';
         newDiv.style.whiteSpace = 'nowrap'; 
-
-        newDiv.style.fontSize = '20px';
+        newDiv.style.color = textColor; // 추가된 부분
+        newDiv.style.fontSize = '25px';
         newDiv.style.fontWeight = 'bold';
-        newDiv.style.color = colorCheckbox.checked ? 'white' : 'black'; // 텍스트 색상 설정
+        newDiv.style.fontFamily = 'Playball, cursive'; /* 추가된 부분 */
         sample.style.zIndex = -10;
         const rotateButton = document.createElement('img');
         rotateButton.src = '/static/assets/icons/icon-rotate.png';

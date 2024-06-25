@@ -7,6 +7,7 @@
     <title>뭐입을과</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/design/designpage.css' %}">
     <link rel="icon" type="image/png" href="{% static 'assets/charcol.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet"> <!-- 추가된 부분 -->
     <style>
         .resize-button {
             width: 10px;
@@ -55,6 +56,10 @@
         </div>
         <div id="input-container" style="display: none;">
             <input type="text" id="text-input" placeholder="텍스트를 입력해주세요">
+            <select id="color-select">
+                <option value="black">검정색</option>
+                <option value="white">흰색</option>
+            </select>
             <button id="upload-text">upload</button>
             <label>
                 <input type="checkbox" id="color-checkbox">
