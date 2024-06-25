@@ -29,25 +29,23 @@
                 </button>
             </div>
         </div>
-
+        <!-- /////  검생창 시작 ////// -->
         <div id="search_container" style="display: none;">
             <form id="search_form" method="get" action="/main/">
-                <input type="text" name="search" placeholder="Search by major, color" id="search_input">
-                <button type="submit">검색</button>
+                <input type="text" name="search" placeholder="색상, 학과로 검색해보세요!" id="search_input">
+                <button type="submit" id='submit'><img src="{% static 'assets/icons/icon_search2.png' %}" id='search_icon'/></button>
             </form>
             <div id="suggestions" style="display: none;">
                 <ul id="suggestions_list"></ul>
             </div>
         </div>
     </div>
+
         <div id="sort_btn_box">
             <button id="show_back_button">후면 정렬</button> <!-- 추가된 버튼 -->
         </div>
 
         <div id="main_container">   <!--메인컨테이너-->
-            <div id="sort_buttons">
-                <button id="show_back_button">뒷판부터 보기</button> <!-- 추가된 버튼 -->
-            </div>
             <div class="slider__wrap">
                 <div class="slider__btn" id="left_slider__btn">
                     <a href="#" class="prev" title="이전">&lt;</a>

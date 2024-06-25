@@ -182,6 +182,18 @@ a {
 }
 
 /*///////////여기부터 검색창/////////////*/
+#search_btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #FFFFFF;
+    width: 30px;
+    height: 30px;
+    border: none;
+    padding-top: 5px;
+    /* padding-right: 20px; */
+}
+
 #search_input::placeholder {
     font-size: 16px;
     color: #838383;
@@ -317,6 +329,7 @@ a {
     font-size: 18px;
     color: grey;
     opacity: 50%;
+    margin: 0px;
 }
 
 .slider__inner {
