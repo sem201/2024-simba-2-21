@@ -205,7 +205,7 @@ def custom_suggestions(request):
     if query:
         suggestions = Custom.objects.filter(
             Q(title__icontains=query) | Q(major__icontains=query) | Q(college__icontains=query) | Q(color__icontains=query)
-        ).values('title', 'major', 'college', 'color')
+        ).values('title', 'major', 'college', 'color').distinct()
         return JsonResponse(list(suggestions), safe=False)
     return JsonResponse([], safe=False)
 
