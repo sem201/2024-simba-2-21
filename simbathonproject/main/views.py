@@ -13,7 +13,9 @@ def mainpage(request):
     
     if query:
         keywords = Keyword.objects.filter(keyword__icontains=query).values_list('varsity_id', flat=True)
-        varsitys = Varsity.objects.filter(Q(id__in=keywords) | Q(major__icontains=query))
+        varsitys = Varsity.objects.filter(
+            Q(id__in=keywords) | Q(major__icontains=query) | Q(college__icontains=query)
+        )
     else:
         varsitys = Varsity.objects.all()
 
