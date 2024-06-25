@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const newText = textInput.value;
         if (newText.trim() === '') return;
     
-        if (newText.length > 10) {
-            alert('텍스트는 10글자 이하로 입력해주세요.');
+        if (newText.length > 20) {
+            alert('텍스트는 20글자 이하로 입력해주세요.');
             return;
         }
     
