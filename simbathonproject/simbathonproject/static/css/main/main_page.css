@@ -349,3 +349,40 @@ p{
 button{
     cursor: pointer;
 }
+
+
+/*//////인기순 최신순 위치 정렬///////*/
+#search_container{
+    position: relative;
+}
+#search_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#search_input{
+    width: 455px;
+    height: 36px;
+    border-radius: 20px;
+    border:0px;
+    background-color: rgba(118, 118, 128, 0.12);
+
+}
+#submit{
+    position: absolute;
+    right:10px;
+    border:0;
+}
+
+#search_icon{
+    width: 14px;
+    height: 14px;
+}
+#suggestions{
+    position: absolute;
+    top:50px;
+    width: 456px;
+    border-radius: 20px;
+    background-color: rgba(238, 238, 239, 1);
+    z-index: 10;
+}
