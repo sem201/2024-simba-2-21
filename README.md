@@ -5,6 +5,28 @@
     <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 뭐 입을과 </h2>  
     <div style="font-weight: 700; font-size: 15px; text-align: left; color: #282d33;"> 멋쟁이사자처럼 12기 2&E1 </div> 
     </div>
+    # 👋 팀원 소개
+
+      # PD
+
+      | 이름                                         | 전공           | 학번   | Email                |
+      | -------------------------------------------- | -------------- | ------ | -------------------- |
+      | [온다빈](https://github.com/datarchive)       | 경영정보학과  | 19학번 | ?? |
+
+      # Front-End
+
+      | 이름                                         | 전공           | 학번   | Email                |
+      | -------------------------------------------- | -------------- | ------ | -------------------- |
+      | [박성재](https://github.com/sem201)       | 정보통신공학과 | 20학번 | sem201@naver.com |
+      | [전효준](https://github.com/iam-hyo) | 산업시스템공학과 | 21학번 | hyojunj20@gmail.com |
+
+      # Back-end
+
+      | 이름                                      | 전공           | 학번   | Email               |
+      | ----------------------------------------- | -------------- | ------ | ------------------- |
+      | [김지우](https://github.com/ryann1203)      | 컴퓨터공학전공 | 22학번 | 2022110421@dgu.ac.kr  |
+      | [박서현](https://github.com/ParkSuhhyun)     | 경영정보학과 | 22학번 | psh8500000@gmail.com |
+
     <div style="text-align: left;">
     <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 🛠️ Tech Stacks </h2> <br> 
     <div style="margin: ; text-align: left;" "text-align: left;"> <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=Django&logoColor=white">
