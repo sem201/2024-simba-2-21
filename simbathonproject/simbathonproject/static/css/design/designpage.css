@@ -171,3 +171,9 @@ p {
     color: gray;
     margin-top: 20px;
 }
+
+#color-select {
+    margin-left: 10px;
+    font-size: 16px;
+    padding: 5px;
+}
