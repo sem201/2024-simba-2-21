@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:b972e9,100:d9a7fb&height=180&text=Welcome%20to%202NE1!&animation=fadeIn&fontColor=000000&fontSize=60" />
 </div>
-# 뭐 입을과
+뭐 입을과
 멋쟁이사자처럼 12기 2&E1
 
 # 👋 팀원 소개
@@ -19,7 +19,7 @@
 | [박성재](https://github.com/sem201)        | 정보통신공학과 | 20학번 | sem201@naver.com     |
 | [전효준](https://github.com/iam-hyo)       | 산업시스템공학과 | 21학번 | hyojunj20@gmail.com  |
 
-## Back-end
+## Back-End
 
 | 이름                                      | 전공           | 학번   | Email                |
 | ----------------------------------------- | -------------- | ------ | -------------------- |
