@@ -218,7 +218,9 @@ a {
     border:0px;
     background-color: rgba(118, 118, 128, 0.12);
     padding-left: 10px;
+    outline: none;
 }
+
 #submit{
     position: absolute;
     right:25px;
@@ -234,11 +236,13 @@ a {
 
 #suggestions{
     position: absolute;
-    top:50px;
-    width: 456px;
-    border-radius: 20px;
+    top:30px;
+    left: 19px;
+    width: 502px;
+    border-radius: 0px 0px 20px 20px;
     background-color: rgba(238, 238, 239, 1);
     z-index: 10;
+    box-shadow: 5px 5px gray;
 }
 
 /* 뒷판부터 보기 버튼 */
@@ -451,3 +455,6 @@ button{
 
 
 
+li{
+    list-style-type: none;
+}
