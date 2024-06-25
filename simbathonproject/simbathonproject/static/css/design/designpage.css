@@ -149,7 +149,6 @@ p {
     font-size: 16px;
     width: 300px;
     height: 50px;
-    margin-right: 5px;
 }
 #upload-text{
     font-family: "Pretendard Variable";
@@ -158,6 +157,12 @@ p {
     width: 70px;
     height: 50px;
     border-radius: 12px;
+    background-color: rgba(227, 227, 227, 1);
+}
+#color-select{
+    border-radius: 12px;
+    background-color: rgba(227, 227, 227, 1);
+    margin-right: 7px;
 }
 #upload-text:hover{
     background-color: rgba(178, 119, 255, 1);

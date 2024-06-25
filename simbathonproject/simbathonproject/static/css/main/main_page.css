@@ -218,7 +218,9 @@ a {
     border:0px;
     background-color: rgba(118, 118, 128, 0.12);
     padding-left: 10px;
+    outline: none;
 }
+
 #submit{
     position: absolute;
     right:25px;
@@ -470,3 +472,6 @@ button{
 }
 
 
+li{
+    list-style-type: none;
+}
