@@ -213,3 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 }); 
 
+///페이지 이동간 필터 초기화 ///
+document.getElementById("normal_btn").addEventListener('click', function() {
+    const selectedDepartments = [];
+
+    // 로컬 스토리지에 저장
+    localStorage.setItem('selectedDepartments', JSON.stringify(selectedDepartments));
+})

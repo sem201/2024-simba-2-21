@@ -399,6 +399,24 @@ a {
     align-items: center;
     width: 600px;
 }
+
+.slider > #icon_no_img {
+    margin: 80px 40px 80px 40px;
+}
+.slider > #sorry {
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 30px;
+    font-weight: 700;
+}
+.slider > #soon {
+    color: #6B6B6B;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 24px;
+    font-weight: 400;
+}
+
 #text_major{
     font-weight: bold;
 }

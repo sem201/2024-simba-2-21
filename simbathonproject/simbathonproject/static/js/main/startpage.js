@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
         logoPage.style.display = 'none';
     }, 2500);
 
-   
     setTimeout(() => {
         document.querySelector('.slider__btn_container').style.opacity = '1';
+        document.querySelector('.slider__inner').style.opacity = '1';
     }, 2100);
 
     setTimeout(() => {
@@ -32,9 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('.slider__inner 요소를 찾을 수 없습니다.');
         }
     }, 2100);
-    console.log(document.querySelector('.slide__inner')); // null이면 요소가 존재하지 않음
+    console.log(document.querySelector('.slider__inner')); // null이면 요소가 존재하지 않음
     console.log(document.querySelector('.slider__btn_container')); // null이면 요소가 존재하지 않음
-
 
     // Function to update slider position and dots
     function updateSlider() {
@@ -46,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
             continueBtn.style.display = 'none';
             startBtn.style.display = 'block';
             skipBtn.style.visibility = 'hidden';
+            document.querySelector('.slider__btn_container').style.opacity = '1';
         } else {
             continueBtn.style.display = 'block';
             startBtn.style.display = 'none';
