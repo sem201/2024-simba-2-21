@@ -183,7 +183,8 @@ a {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: 50px 0px 0px 0px;
+    flex-direction: column;
+    margin: 20px 0px 0px 0px;
 }
 
 #main_box {
@@ -404,4 +405,12 @@ button{
 #show_back_button.active {
     background-color: #8C52FF;
     color: #FFFFFF;
+}
+
+#sort_buttons{
+    display:flex;
+    width:450px;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap:15px;
 }
