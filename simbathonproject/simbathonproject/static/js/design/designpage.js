@@ -33,11 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
     addTextButton.addEventListener('click', () => {
-        if (inputContainer.style.display === 'block') {
+        if (inputContainer.style.display === 'flex') {
             inputContainer.style.display = 'none';
             sample.style.zIndex=-10;
         } else {
-            inputContainer.style.display = 'block';
+            inputContainer.style.display = 'flex';
+            inputContainer.style.flexDirection='row';
             inputContainer.style.position = 'absolute';
             inputContainer.style.bottom = '50%';
             inputContainer.style.right = '50%';
@@ -275,6 +276,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const topContainer = document.getElementById('top-container');
         topContainer.style.borderTop = 'none';
         topContainer.style.borderBottom = 'none';
+        // topContainer.style.backgroundColor='#FFFFFF'
+        hideAllButtons();
         const images = document.querySelectorAll('img');
         const promises = [];
 
@@ -298,20 +301,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         Promise.all(promises).then(() => {
-            html2canvas(document.querySelector('#top-container')).then(canvas => {
-                // 이미지를 다운로드할 수 있도록 Blob URL을 생성
-                const imageUrl = canvas.toDataURL('image/png');
-
-                // Blob URL을 이용해 다운로드 링크를 생성
-                const link = document.createElement('a');
-                link.href = imageUrl;
-                link.download = 'capture.png';
-
-                // 링크를 클릭하여 다운로드 진행
-                link.click();
-            }).catch(error => {
-                console.error('캡처 중 오류 발생:', error);
-            });
+            // 약간의 지연을 주어 스타일이 적용되도록 함
+            setTimeout(() => {
+                html2canvas(document.querySelector('#top-container'), {
+                    backgroundColor: null // 배경색을 투명하게 설정
+                }).then(canvas => {
+                    const imageUrl = canvas.toDataURL('image/png');
+    
+                    const link = document.createElement('a');
+                    link.href = imageUrl;
+                    link.download = 'capture.png';
+                    link.click();
+                }).catch(error => {
+                    console.error('캡처 중 오류 발생:', error);
+                });
+            }, 100); // 100ms 지연
         }).catch(error => {
             console.error('이미지 로드 중 오류 발생:', error);
         });
