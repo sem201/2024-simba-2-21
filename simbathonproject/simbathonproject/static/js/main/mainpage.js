@@ -141,13 +141,14 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     // 로컬 스토리지에서 selectedDepartments 불러오기
     const selectedDepartments = JSON.parse(localStorage.getItem('selectedDepartments')) || [];
-    console.log(selectedDepartments);
+    // console.log(selectedDepartments);
 
     // 선택된 학과의 수 계산
     const count = selectedDepartments.length;
 
     // HTML 요소에 출력
     document.getElementById('filter_count').textContent = count;
+    console.log(filtered_count);
 
     if (count === 0) {
         document.getElementById('icon_filter_bk').style.display = 'flex';
