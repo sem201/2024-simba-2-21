@@ -86,10 +86,14 @@ def custompage(request):
     if filter_apply_dep:
         customs = customs.filter(major__in=filter_apply_dep)
 
+    # 필터 조건을 만족하는 항목이 있는지 확인
+    we_dont_have = not any(not filter_apply_dep or custom.major in filter_apply_dep for custom in customs)
+
     context = {
         'customs': customs,
         'liked_customs': liked_customs,
-        'filter_apply_dep': filter_apply_dep,  
+        'filter_apply_dep': filter_apply_dep, 
+        'we_dont_have': we_dont_have, 
     }
     return render(request, 'main/custompage.html', context)
 
