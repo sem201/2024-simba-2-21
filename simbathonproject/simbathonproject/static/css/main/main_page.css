@@ -349,3 +349,22 @@ p{
 button{
     cursor: pointer;
 }
+
+/* 버튼 기본 스타일 */
+#show_back_button {
+    font-family: "Pretendard Variable";
+    font-size: 18px;
+    background-color: #F5F5F5;
+    border: none;
+    color: #919191;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 활성화된 버튼 스타일 */
+#show_back_button.active {
+    background-color: #8C52FF;
+    color: #FFFFFF;
+}

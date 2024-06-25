@@ -1,5 +1,3 @@
-//////////// main - custom 공통부분 /////////
-// 1. 슬라이더 기능
 document.addEventListener('DOMContentLoaded', () => {
     const sliderWrap = document.querySelector('.slider__wrap');
     const sliderImg = sliderWrap.querySelector('.slider__img');
@@ -103,10 +101,40 @@ function toggleImage(img) {
     var backSrc = img.getAttribute('data-back');
     if (img.src.endsWith(frontSrc.split('/').pop())) {
         img.src = backSrc;
+        img.setAttribute('data-show', 'back');
     } else {
         img.src = frontSrc;
+        img.setAttribute('data-show', 'front');
     }
 }
+
+// '뒷판부터 보기' 버튼 기능 추가
+document.addEventListener('DOMContentLoaded', function() {
+    const showBackButton = document.getElementById('show_back_button');
+    let isShowingBack = false;
+
+    showBackButton.addEventListener('click', function() {
+        const images = document.querySelectorAll('.test_img');
+        isShowingBack = !isShowingBack;
+
+        if (isShowingBack) {
+            images.forEach(img => {
+                const backSrc = img.getAttribute('data-back');
+                img.src = backSrc;
+                img.setAttribute('data-show', 'back');
+            });
+            showBackButton.classList.add('active');
+        } else {
+            images.forEach(img => {
+                const frontSrc = img.getAttribute('data-front');
+                img.src = frontSrc;
+                img.setAttribute('data-show', 'front');
+            });
+            showBackButton.classList.remove('active');
+        }
+    });
+});
+
 
 /////////////여기부터 필터////////////
 
@@ -150,10 +178,6 @@ document.getElementById('reset_btn').addEventListener('click', function() {
     //새로고침 시행
     location.reload();
 })
-
-
-
-
 
 ///////////여기부터 검색 기능//////////
 
@@ -215,4 +239,3 @@ document.getElementById('reset_btn').addEventListener('click', function() {
     }
 
 });
-
