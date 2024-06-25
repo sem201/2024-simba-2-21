@@ -58,46 +58,39 @@ def mainpage(request):
     return render(request, 'main/mainpage.html', context)
 
 def custompage(request):
-    customs = Custom.objects.all().order_by('-like_count')
+    sort_option = request.GET.get('sort', 'likes')
+    print(f"정렬 옵션: {sort_option}")  # 디버깅을 위한 출력
+
+    # 최신순 정렬 조건 확인
+    if sort_option == 'newest':
+        customs = Custom.objects.all().order_by('-id')
+        print("최신순으로 정렬")  # 디버깅을 위한 출력
+    else:
+        customs = Custom.objects.all().order_by('-like_count')
+        print("좋아요 순으로 정렬")  # 디버깅을 위한 출력
 
     query = request.GET.get('search')
     if query:
-        customs = Custom.objects.filter(
+        customs = customs.filter(
             Q(title__icontains=query) | Q(major__icontains=query) | Q(college__icontains=query) | Q(color__icontains=query)
         )
-    else:
-        customs = Custom.objects.all().order_by('-like_count')
 
     liked_customs = request.session.get('liked_customs', [])
-    # total_customs = request.session.pop('total_customs', customs.count())  # 세션에서 total_customs 값을 가져오고, 없으면 기본값으로 전체 개수
     
-    # 'selectedDepartments' 쿼리 매개변수를 GET 요청에서 가져옵니다.
     selected_departments = request.GET.get('selectedDepartments', '[]')
-    # JSON 문자열을 리스트로 변환합니다.
     data_list = json.loads(selected_departments)
-    
-    # 각 객체의 'label' 값 추출하여 리스트로 만들기
     filter_apply_dep = [item['label'] for item in data_list]
 
-
     if filter_apply_dep:
-        # 디버깅 출력을 추가합니다.
-        print("filter_apply_dep:", filter_apply_dep)
         customs = customs.filter(major__in=filter_apply_dep)
-        print("Filtered customs count after applying filter:", customs.count())
 
-    # 디버깅 출력을 추가합니다.
-    for custom in customs:
-        print(f"Custom ID: {custom.id}, Major: {custom.major}")
-
-
-    # mainpage.html 템플릿을 렌더링할 때 필요한 데이터를 전달합니다.
     context = {
         'customs': customs,
         'liked_customs': liked_customs,
         'filter_apply_dep': filter_apply_dep,  
     }
     return render(request, 'main/custompage.html', context)
+
 
 
 def selectpage(request):

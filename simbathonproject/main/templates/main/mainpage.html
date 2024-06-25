@@ -9,16 +9,18 @@
 </head>
 <body>
     <div id="container">
-        <div class="button_container">   <!--일반/커스텀-->
-            <div class='logo_box'>
-                <a href='/main/'><img src = "{% static 'assets/icons/varsity_logo.png' %}" id='logo'/></a>
+        <div class="button_container">    <!--버튼 컨테이너 -->
+            <div class='left_box'>
+                <div id="logo_box">
+                    <a href='/main/'><img src = "{% static 'assets/icons/varsity_logo.png' %}" id='logo'/></a>
+                </div>
             </div>
-            <div id="normal_custom">
+            <div id="normal_custom">      <!--일반/커스텀 선택 슬라이더-->
                 <button id="normal_btn">일반</button>
                 <a href='/custom'><button id="custom_btn">커스텀</button></a>
             </div>
-            <div class="tool_bar">
-                <img src="{% static 'assets/icons/icon_search.png' %}" id="search_btn">
+            <div class="tool_bar">          <!--툴바 (필터, 초기화) -->
+                <a href='/main/'><i class="fa-solid fa-rotate-right" id="reset_btn"></i></a>
                 <button id="filter_btn">       
                     <img src="{% static 'assets/icons/icon_filter_bk.png' %}" id="icon_filter_bk">
                     <img src="{% static 'assets/icons/icon_filter_blue.png' %}" id="icon_filter_blue">
@@ -30,7 +32,7 @@
         <div id="search_container" style="display: none;">
             <form id="search_form" method="get" action="/main/">
                 <input type="text" name="search" placeholder="Search by major, color" id="search_input">
-                <button type="submit">검색</button>
+                <button type="submit" id='submit'><img src="{% static 'assets/icons/icon_search2.png' %}" id='search_icon'/></button>
             </form>
             <div id="suggestions" style="display: none;">
                 <ul id="suggestions_list"></ul>
@@ -44,12 +46,13 @@
                 </div>
                 <div class="slider__img">
                     <p id="toggle_instruction" align="center">※이미지를 누르면 앞/뒤가 전환됩니다</p>
+                    <button id="show_back_button">뒷판부터 보기</button> <!-- 추가된 버튼 -->
                     <div class="slider__inner">
                         {% for varsity in varsitys %}
                             {% if not filter_apply_dep or varsity.major in filter_apply_dep %}
                                 <div class="slider">
                                     <img src="{{ varsity.image_front.url }}" class="test_img" 
-                                        data-front="{{ varsity.image_front.url }}" data-back="{{ varsity.image_back.url }}" onclick="toggleImage(this)"/>
+                                        data-front="{{ varsity.image_front.url }}" data-back="{{ varsity.image_back.url }}" data-show="front" onclick="toggleImage(this)"/>
                                     <p align="center"><b>{{ varsity.major }}/{{ varsity.college }}</b></p>
                                     <button id="heart_btn" data-varsity-id="{{ varsity.id }}">
                                         <img src="{% if varsity.id in liked_varsitys %}{% static 'assets/icons/heart_filled.png' %}{% else %}{% static 'assets/icons/heart.png' %}{% endif %}" id="icon_heart" />
