@@ -370,17 +370,36 @@ button{
 
 /*//////인기순 최신순 위치 정렬///////*/
 #sort_buttons{
-    position: relative;
+    display:flex;
+    width:450px;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap:15px;
 }
 .sort_btn{
-    background-color: #fff;
+    background-color: rgba(238, 238, 239, 1);
     border:0;
     font-family: "Pretendard Variable";
+    width: 65px;
+    height: 31px;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 10px;
 }
-#sort_like_btn{
-    position:absolute;
+#sort_likes_btn{
+    text-wrap: nowrap;
+    color:rgba(68, 42, 120, 1);
 }
 
 #sort_newest_btn{
-    position:absolute;
+    text-wrap: nowrap;
+    color:rgba(184, 184, 184, 1);
+}
+
+.active {
+    color: rgba(68, 42, 120, 1) !important;
+}
+
+.inactive {
+    color: rgba(184, 184, 184, 1) !important;
 }

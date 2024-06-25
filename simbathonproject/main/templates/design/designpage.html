@@ -20,6 +20,7 @@
 </head>
 <body>
     <div id="main_container">
+        <div id='sample'></div>
         <div id="top_bar">
             <a href='/main/'><img src = "{% static 'assets/icons/home.png' %}" class='nothing' id='home'/></a>
             <p align='center' id="title">과잠 디자인하기</p>
@@ -27,12 +28,12 @@
         </div>
         
         <div id="top-container">
-            <div id='sample'></div>
             <img id="selected_image" src="" alt="Selected Image"/>
         </div>
         
         <p id="toggle_instruction" align="center">* 디자인을 다운로드해야 커스텀에 업로드가 가능합니다 *</p>
         <div id="bottom-container">
+            
             <button id="add-text-button">
                 <img src={% static "assets/icons/text_icon.png" %} width="40px"/>
             </button>
