@@ -69,8 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
         newDiv.style.cursor = 'move';
         newDiv.style.whiteSpace = 'nowrap'; 
 
-        newDiv.style.fontSize = '20px';
+        newDiv.style.fontSize = '25px';
         newDiv.style.fontWeight = 'bold';
+        newDiv.style.fontFamily = 'Playball, cursive'; /* 추가된 부분 */
         sample.style.zIndex = -10;
         const rotateButton = document.createElement('img');
         rotateButton.src = '/static/assets/icons/icon-rotate.png';

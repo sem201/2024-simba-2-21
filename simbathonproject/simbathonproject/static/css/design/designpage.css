@@ -129,6 +129,7 @@ p {
     padding: 10px;
     box-sizing: border-box;
     cursor: move;
+    font-family: 'Playball', cursive; /* 추가된 부분 */
 }
 
 .rotate-button {
