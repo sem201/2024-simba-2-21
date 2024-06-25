@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const topContainer = document.getElementById('top-container');
     const uploadImgButton = document.getElementById('upload-img-button');
     const imageInput = document.getElementById('image-input');
+    const refreshButton = document.getElementById('refresh-button');
     let currentRotateButton = null;
     let currentResizeButton = null;
+    let currentDeleteButton = null;
 
     // 디자인 제출 페이지로 넘어가기 전 확인 메시지
     const normalBtn = document.getElementById('normal_btn');
@@ -21,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    normalBtn.addEventListener('click',confirm_alert)
+    normalBtn.addEventListener('click', confirm_alert);
 
     // 이전 페이지에서 선택한 키워드 값을 콘솔에 출력
     const selectedKeyword = localStorage.getItem('selectedKeyword');
@@ -35,16 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
     addTextButton.addEventListener('click', () => {
         if (inputContainer.style.display === 'flex') {
             inputContainer.style.display = 'none';
-            sample.style.zIndex=-10;
+            sample.style.zIndex = -10;
         } else {
             inputContainer.style.display = 'flex';
-            inputContainer.style.flexDirection='row';
+            inputContainer.style.flexDirection = 'row';
             inputContainer.style.position = 'absolute';
             inputContainer.style.bottom = '50%';
             inputContainer.style.right = '50%';
-            inputContainer.style.zIndex=20;
+            inputContainer.style.zIndex = 20;
             inputContainer.style.transform = 'translateX(50%)';
-            sample.style.zIndex=10;
+            sample.style.zIndex = 10;
         }
     });
 
@@ -61,9 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
         newDiv.style.transform = 'translate(-50%, -50%)';
         newDiv.style.cursor = 'move';
         newDiv.style.whiteSpace = 'nowrap'; 
-        newDiv.style.fontSize='20px';
-        newDiv.style.fontWeight='bold';
-        sample.style.zIndex=-10;
+        newDiv.style.fontSize = '20px';
+        newDiv.style.fontWeight = 'bold';
+        sample.style.zIndex = -10;
 
         const rotateButton = document.createElement('img');
         rotateButton.src = '/static/assets/icons/icon-rotate.png';
@@ -76,7 +78,16 @@ document.addEventListener('DOMContentLoaded', () => {
         rotateButton.style.display = 'none';
         rotateButton.style.zIndex = '20';
 
+        const deleteButton = document.createElement('img');
+        deleteButton.src = '/static/assets/icons/trash_icon.png'; 
+        deleteButton.className = 'delete-button';
+        deleteButton.style.position = 'absolute';
+        deleteButton.style.cursor = 'pointer';
+        deleteButton.style.display = 'none';
+        deleteButton.style.zIndex = '20';
+
         topContainer.appendChild(rotateButton);
+        topContainer.appendChild(deleteButton);
         topContainer.appendChild(newDiv);
 
         makeDraggable(newDiv);
@@ -86,9 +97,20 @@ document.addEventListener('DOMContentLoaded', () => {
             event.stopPropagation();
             hideAllButtons();
             rotateButton.style.display = 'block';
+            deleteButton.style.display = 'block';
+            const elemRect = newDiv.getBoundingClientRect();
+            deleteButton.style.top = `${elemRect.top - topContainer.getBoundingClientRect().top}px`;
+            deleteButton.style.left = `${elemRect.left - topContainer.getBoundingClientRect().left-10}px`;
             currentRotateButton = rotateButton;
+            currentDeleteButton = deleteButton;
         });
 
+        deleteButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            newDiv.remove();
+            rotateButton.remove();
+            deleteButton.remove();
+        });
 
         textInput.value = '';
         inputContainer.style.display = 'none';
@@ -130,9 +152,18 @@ document.addEventListener('DOMContentLoaded', () => {
             resizeButton.style.bottom = '0px';
             resizeButton.style.display = 'none';
 
+            const deleteButton = document.createElement('img');
+            deleteButton.src = '/static/assets/icons/trash_icon.png'; 
+            deleteButton.className = 'delete-button';
+            deleteButton.style.position = 'absolute';
+            deleteButton.style.cursor = 'pointer';
+            deleteButton.style.display = 'none';
+            deleteButton.style.zIndex = '20';
+
             topContainer.appendChild(img);
             topContainer.appendChild(rotateButton);
             topContainer.appendChild(resizeButton);
+            topContainer.appendChild(deleteButton);
 
             makeDraggable(img);
             makeRotatable(img, rotateButton);
@@ -143,22 +174,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 hideAllButtons();
                 rotateButton.style.display = 'block';
                 resizeButton.style.display = 'block';
+                deleteButton.style.display = 'block';
                 const imgRect = img.getBoundingClientRect();
                 rotateButton.style.top = `${imgRect.top - topContainer.getBoundingClientRect().top - rotateButton.offsetHeight}px`;
                 resizeButton.style.top = `${imgRect.bottom - topContainer.getBoundingClientRect().top - 5}px`;
                 resizeButton.style.left = `${imgRect.right - topContainer.getBoundingClientRect().left - 5}px`;
+                deleteButton.style.top = `${imgRect.top - topContainer.getBoundingClientRect().top}px`;
+                deleteButton.style.left = `${imgRect.left - topContainer.getBoundingClientRect().left-10}px`;
                 currentRotateButton = rotateButton;
                 currentResizeButton = resizeButton;
+                currentDeleteButton = deleteButton;
+            });
+
+            deleteButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                img.remove();
+                rotateButton.remove();
+                resizeButton.remove();
+                deleteButton.remove();
             });
         };
         reader.readAsDataURL(file);
 
         imageInput.value = '';
     });
+    refreshButton.addEventListener('click', () => {
+        const elementsToRemove = topContainer.querySelectorAll('.draggable, .resizable, .rotate-button, .resize-button');
+        elementsToRemove.forEach(element => {
+            topContainer.removeChild(element);
+        });
+    });
 
     function makeDraggable(element) {
         element.addEventListener('mousedown', (e) => {
-            if (e.target.className.includes('rotate-button') || e.target.className.includes('resize-button')) return;
+            if (e.target.className.includes('rotate-button') || e.target.className.includes('resize-button') || e.target.className.includes('delete-button')) return;
 
             let shiftX = element.clientWidth / 5;
             let shiftY = element.clientHeight / 5;
@@ -181,6 +230,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const elemRect = element.getBoundingClientRect();
                     currentResizeButton.style.top = `${elemRect.bottom - topContainer.getBoundingClientRect().top - 5}px`;
                     currentResizeButton.style.left = `${elemRect.right - topContainer.getBoundingClientRect().left - 5}px`;
+                }
+
+                if (currentDeleteButton) {
+                    const elemRect = element.getBoundingClientRect();
+                    currentDeleteButton.style.top = `${elemRect.top - topContainer.getBoundingClientRect().top}px`;
+                    currentDeleteButton.style.left = `${elemRect.left - topContainer.getBoundingClientRect().left-10}px`;
                 }
             }
 
@@ -264,8 +319,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideAllButtons() {
         const rotateButtons = document.querySelectorAll('.rotate-button');
         const resizeButtons = document.querySelectorAll('.resize-button');
+        const deleteButtons = document.querySelectorAll('.delete-button');
         rotateButtons.forEach(button => button.style.display = 'none');
         resizeButtons.forEach(button => button.style.display = 'none');
+        deleteButtons.forEach(button => button.style.display = 'none');
     }
 
     document.addEventListener('click', () => {
