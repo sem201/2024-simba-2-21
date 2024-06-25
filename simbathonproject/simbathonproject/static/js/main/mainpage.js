@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
                  if (uniqueSuggestions.size > 0) {
                      suggestionsContainer.style.display = 'block';
                      searchInput.style.borderRadius ='20px 20px 0px 0px';
-                    //  searchInput.style.boxShadow='0px 7px 29px 0px rgba(100, 100, 111, 0.2';
+                     searchInput.style.boxShadow='0px 7px 29px 0px rgba(100, 100, 111, 0.2';
 
                     } else {
                      suggestionsContainer.style.display = 'none';
