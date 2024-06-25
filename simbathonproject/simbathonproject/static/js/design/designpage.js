@@ -51,7 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
     uploadTextButton.addEventListener('click', () => {
         const newText = textInput.value;
         if (newText.trim() === '') return;
-
+    
+        if (newText.length > 10) {
+            alert('텍스트는 10글자 이하로 입력해주세요.');
+            return;
+        }
+    
         const newDiv = document.createElement('div');
         newDiv.className = 'draggable';
         newDiv.textContent = newText;
@@ -64,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newDiv.style.fontSize='20px';
         newDiv.style.fontWeight='bold';
         sample.style.zIndex=-10;
-
+    
         const rotateButton = document.createElement('img');
         rotateButton.src = '/static/assets/icons/icon-rotate.png';
         rotateButton.className = 'rotate-button';
@@ -75,25 +80,24 @@ document.addEventListener('DOMContentLoaded', () => {
         rotateButton.style.cursor = 'pointer';
         rotateButton.style.display = 'none';
         rotateButton.style.zIndex = '20';
-
+    
         topContainer.appendChild(rotateButton);
         topContainer.appendChild(newDiv);
-
+    
         makeDraggable(newDiv);
         makeRotatable(newDiv, rotateButton);
-
+    
         newDiv.addEventListener('click', (event) => {
             event.stopPropagation();
             hideAllButtons();
             rotateButton.style.display = 'block';
             currentRotateButton = rotateButton;
         });
-
-
+    
         textInput.value = '';
         inputContainer.style.display = 'none';
     });
-
+    
     uploadImgButton.addEventListener('click', () => {
         imageInput.click();
     });
