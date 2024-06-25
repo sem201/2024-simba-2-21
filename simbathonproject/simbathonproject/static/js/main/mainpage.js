@@ -141,14 +141,13 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     // 로컬 스토리지에서 selectedDepartments 불러오기
     const selectedDepartments = JSON.parse(localStorage.getItem('selectedDepartments')) || [];
-    // console.log(selectedDepartments);
+    console.log(selectedDepartments);
 
     // 선택된 학과의 수 계산
     const count = selectedDepartments.length;
 
     // HTML 요소에 출력
     document.getElementById('filter_count').textContent = count;
-    console.log(filtered_count);
 
     if (count === 0) {
         document.getElementById('icon_filter_bk').style.display = 'flex';
@@ -161,6 +160,19 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('filter_count').style.visibility = 'visible';
         document.getElementById('filter_count').textContent = count;
     }
+        //filte_count정의 후 슬라이더 유무 결정
+        var filteredCount = parseInt(document.getElementById('filtered-count').getAttribute('data-count'), 10);
+        console.log(filteredCount);
+
+        if (filteredCount < 2) {
+        document.querySelectorAll('.slider__btn').forEach(function(btn) {
+            btn.style.visibility = 'hidden';
+        });
+    } else {
+        document.querySelectorAll('.slider__btn').forEach(function(btn) {
+            btn.style.visibility = 'visible';
+        })
+    }
 
     // 필터 버튼 클릭 시 필터 페이지로 이동
     document.getElementById('filter_btn').addEventListener('click', function() {
@@ -168,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 ///////////    초기화 버튼    /////////
-document.getElementById('reset_btn').addEventListener('click', function() {
+    document.getElementById('reset_btn').addEventListener('click', function() {
     //selectedDepartments 초기화
     const selectedDepartments = [];
     console.log(selectedDepartments);
@@ -233,14 +245,11 @@ document.getElementById('reset_btn').addEventListener('click', function() {
             suggestionsContainer.style.display = 'none';
         }
     });
-
-    // 검색 창 토글
-    const searchContainer = document.getElementById('search_container');
-    if (searchContainer.style.display === 'none') {
-        searchContainer.style.display = 'block';
-    } else {
-            searchContainer.style.display = 'none';
-    }
-
 });
-//
+
+document.getElementById("custom_btn").addEventListener('click', function() {
+    const selectedDepartments = [];
+
+    // 로컬 스토리지에 저장
+    localStorage.setItem('selectedDepartments', JSON.stringify(selectedDepartments));
+})
