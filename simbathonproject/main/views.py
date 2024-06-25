@@ -61,6 +61,10 @@ def mainpage(request):
     }
     return render(request, 'main/mainpage.html', context)
 
+
+
+
+
 def custompage(request):
     sort_option = request.GET.get('sort', 'likes')
     print(f"정렬 옵션: {sort_option}")  # 디버깅을 위한 출력
@@ -89,13 +93,15 @@ def custompage(request):
         customs = customs.filter(major__in=filter_apply_dep)
 
     # 필터 조건을 만족하는 항목이 있는지 확인
-    we_dont_have = not any(not filter_apply_dep or custom.major in filter_apply_dep for custom in customs)
+    we_dont_have = not any(not filter_apply_dep or custom.major in filter_apply_dep for custom in customs)  
+    filtered_count = sum(1 for custom in customs if not filter_apply_dep or custom.major in filter_apply_dep)
 
     context = {
         'customs': customs,
         'liked_customs': liked_customs,
         'filter_apply_dep': filter_apply_dep, 
         'we_dont_have': we_dont_have, 
+        'filtered_count':filtered_count,
     }
     return render(request, 'main/custompage.html', context)
 

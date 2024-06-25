@@ -10,10 +10,18 @@
 <body>
     <form action="{% url 'main:create' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+    <div class="body_container">
+        <div class="head_bar">
+            <div class="seq">색상 선택하기</div>
+            <div class="seq">디자인 만들기</div>
+            <div class="seq">업로드 하기</div>
+        </div>
         <div id='top_container'>
-            <input type="text" name="title" id='title' placeholder='제목을 입력해주세요' maxlength="20">
-            <!-- hidden input to store the selected color -->
-            <input type="hidden" name="color" id="color">
+            <div id="title_text">
+                <input type="text" name="title" id='title' placeholder='제목을 입력해주세요' maxlength="20">
+                <!-- hidden input to store the selected color -->
+                <input type="hidden" name="color" id="color">
+            </div>
         </div>
         <div id='main_container'>
             <img id="imagePreview" src="{% static "assets/icons/default-image.png" %}" alt="Image preview">
@@ -38,6 +46,7 @@
         <div id='foot_container'>
             <button type="submit" id='submit' disabled>공유하기</button>
         </div>
+    </div>              <!-- body container 닫기-->
     </form>
 </body>
 <script>
