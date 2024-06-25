@@ -108,7 +108,7 @@ p {
     margin-left: 10px;
 }
 
-#add-text-button, #upload-img-button, #capture-button {
+#add-text-button, #upload-img-button, #capture-button ,#refresh-button{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,7 +117,7 @@ p {
     border-radius: 100%;
     border:0;
 }
-#add-text-button:hover, #upload-img-button:hover, #capture-button:hover{
+#add-text-button:hover, #upload-img-button:hover, #capture-button:hover, #refresh-button:hover{
     background-color: rgba(178, 119, 255, 1);
 }
 
