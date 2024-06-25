@@ -31,7 +31,7 @@
             </div>
     
             <div id="search_container" style="display: none;">
-                <form id="search_form" method="get" action="/main/">
+                <form id="search_form" method="get" action="/custom/">
                     <input type="text" name="search" placeholder="색상, 학과로 검색해보세요!" id="search_input">
                     <button type="submit" id='submit'><img src="{% static 'assets/icons/icon_search2.png' %}" id='search_icon'/></button>
                 </form>
@@ -40,10 +40,10 @@
                 </div>
             </div>
         </div>
-            <div id="sort_btn_box">
-                <a href="?sort=likes"><button id="sort_likes_btn" class='sort_btn'>인기순</button></a>
-                <a href="?sort=newest"><button id="sort_newest_btn" class='sort_btn'>최신순</button></a>
-            </div>
+        <div id="sort_btn_box">
+            <a href="?sort=likes"><button id="sort_likes_btn" class='sort_btn'>인기순</button></a>
+            <a href="?sort=newest"><button id="sort_newest_btn" class='sort_btn'>최신순</button></a>
+        </div>
 
         <div id="main_container">
             <div class="slider__wrap">
@@ -52,7 +52,7 @@
                 </div>
                 <div class="slider__img">
                     <div id="sliderInner" class="slider__inner">
-                    {% if not we_dont_have %}  <!-- 수정된 부분 -->
+                    {% if not we_dont_have %}
                         {% for custom in customs %}
                             {% if not filter_apply_dep or custom.major in filter_apply_dep %}
                             <div class="slider">
@@ -71,7 +71,7 @@
                         <p id="sorry">이미지가 존재하지 않습니다</p>
                         <p id="soon">조만간 채울게요..:D</p>
                     </div>
-                {% endif %}
+                    {% endif %}
                     </div>
                 </div>
                 <div class="slider__btn" id="right_slider__btn">
@@ -103,6 +103,65 @@
             sortLikesBtn.classList.add('active');
             sortNewestBtn.classList.add('inactive');
         }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('search_input');
+        const suggestionsContainer = document.getElementById('suggestions');
+        const suggestionsList = document.getElementById('suggestions_list');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            if (query.length > 0) {
+                fetch(`/custom/suggestions/?q=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Suggestions:', data);
+                        suggestionsList.innerHTML = '';
+
+                        const uniqueSuggestions = new Set();
+
+                        data.forEach(item => {
+                            let suggestionText = '';
+                            if (item.major) {
+                                suggestionText = item.major;
+                            } else if (item.keyword) {
+                                suggestionText = item.keyword;
+                            }
+
+                            if (!uniqueSuggestions.has(suggestionText)) {
+                                uniqueSuggestions.add(suggestionText);
+                                const li = document.createElement('li');
+                                li.textContent = suggestionText;
+                                li.addEventListener('click', function() {
+                                    searchInput.value = suggestionText;
+                                    suggestionsContainer.style.display = 'none';
+                                    document.getElementById('search_form').submit();
+                                });
+                                suggestionsList.appendChild(li);
+                            }
+                        });
+
+                        if (uniqueSuggestions.size > 0) {
+                            suggestionsContainer.style.display = 'block';
+                        } else {
+                            suggestionsContainer.style.display = 'none';
+                        }
+                    });
+            } else {
+                suggestionsContainer.style.display = 'none';
+            }
+        });
+
+        // 검색 창 토글
+        document.getElementById('icon_filter_bk').addEventListener('click', () => {
+            const searchContainer = document.getElementById('search_container');
+            if (searchContainer.style.display === 'none') {
+                searchContainer.style.display = 'block';
+            } else {
+                searchContainer.style.display = 'none';
+            }
+        });
     });
 </script>
 </html>

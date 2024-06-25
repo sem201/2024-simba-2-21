@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadImgButton = document.getElementById('upload-img-button');
     const imageInput = document.getElementById('image-input');
     const refreshButton = document.getElementById('refresh-button');
+    const colorCheckbox = document.getElementById('color-checkbox');
     let currentRotateButton = null;
     let currentResizeButton = null;
     let currentDeleteButton = null;
@@ -71,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         newDiv.style.fontSize = '20px';
         newDiv.style.fontWeight = 'bold';
+        newDiv.style.color = colorCheckbox.checked ? 'white' : 'black'; // 텍스트 색상 설정
         sample.style.zIndex = -10;
         const rotateButton = document.createElement('img');
         rotateButton.src = '/static/assets/icons/icon-rotate.png';
