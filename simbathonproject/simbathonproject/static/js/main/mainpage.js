@@ -177,69 +177,86 @@ document.getElementById('reset_btn').addEventListener('click', function() {
 
     //새로고침 시행
     location.reload();
-})
+    })
 
 ///////////여기부터 검색 기능//////////
 
-    const searchInput = document.getElementById('search_input');
-    const suggestionsContainer = document.getElementById('suggestions');
-    const suggestionsList = document.getElementById('suggestions_list');
+const searchInput = document.getElementById('search_input');
+const suggestionsContainer = document.getElementById('suggestions');
+const suggestionsList = document.getElementById('suggestions_list');
+const searchContainer = document.getElementById('search_container');
 
-    searchInput.addEventListener('input', function() {
-        const query = this.value.toLowerCase();
-        if (query.length > 0) {
-            fetch(`/search_suggestions/?q=${query}`)
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Suggestions:', data); // 서버에서 반환된 데이터 확인
-                    suggestionsList.innerHTML = '';
+searchInput.addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    if (query.length > 0) {
+        fetch(`/search_suggestions/?q=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Suggestions:', data); // 서버에서 반환된 데이터 확인
+                suggestionsList.innerHTML = '';
 
-                    // 중복 제거를 위한 Set
-                    const uniqueSuggestions = new Set();
+                // 중복 제거를 위한 Set
+                const uniqueSuggestions = new Set();
 
-                    data.forEach(item => {
-                        let suggestionText = '';
-                        if (item.major) {
-                            suggestionText = item.major;
-                        } else if (item.college) {
-                            suggestionText = item.college;
-                        } else if (item.keyword) {
-                            suggestionText = item.keyword;
-                        }
+                data.forEach(item => {
+                    let suggestionText = '';
+                    if (item.major) {
+                        suggestionText = item.major;
+                    } else if (item.college) {
+                        suggestionText = item.college;
+                    } else if (item.keyword) {
+                        suggestionText = item.keyword;
+                    }
 
-                        // 중복된 항목을 제외하고 Set에 추가
-                        if (!uniqueSuggestions.has(suggestionText)) {
-                            uniqueSuggestions.add(suggestionText);
-                            const li = document.createElement('li');
-                            li.textContent = suggestionText;
-                
-                            li.addEventListener('click', function() {
-                                searchInput.value = suggestionText;
-                                suggestionsContainer.style.display = 'none';
-                                document.getElementById('search_form').submit(); // 검색 폼 제출
-                            });
-                            suggestionsList.appendChild(li);
-                        }
-                    });
-
-                    if (uniqueSuggestions.size > 0) {
-                        suggestionsContainer.style.display = 'block';
-                    } else {
-                        suggestionsContainer.style.display = 'none';
+                    // 중복된 항목을 제외하고 Set에 추가
+                    if (!uniqueSuggestions.has(suggestionText)) {
+                        uniqueSuggestions.add(suggestionText);
+                        const li = document.createElement('li');
+                        li.textContent = suggestionText;
+            
+                        li.addEventListener('click', function() {
+                            searchInput.value = suggestionText;
+                            suggestionsContainer.style.display = 'none';
+                            document.getElementById('search_form').submit(); // 검색 폼 제출
+                        });
+                        suggestionsList.appendChild(li);
                     }
                 });
-        } else {
-            suggestionsContainer.style.display = 'none';
-        }
-    });
 
-    // 검색 창 토글
-    const searchContainer = document.getElementById('search_container');
-    if (searchContainer.style.display === 'none') {
-        searchContainer.style.display = 'block';
-    } else {
-            searchContainer.style.display = 'none';
+                if (uniqueSuggestions.size > 0) {
+                    suggestionsContainer.style.display = 'block';
+                    searchInput.style.borderRadius ='20px 20px 0px 0px';
+                    searchInput.style.boxShadow='5px 5px gray';
+
+                } else {
+                    suggestionsContainer.style.display = 'none';
+                    searchInput.style.borderRadius = '20px';
+                    if (searchContainer.style.display === 'none') {
+                        searchInput.style.borderRadius = '20px';
+
+                    }
+                }
+            });
+    } 
+    else {
+        suggestionsContainer.style.display = 'none';
+        if (searchContainer.style.display === 'none') {
+            searchInput.style.borderRadius = '20px';
+        } else {
+            searchInput.style.borderRadius = '20px 20px 20px 20px';
+        }
     }
+});
+
+// 검색 창 토글
+if (searchContainer.style.display === 'none') {
+    searchContainer.style.display = 'block';
+    searchInput.style.borderRadius = '20px 20px 20px 20px';
+} else {
+    searchContainer.style.display = 'none';
+    searchInput.style.borderRadius = '20px 20px 20px 20px';
+}
+
 
 });
-//
+

@@ -195,12 +195,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (data.length > 0) {
                         suggestionsContainer.style.display = 'block';
+                        searchInput.style.borderRadius = '20px 20px 0px 0px';
+                        searchInput.style.boxShadow = '5px 5px gray';
                     } else {
                         suggestionsContainer.style.display = 'none';
+                        searchInput.style.borderRadius = '20px';
+                        searchInput.style.boxShadow = 'none';
                     }
                 });
         } else {
             suggestionsContainer.style.display = 'none';
+            if (searchContainer.style.display === 'none') {
+                searchInput.style.borderRadius = '20px';
+                searchInput.style.boxShadow = 'none';
+            } else {
+                searchInput.style.borderRadius = '20px 20px 20px 20px';
+                searchInput.style.boxShadow = '5px 5px gray';
+            }
         }
     });
 
@@ -208,8 +219,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchContainer = document.getElementById('search_container');
     if (searchContainer.style.display === 'none') {
         searchContainer.style.display = 'block';
+        searchInput.style.borderRadius = '20px 20px 20px 20px';
+        
     } else {
         searchContainer.style.display = 'none';
+        searchInput.style.borderRadius = '20px 20px 20px 20px';
+        searchInput.style.boxShadow = 'none';
     }
+
 }); 
 
