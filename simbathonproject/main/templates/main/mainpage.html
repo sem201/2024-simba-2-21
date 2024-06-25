@@ -9,15 +9,18 @@
 </head>
 <body>
     <div id="container">
+    <div id="top_menu">
         <div class="button_container">    <!--버튼 컨테이너 -->
-            <div class='left_box'><div id="logo_box">
-                <a href='/main/'><img src = "{% static 'assets/icons/varsity_logo.png' %}" id='logo'/></a>
-            </div></div>
+            <div class='left_box'>
+                <div id="logo_box">
+                    <a href='/main/'><img src = "{% static 'assets/icons/varsity_logo.png' %}" id='logo'/></a>
+                </div>
+            </div>
             <div id="normal_custom">      <!--일반/커스텀 선택 슬라이더-->
                 <button id="normal_btn">일반</button>
                 <a href='/custom'><button id="custom_btn">커스텀</button></a>
             </div>
-            <div class="tool_bar">          <!--툴바 (필터,초기화) -->
+            <div class="tool_bar">          <!--툴바 (필터, 초기화) -->
                 <a href='/main/'><i class="fa-solid fa-rotate-right" id="reset_btn"></i></a>
                 <button id="filter_btn">       
                     <img src="{% static 'assets/icons/icon_filter_bk.png' %}" id="icon_filter_bk">
@@ -35,6 +38,10 @@
             <div id="suggestions" style="display: none;">
                 <ul id="suggestions_list"></ul>
             </div>
+        </div>
+    </div>
+        <div id="sort_btn_box">
+            <button id="show_back_button">후면 정렬</button> <!-- 추가된 버튼 -->
         </div>
 
         <div id="main_container">   <!--메인컨테이너-->
