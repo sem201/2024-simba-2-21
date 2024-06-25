@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputContainer = document.getElementById('input-container');
     const textInput = document.getElementById('text-input');
     const uploadTextButton = document.getElementById('upload-text');
+    const colorSelect = document.getElementById('color-select'); // 추가된 부분
     const sample = document.getElementById('sample');
     const topContainer = document.getElementById('top-container');
     const uploadImgButton = document.getElementById('upload-img-button');
@@ -52,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     uploadTextButton.addEventListener('click', () => {
         const newText = textInput.value;
+        const textColor = colorSelect.value; // 추가된 부분
         if (newText.trim() === '') return;
     
         if (newText.length > 20) {
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newDiv.style.transform = 'translate(-50%, -50%)';
         newDiv.style.cursor = 'move';
         newDiv.style.whiteSpace = 'nowrap'; 
-
+        newDiv.style.color = textColor; // 추가된 부분
         newDiv.style.fontSize = '25px';
         newDiv.style.fontWeight = 'bold';
         newDiv.style.fontFamily = 'Playball, cursive'; /* 추가된 부분 */
