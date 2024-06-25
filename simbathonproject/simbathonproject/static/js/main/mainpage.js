@@ -201,6 +201,8 @@ document.getElementById('reset_btn').addEventListener('click', function() {
                         let suggestionText = '';
                         if (item.major) {
                             suggestionText = item.major;
+                        } else if (item.college) {
+                            suggestionText = item.college;
                         } else if (item.keyword) {
                             suggestionText = item.keyword;
                         }
