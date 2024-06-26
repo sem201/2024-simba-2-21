@@ -342,7 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const topContainer = document.getElementById('top-container');
         topContainer.style.borderTop = 'none';
         topContainer.style.borderBottom = 'none';
-        // topContainer.style.backgroundColor='#FFFFFF'
+        topContainer.style.backgroundColor='#FFFFFF'
+        console.log('ddd')
         hideAllButtons();
         const images = document.querySelectorAll('img');
         const promises = [];

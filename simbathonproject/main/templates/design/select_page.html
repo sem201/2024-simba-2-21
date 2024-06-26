@@ -69,7 +69,8 @@
             images.forEach((img) => {
                 img.addEventListener('click', () => {
                     if (selectedImage) {
-                        selectedImage.style.border = '2px solid black';
+                        //selectedImage.style.border = '2px solid black';
+                        selectedImage.style.border = 'none';
                         selectedImage.style.borderRadius = '10px';
                     }
 
@@ -80,7 +81,6 @@
                     const keyword = img.getAttribute('data-keyword'); // data-keyword 속성 값 가져오기
                     localStorage.setItem('selectedImage', img.src); // img 요소의 src 저장
                     localStorage.setItem('selectedKeyword', keyword); // 키워드 값 저장
-                    console.log('키워드 저장됨:', keyword); // 키워드 저장 확인
                 });
             });
 
