@@ -176,6 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log('Suggestions:', data); // 서버에서 반환된 데이터 확인
                     suggestionsList.innerHTML = '';
 
+                    const addedItems = []; // 추가된 이름을 저장하는 배열
+
                     data.forEach(item => {
                         const titleMatch = item.title.toLowerCase().includes(query);
                         const majorMatch = item.major.toLowerCase().includes(query);
@@ -195,7 +197,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else {
                             return; // 일치하는 항목이 없으면 넘어가기
                         }
-
+                        if (addedItems.includes(liContent)) {
+                            return; // 이미 추가된 이름이면 넘어가기
+                        }
+                    
+                        addedItems.push(liContent);
+                        
                         const li = document.createElement('li');
                         li.innerHTML = liContent;
                         li.addEventListener('click', function() {
