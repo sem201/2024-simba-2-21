@@ -194,6 +194,11 @@ a {
     /* padding-right: 20px; */
 }
 
+ul{
+    margin: 0;
+    padding: 0;
+}
+
 #search_input::placeholder {
     font-size: 16px;
     color: #838383;
@@ -236,21 +241,34 @@ a {
 
 #suggestions{
     position: absolute;
-    top:30px;
+    top:45px;
     left: 19px;
     width: 502px;
+    font-family: "Pretendard Variable";
     border-radius: 0px 0px 20px 20px;
-    background-color: rgba(238, 238, 239, 1);
+    background-color: #E6F8FF;
     z-index: 10;
-    box-shadow: 5px 5px gray;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+#suggestions_list {
+    margin: 5PX;
+}
+li{
+    list-style-type: none;
+    line-height: 220%;
+    padding-left: 10px;
+}
+li:hover{
+    background-color: #97E2FF;
+}
+
 
 /* 뒷판부터 보기 버튼 */
 #sort_btn_box {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
     margin: 20px 50px 0px 0px;
     width: 540px;
 }
@@ -275,6 +293,11 @@ a {
     font-size: 18px;
     font-weight: bold;
 }
+ 
+#filtered-count {  /*검색 결과 n개*/
+    display: none;
+}
+
 /*//////////////여기부터 사진//////////////*/
 
 #main_container {
@@ -307,7 +330,7 @@ a {
 .slider__btn {
     /* border: 8px solid navy; */
     position: relative;
-    bottom: 105px;
+    bottom: 40px;
 }
 
 #left_slider__btn {
@@ -436,7 +459,7 @@ p{
     background-color: #FFFFFF;
     width:136px;
     height: 46px;
-    /* margin: 20px; */
+    margin: 15px;
     /* box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2); */
 }
 
@@ -445,14 +468,13 @@ p{
     font-family: 'NanumGothic';
     font-size: 18px;
     color: gray;
-    margin-top: 20px;
+    margin-top: 15px;
     font-weight: bold;
 }
 
 button{
     cursor: pointer;
 }
-
 
 
 li{

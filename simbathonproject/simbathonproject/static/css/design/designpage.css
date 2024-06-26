@@ -1,3 +1,6 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url('https://webfontworld.github.io/SCoreDream/SCoreDream.css');
+
 body {
     display: flex;
     justify-content: center;
@@ -12,8 +15,50 @@ body {
     width: 540px;
     height: 960px;
     position: relative;
-    
 }
+
+
+.head_bar {
+    /* border: 1px solid blue; */
+    display: flex;
+    width: 500px;
+    height: 46px;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0px 0 0px 40px;
+    background-color: #CACDD0;
+}
+
+.seq:nth-child(1){
+    /* border: 2px solid saddlebrown; */
+    box-shadow: rgba(0, 0, 0.25) -5px -20px 50px -12px;   
+}
+
+.seq:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+}
+
+.seq:nth-child(3){
+    /* border: 2px solid saddlebrown; */
+    box-shadow: rgba(0, 0, 0.25) 2px -20px 50px -12px;   
+}
+
+.seq {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 46px;
+    color : #6A6A6A;
+    font-size: 18px;
+}
+
 button{
     cursor: pointer;
 }
@@ -21,6 +66,7 @@ button{
 p {
     font-family: "Pretendard Variable";
     font-weight: bold;
+    margin: 0px;
 }
 
 #top_bar {
@@ -28,34 +74,74 @@ p {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    width:540px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    width:500px;
+    margin: 15px 20px 15px 20px;
 }
 .nothing {
     /* border: 1px solid violet; */
     width: 148px;
     height: auto;
 }
+
 #home{
     width: 30px;
     height: 30px;
-    margin-left: 30px;
 }
+#home_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 15%;
+    transition: background-color 0.4s ease;
+
+}
+#home_btn:hover {
+    background-color: #f4e7ff;
+    color: #151B54;
+}
+
+#check_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 15%;
+    transition: background-color 0.4s ease;
+
+}
+#check_btn:hover {
+    background-color: #f4e7ff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.title_text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 10px 0;
+
+}
+
 #title {
     display: flex;
-    font-size: 24px;
+    font-family: "Pretendard Variable";
+    font-size: 28px;
     text-align: center;
     font-weight: bold;
-    margin-right: 15px;
+    margin-bottom: 5px;
 }
 
 #normal_btn{
     background-color: #FFFFFF;
     border:0;
-    margin-right: 20px;
-
+    /* margin-right: 20px; */
+    width: 60px;
 }
+
 #top-container {
     width: 100%;
     height: 60%;
@@ -66,12 +152,13 @@ p {
     background-color: #FFFFFF;
     border-top: 1px solid rgba(134, 134, 134, 0.3);
     border-bottom: 1px solid rgba(134, 134, 134, 0.3);
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
 }
 
 #sample{
     z-index: -10;
     position: absolute;
-    top:14.5%;
+    top:16%;
     width:540px;
     height: 577px;
     background-color: rgba(0, 0, 0, 0.6);
@@ -98,6 +185,12 @@ p {
     position: relative;
 }
 
+.bottom_bar {
+    height: 227px;
+    padding-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}
+
 #bottom-container2{
     width: 100%;
     height: 20px;
@@ -105,20 +198,26 @@ p {
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-evenly;
-    margin-left: 10px;
 }
 
 #add-text-button, #upload-img-button, #capture-button ,#refresh-button{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 80px;
-    width: 80px;
-    border-radius: 100%;
+    width: 85px;
+    border-radius: 15%;
     border:0;
+    background-color: white;
+    gap: 5px;
+    transition: color 0.3s ease, background-color 0.3s ease-in-out;
+
 }
+
 #add-text-button:hover, #upload-img-button:hover, #capture-button:hover, #refresh-button:hover{
-    background-color: rgba(178, 119, 255, 1);
+    background-color: #DFE3F8;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
 }
 
 
@@ -142,43 +241,83 @@ p {
 }
 
 
-#text-input{
-    border:none;
-    border-radius: 10px;
-    background-color: #FFFFFF;
-    font-size: 16px;
-    width: 300px;
-    height: 50px;
-}
-#upload-text{
-    font-family: "Pretendard Variable";
-    border: none;
-    font-size:16px;
-    width: 70px;
-    height: 50px;
-    border-radius: 12px;
-    background-color: rgba(227, 227, 227, 1);
-}
-#color-select{
-    border-radius: 12px;
-    background-color: rgba(227, 227, 227, 1);
-    margin-right: 7px;
-}
+
 #upload-text:hover{
     background-color: rgba(178, 119, 255, 1);
     color:#FFFFFF;
 }
 
-/* 추가: 새로운 문구에 대한 스타일 */
+/* 안내 문구에 대한 스타일 */
 #toggle_instruction {
-    font-family: 'NanumGothic';
+    font-family: 'SCoreDream';
+    font-weight: 200;
     font-size: 16px;
     color: gray;
-    margin-top: 20px;
+    opacity: 80%;
+}
+
+/* 텍스트 인풋방식 */
+#input-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#text-input{
+    border-top-left-radius: 999px;
+    border-bottom-left-radius: 999px;
+    padding-left: 20px;
+    border-right: 0px;
+    background-color: #E6E7EA;
+    border-bottom: 2px solid #80A0FF;
+    border-top: 2px solid #80A0FF;
+    border-left: 2px solid #80A0FF;;
+    box-shadow: #2E5CE4 0px -10px 36px -28px inset;    
+    font-size: 16px;
+    width: 300px;
+    height: 46px;
+}
+#text-input::placeholder{
+    margin-left: 40px;
 }
 
 #color-select {
-    margin-left: 10px;
+    width: 80px;
+    height: 49.5px;
+    font-family: 'SCoreDream';  
+    font-weight: 500;
+    background-color: #E6E7EA;
+    border-left: 0px;
+    border-top: 2.5px solid #80A0FF;
+    border-bottom: 2.5px solid #80A0FF;
+    box-shadow: #2E5CE4 0px -10px 36px -28px inset; 
+    padding-left: 10px;
     font-size: 16px;
-    padding: 5px;
+}
+
+/* CSS */
+#upload-text {
+    background: #5E5DF0;
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+    box-shadow: #5E5DF0 0 10px 20px -10px;
+    color: #FFFFFF;
+    font-family: 'SCoreDream';  
+    font-weight: 500;
+    font-size: 16px;
+    padding-right: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    height: 50px;
+    width: 80px;
+    word-break: break-word;
+    border: 0;
+    transition: background-color 0.4s ease;
+
+}
+
+#upload-text:hover{
+    background-color: rgba(178, 119, 255, 1);
+    color:#FFFFFF;
 }

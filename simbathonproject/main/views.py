@@ -20,7 +20,7 @@ def mainpage(request):
         varsitys = Varsity.objects.all()
 
     # 정렬 순서를 정의합니다.
-    custom_order = ['AI융합대학', '경영대학', '경찰사법대학', '공과대학', '문과대학', '미래융합대학', '바이오시스템대학', '법과대학', '불교대학', '사범대학', '사회과학대학', '약학대학', '예술대학', '이과대학']
+    custom_order = ['AI융합대학', '경영대학', '경찰사법대학', '공과대학', '문과대학', '미래융합대학', '바이오시스템대학', '법과대학', '불교대학', '사범대학', '사회과학대학', '약학대학', '예술대학', '이과대학', '기타']
 
     # Varsity 객체들을 custom_order에 따라 정렬합니다.
     sorted_varsitys = sorted(varsitys, key=lambda v: custom_order.index(v.college) if v.college in custom_order else len(custom_order))
@@ -50,14 +50,20 @@ def mainpage(request):
         sorted_varsitys = sorted(varsitys, key=lambda v: custom_order.index(v.college) if v.college in custom_order else len(custom_order))
     # 필터 조건을 만족하는 항목이 있는지 확인
     we_dont_have = not any(not filter_apply_dep or varsity.major in filter_apply_dep for varsity in sorted_varsitys)   
-
+    filtered_count = sum(1 for varsity in sorted_varsitys if not filter_apply_dep or varsity.major in filter_apply_dep)
+    
     context = {
         'varsitys': sorted_varsitys,
         'liked_varsitys': liked_varsitys,
         'filter_apply_dep': filter_apply_dep,  
         'we_dont_have' : we_dont_have,
+        'filtered_count':filtered_count,
     }
     return render(request, 'main/mainpage.html', context)
+
+
+
+
 
 def custompage(request):
     sort_option = request.GET.get('sort', 'likes')
@@ -87,13 +93,15 @@ def custompage(request):
         customs = customs.filter(major__in=filter_apply_dep)
 
     # 필터 조건을 만족하는 항목이 있는지 확인
-    we_dont_have = not any(not filter_apply_dep or custom.major in filter_apply_dep for custom in customs)
+    we_dont_have = not any(not filter_apply_dep or custom.major in filter_apply_dep for custom in customs)  
+    filtered_count = sum(1 for custom in customs if not filter_apply_dep or custom.major in filter_apply_dep)
 
     context = {
         'customs': customs,
         'liked_customs': liked_customs,
         'filter_apply_dep': filter_apply_dep, 
         'we_dont_have': we_dont_have, 
+        'filtered_count':filtered_count,
     }
     return render(request, 'main/custompage.html', context)
 

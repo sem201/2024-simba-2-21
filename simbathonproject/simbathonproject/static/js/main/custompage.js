@@ -126,6 +126,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('filter_btn').addEventListener('click', function() {
         window.location.href = '/customfilter';
+
+    //filte_count정의 후 슬라이더 유무 결정
+    var filteredCount = parseInt(document.getElementById('filtered-count').getAttribute('data-count'), 10);
+    console.log(filteredCount);
+
+    if (filteredCount < 2) {
+    document.querySelectorAll('.slider__btn').forEach(function(btn) {
+        btn.style.visibility = 'hidden';
+    });
+} else {
+    document.querySelectorAll('.slider__btn').forEach(function(btn) {
+        btn.style.visibility = 'visible';}
+    )}
     });
 });
 
@@ -196,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (data.length > 0) {
                         suggestionsContainer.style.display = 'block';
                         searchInput.style.borderRadius = '20px 20px 0px 0px';
-                        searchInput.style.boxShadow = '5px 5px gray';
+                        searchInput.style.boxShadow='0px 7px 29px 0px rgba(100, 100, 111, 0.2';
                     } else {
                         suggestionsContainer.style.display = 'none';
                         searchInput.style.borderRadius = '20px';
@@ -210,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 searchInput.style.boxShadow = 'none';
             } else {
                 searchInput.style.borderRadius = '20px 20px 20px 20px';
-                searchInput.style.boxShadow = '5px 5px gray';
+                searchInput.style.boxShadow='0px 7px 29px 0px rgba(100, 100, 111, 0.2';
             }
         }
     });
@@ -229,3 +242,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 }); 
 
+///페이지 이동간 필터 초기화 ///
+document.getElementById("normal_btn").addEventListener('click', function() {
+    const selectedDepartments = [];
+
+    // 로컬 스토리지에 저장
+    localStorage.setItem('selectedDepartments', JSON.stringify(selectedDepartments));
+})

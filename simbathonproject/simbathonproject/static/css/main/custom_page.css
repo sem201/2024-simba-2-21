@@ -236,13 +236,25 @@ a {
 
 #suggestions{
     position: absolute;
-    top:30px;
+    top:45px;
     left: 19px;
     width: 502px;
+    font-family: "Pretendard Variable";
     border-radius: 0px 0px 20px 20px;
-    background-color: rgba(238, 238, 239, 1);
+    background-color: #E6F8FF;
     z-index: 10;
-    box-shadow: 5px 5px gray;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+#suggestions_list {
+    margin: 5PX;
+}
+li{
+    list-style-type: none;
+    line-height: 220%;
+    padding-left: 10px;
+}
+li:hover{
+    background-color: #97E2FF;
 }
 
 /* 정렬버튼 : 인기순-최신순 */
@@ -266,7 +278,7 @@ a {
     color: #919191;
     border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.4s ease;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 #sort_newest_btn {
@@ -287,6 +299,7 @@ a {
     color: #8C52FF;
     font-size: 18px;
     font-weight: bold;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 #sort_newest_btn.active {
@@ -294,6 +307,7 @@ a {
     color: #8C52FF;
     font-size: 18px;
     font-weight: bold;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /*//////인기순 최신순 위치 정렬///////*/
@@ -363,7 +377,7 @@ a {
 .slider__btn {
     /* border: 8px solid navy; */
     position: relative;
-    bottom: 105px;
+    bottom: 70px;
 }
 
 #left_slider__btn {
@@ -394,6 +408,9 @@ a {
     padding-left: 10px;
     transition: transform 0.5s ease;
 }
+#filtered-count {
+    display: none;
+}
 
 .slider {
     display: flex;
@@ -402,6 +419,25 @@ a {
     align-items: center;
     width: 600px;
 }
+
+.slider > #icon_no_img {
+    margin: 80px 40px 80px 40px;
+}
+.slider > #sorry {
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 10px;
+}
+.slider > #soon {
+    color: #6B6B6B;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 24px;
+    font-weight: 400;
+}
+
 #text_major{
     font-weight: bold;
 }
@@ -462,7 +498,7 @@ p{
 
 #design_btn_container{
     display: flex;
-    justify-self: center;
+    justify-content: center;
     align-items: center;
     margin-top: 40px;
     width: 500px;
@@ -472,19 +508,16 @@ p{
     background-color: #9747FF;
     align-self: center;
     color:#FFFFFF;
-    width:500px;
-    height:67px;
+    width:375px;
+    height:60px;
     border:0px;
     border-radius: 12px;
     font-size: 20px;
     font-family: "Pretendard Variable";
+    font-weight: 600;
     margin-left: 45px;
 }
 button{
     cursor: pointer;
 }
 
-
-li{
-    list-style-type: none;
-}

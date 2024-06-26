@@ -29,8 +29,8 @@
                 </button>
             </div>
         </div>
-        <!-- /////  검생창 시작 ////// -->
-        <div id="search_container" style="display: none;">
+        <!-- /////  검색창 시작 ////// -->
+        <div id="search_container">
             <form id="search_form" method="get" action="/main/">
                 <input type="text" name="search" placeholder="색상, 학과로 검색해보세요!" id="search_input">
                 <button type="submit" id='submit'><img src="{% static 'assets/icons/icon_search2.png' %}" id='search_icon'/></button>
@@ -39,11 +39,14 @@
                 <ul id="suggestions_list"></ul>
             </div>
         </div>
-    </div>
+    </div>  <!--top_menu닫기-->
 
         <div id="sort_btn_box">
             <button id="show_back_button">후면 정렬</button> <!-- 추가된 버튼 -->
         </div>
+
+        <!-- 검색결과 수 -->
+        <div id="filtered-count" data-count="{{ filtered_count }}">검색결과 {{ filtered_count }} 개</div>
 
         <div id="main_container">   <!--메인컨테이너-->
             <div class="slider__wrap">
@@ -69,7 +72,9 @@
                             {% endfor %}
                         {% else %}
                             <div class="slider">
-                                <p align="center"><b>이미지가 없습니다.</b></p>
+                                <img src="{% static 'assets/icons/icon_no_img.png' %}" id="icon_no_img">
+                                <p id="sorry">이미지가 존재하지 않습니다</p>
+                                <p id="soon">조만간 채울게요..:D</p>
                             </div>
                         {% endif %}
                     </div>
@@ -84,3 +89,4 @@
     <script src="https://kit.fontawesome.com/e18eac0141.js" crossorigin="anonymous"></script>
 </body>
 </html>
+  
