@@ -284,13 +284,13 @@ p {
 
 #color-select {
     width: 80px;
-    height: 49.5px;
+    height: 51px;
     font-family: 'SCoreDream';  
     font-weight: 500;
     background-color: #E6E7EA;
     border-left: 0px;
-    border-top: 2.5px solid #80A0FF;
-    border-bottom: 2.5px solid #80A0FF;
+    border-top: 2px solid #80A0FF;
+    border-bottom: 2px solid #80A0FF;
     box-shadow: #2E5CE4 0px -10px 36px -28px inset; 
     padding-left: 10px;
     font-size: 16px;
@@ -310,7 +310,7 @@ p {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    height: 50px;
+    height: 51px;
     width: 80px;
     word-break: break-word;
     border: 0;
