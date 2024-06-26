@@ -118,10 +118,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('filter_count').style.visibility = 'hidden';
     } else {
          // count가 0이 아니면 필터 이미지를 파란색으로 바꾸고 filter_count 요소를 표시
-         document.getElementById('icon_filter_bk').style.display = 'none';
-         document.getElementById('icon_filter_blue').style.display = 'flex';
-         document.getElementById('filter_count').style.visibility = 'visible';
-         document.getElementById('filter_count').textContent = count;
+        document.getElementById('icon_filter_bk').style.display = 'none';
+        document.getElementById('icon_filter_blue').style.display = 'flex';
+        document.getElementById('filter_count').style.visibility = 'visible';
+        document.getElementById('filter_count').textContent = count;
     }
 
     document.getElementById('filter_btn').addEventListener('click', function() {
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     
                         addedItems.push(liContent);
-                        
+
                         const li = document.createElement('li');
                         li.innerHTML = liContent;
                         li.addEventListener('click', function() {
