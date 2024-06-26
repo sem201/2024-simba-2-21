@@ -134,6 +134,10 @@
                             } 
                             else if (item.keyword) {
                                 suggestionText = item.keyword;
+                            }else if (item.title) {
+                            suggestionText = item.title;
+                            } else if (item.college) {
+                                suggestionText = item.college;
                             }
 
                             if (!uniqueSuggestions.has(suggestionText)) {

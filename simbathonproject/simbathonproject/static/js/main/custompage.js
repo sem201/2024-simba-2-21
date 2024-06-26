@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const li = document.createElement('li');
                         li.innerHTML = liContent;
                         li.addEventListener('click', function() {
-                            searchInput.value = item.title; // 검색창에 제목만 채우기
+                            searchInput.value = liContent; 
                             suggestionsContainer.style.display = 'none';
                             document.getElementById('search_form').submit(); // 검색 폼 제출
                         });
